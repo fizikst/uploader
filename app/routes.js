@@ -1,6 +1,66 @@
 var Todo = require('./models/todo');
+var SpreadsheetReader = require('pyspreadsheet').SpreadsheetReader;
 
 module.exports = function(app) {
+
+    // api ---------------------------------------------------------------------
+    // post file
+    app.post('/api/files', function(req, res) {
+        for (i in req.files) {
+
+
+//            console.log(req);
+
+            SpreadsheetReader.read(req.files[i]['path'], {maxRows: 3 }, function (err, workbook) {
+
+                if (err) {
+                    res.send(err);
+                }
+
+                var data = {};
+//
+//                data.headers = [
+//                    {
+//                        code: '0',
+//                        name: '-'
+//                    },
+//                    {
+//                        code: 'price',
+//                        name: 'цена'
+//                    }, {
+//                        code: 'name',
+//                        name: 'наименование'
+//                    }, {
+//                        code: 'amount',
+//                        name: 'количество'
+//                    }
+//                ];
+
+                // Iterate on sheets
+                workbook.sheets.forEach(function (sheet) {
+//                    console.log('sheet: ' + sheet.name);
+                    // Iterate on rows
+//                    console.log(sheet.rows);
+//                    sheet.rows.forEach(function (row) {
+//                        // Iterate on cells
+//                        var dataRow = [];
+//                        row.forEach(function (cell) {
+//                            dataRow.push(cell.address);
+//                            console.log(cell.address + ': ' + cell.value);
+//                        });
+//                        dataXls.push(dataRow);
+//                        console.log(row.length);
+//                    });
+
+                    data.rows = sheet.rows;
+                    res.json(data);
+                });
+            });
+        }
+
+
+
+    });
 
 	// api ---------------------------------------------------------------------
 	// get all todos
@@ -11,7 +71,7 @@ module.exports = function(app) {
 
 			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
 			if (err)
-				res.send(err)
+				res.send(err);
 
 			res.json(todos); // return all todos in JSON format
 		});
