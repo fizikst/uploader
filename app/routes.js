@@ -4,17 +4,25 @@ var SpreadsheetReader = require('pyspreadsheet').SpreadsheetReader;
 module.exports = function(app) {
 
     // api ---------------------------------------------------------------------
-    // post file
+    // post fileconsole.log(req.files);
     app.post('/api/files', function(req, res) {
+        console.log(req);
         for (i in req.files) {
 
 
 //            console.log(req);
-
-            SpreadsheetReader.read(req.files[i]['path'], {maxRows: 3 }, function (err, workbook) {
+//
+            SpreadsheetReader.read(req.files[i]['path'], {maxRows: 5 }, function (err, workbook) {
 
                 if (err) {
                     res.send(err);
+                }
+
+                if (res.body) {
+                    for (var j in req.body.selectOpts) {
+                        console.log(req.body.selectOpts[j]);
+                    }
+                    console.log(res.body.selectOpts);
                 }
 
                 var data = {};
@@ -52,7 +60,7 @@ module.exports = function(app) {
 //                        console.log(row.length);
 //                    });
 
-                    data.rows = sheet.rows;
+                    data = sheet.rows;
                     res.json(data);
                 });
             });

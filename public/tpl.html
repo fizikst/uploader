@@ -1,0 +1,12 @@
+<div>
+    <input type="file" multiple />
+</div>
+<table border="1">
+    <tr ng-repeat="row in rows">
+        <td ng-repeat="cell in row">
+            <select ng-show="$parent.$first === true" ng-model="myOpt" ng-change="changeSelect(myOpt,$index);" ng-options="header.code as header.name for header in headersOpt"></select><br />
+            {{cell.value}}
+        </td>
+    </tr>
+</table>
+<button ng-click="upload()">Upload</button><br />
