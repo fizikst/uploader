@@ -56,6 +56,7 @@ myApp.directive('fileUploader', function() {
                 }
             });
 
+//            http://plnkr.co/edit/nqgujfj7msKoJ4Tm3Tlz?p=preview
 //            http://jsfiddle.net/pkozlowski_opensource/qEmYG/5/   factory
 //            http://jsfiddle.net/winduptoy/QhA3q/ file upload
 //            http://plnkr.co/edit/bQNiqNyeuApr7TiCZdct?p=preview
