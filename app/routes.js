@@ -1,67 +1,100 @@
 var Todo = require('./models/todo');
 var SpreadsheetReader = require('pyspreadsheet').SpreadsheetReader;
+var _ = require('underscore');
+var config = require('../config');
+var util = require('util');
+console.log('config', config);
+
+/*  postgres */
+var pg = require('pg');
+var conn =  config.postgres;
+var connString = util.format("pg://%s:%s@%s:%d/%s", conn.user, conn.password, conn.host,conn.port, conn.database);
+/*  !postgres */
+
 
 module.exports = function(app) {
+
+    function Insert(client, done, data, selectOpts) {
+        var strMaskParams = GetStringCountParams(selectOpts);
+        var strTitleParams = GetTitleSelectOpts(selectOpts);
+        client.query("INSERT INTO goods (" + strTitleParams + ") VALUES (" + strMaskParams + ")",
+            data,
+            function (err, result) {
+                done();
+                if (err) {
+                    console.log(err);
+                }
+            }
+        );
+    }
+
+    function GetStringCountParams (selectOpts) {
+        var valueList = []
+            , count = Object.keys(selectOpts).length
+            , i;
+        for (i=1; i <= count; i++) {
+            valueList.push('$'+i);
+        }
+        return valueList.join(', ');
+    }
+
+    function GetTitleSelectOpts(selectOpts) {
+        var titleList = []
+            , i;
+        for (i in selectOpts) {
+            titleList.push(selectOpts[i]);
+        }
+        return titleList.join(', ');
+    }
 
     // api ---------------------------------------------------------------------
     // post fileconsole.log(req.files);
     app.post('/api/files', function(req, res) {
-        console.log(req);
+        var titleList = []
+            , opts = {}
+            , i;
+
+        if (req.body) {
+            var selectOpts = JSON.parse(req.body.selectOpts);
+            if (_.isEmpty(selectOpts)) {
+                opts.maxRows = 3;
+                console.log('is empty row 3');
+            }
+        }
+
         for (i in req.files) {
-
-
-//            console.log(req);
-//
-            SpreadsheetReader.read(req.files[i]['path'], {maxRows: 5 }, function (err, workbook) {
-
+            SpreadsheetReader.read(req.files[i]['path'], opts, function (err, workbook) {
                 if (err) {
                     res.send(err);
                 }
-
-                if (res.body) {
-                    for (var j in req.body.selectOpts) {
-                        console.log(req.body.selectOpts[j]);
-                    }
-                    console.log(res.body.selectOpts);
-                }
-
                 var data = {};
-//
-//                data.headers = [
-//                    {
-//                        code: '0',
-//                        name: '-'
-//                    },
-//                    {
-//                        code: 'price',
-//                        name: 'цена'
-//                    }, {
-//                        code: 'name',
-//                        name: 'наименование'
-//                    }, {
-//                        code: 'amount',
-//                        name: 'количество'
-//                    }
-//                ];
-
                 // Iterate on sheets
                 workbook.sheets.forEach(function (sheet) {
-//                    console.log('sheet: ' + sheet.name);
-                    // Iterate on rows
-//                    console.log(sheet.rows);
-//                    sheet.rows.forEach(function (row) {
-//                        // Iterate on cells
-//                        var dataRow = [];
-//                        row.forEach(function (cell) {
-//                            dataRow.push(cell.address);
-//                            console.log(cell.address + ': ' + cell.value);
-//                        });
-//                        dataXls.push(dataRow);
-//                        console.log(row.length);
-//                    });
 
-                    data = sheet.rows;
-                    res.json(data);
+                    if (_.isEmpty(opts)) {
+                        pg.connect(connString, function(err, client, done) {
+                            if (err) {
+                                res.json(err);
+                            }
+                            sheet.rows.forEach(function (row) {
+                                var dataRow = [];
+                                for (var k = 0; k < row.length; k++) {
+                                    if (selectOpts.hasOwnProperty(row[k].column)) {
+                                        dataRow.push(row[k].value);
+                                    }
+                                }
+                                if (k != 0 ) {
+                                    Insert(client,done,dataRow, selectOpts);
+                                }
+                            });
+                        });
+
+                        res.json(data);
+                    }  else {
+                        data = sheet.rows;
+                        res.json(data);
+                    }
+                    res.json(new Error('error SpreadsheetReader'));
                 });
             });
         }
@@ -71,19 +104,24 @@ module.exports = function(app) {
     });
 
 	// api ---------------------------------------------------------------------
-	// get all todos
-	app.get('/api/todos', function(req, res) {
+	// get all products
+	app.get('/api/products', function(req, res) {
+        pg.connect(connString, function(err, client, done) {
+            if (err) {
+                res.json(err);
+            }
+            client.query("SELECT * FROM goods",
+                function (err, result) {
+                    done();
+                    if (err) {
+                        console.log(err);
+                    }
+                    res.json(result.rows);
+                }
+            );
+        });
 
-		// use mongoose to get all todos in the database
-		Todo.find(function(err, todos) {
-
-			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
-			if (err)
-				res.send(err);
-
-			res.json(todos); // return all todos in JSON format
-		});
-	});
+    });
 
 	// create todo and send back all todos after creation
 	app.post('/api/todos', function(req, res) {

@@ -2,13 +2,23 @@
 <html ng-app="myApp">
 
 <head>
+    <link rel="stylesheet" href="css/app.css"/>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script data-require="angular.js@1.1.5" data-semver="1.1.5" src="http://code.angularjs.org/1.1.5/angular.min.js"></script>
-    <script src="core.js"></script>
+    <script src="js/core.js"></script>
+    <!--<script src="js/services.js"></script>-->
+    <!--<script src="lib/angular/angular-resource.js"></script>-->
 </head>
 
-<body ng-controller="MainCtrl">
-    <file-uploader></file-uploader>
+<ul class="menu">
+    <li><a href="#/products">Список</a></li>
+    <li><a href="#/import">Импорт</a></li>
+</ul>
+
+
+
+<body>
+    <div ng-view></div>
 </body>
 
 </html>

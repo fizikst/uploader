@@ -1,0 +1,59 @@
+{
+    "development": {
+        "machine": {
+            "host" : "localhost",
+            "port" : 3123
+        },
+        "driver":"pg",
+        "user": "postgres",
+        "password": "",
+        "host": "localhost",
+        "port": 5432,
+        "database": "products",
+        "beanstalkd": {
+            "workers": 2,
+            "server": "127.0.0.1:11300",
+            "tubes": ["ws"],
+            "ignore_default": true,
+            "handlers": ["../handlers/concat"]
+        }
+    },
+    "test": {
+        "machine": {
+            "host" : "127.0.0.1",
+            "port" : 3122
+        },
+        "driver":"pg",
+        "user": "admin",
+        "password": "135790",
+        "host": "localhost",
+        "port": 5432,
+        "database": "wj_social_test",
+        "beanstalkd": {
+            "workers": 2,
+            "server": "127.0.0.1:11300",
+            "tubes": ["ws"],
+            "ignore_default": true,
+            "handlers": ["../handlers/concat"]
+        }
+    },
+    "production": {
+        "machine": {
+            "host" : "localhost",
+            "port" : 3123
+        },
+        "driver":"pg",
+        "user": "dba_wj_social",
+        "password": "social",
+        "host": "192.168.100.131",
+        "port": 5432,
+        "database": "wj_social",
+        "beanstalkd": {
+            "workers": 3,
+            "server": "127.0.0.1:11300",
+            "tubes": ["ws"],
+            "ignore_default": true,
+            "handlers": ["../handlers/concat"]
+        }
+    }
+}
