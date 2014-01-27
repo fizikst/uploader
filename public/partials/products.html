@@ -1,7 +1,28 @@
-<table ng-controller="ListCtrl" border="1">
+<div ng-controller="ListCtrl" style="width:800px;">
+
+<!--<table ng-table="tableParams"  class="table" >
     <tr  ng-repeat="row in products">
+        {{row}}
         <td ng-repeat="cell in row">
             {{cell}}
         </td>
     </tr>
-</table>
+</table>-->
+
+
+
+    <table ng-table="tableParams" show-filter="true" class="table" >
+        <tbody>
+            <tr ng-repeat="user in $data">
+                {{user}}
+                <td data-title="'Name'" filter="{ 'name': 'text' }" sortable="name">
+                    {{user.name}}
+                    {{$loading}}
+                </td>
+                <td data-title="'Age'" sortable="age">
+                    {{user.age}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

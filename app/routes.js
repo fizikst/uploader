@@ -14,6 +14,40 @@ var connString = util.format("pg://%s:%s@%s:%d/%s", conn.user, conn.password, co
 
 module.exports = function(app) {
 
+    function ProductRepository() {}
+    /**
+     * Find a task by id
+     * Param: id of the task to find
+     * Returns: the task corresponding to the specified id
+     */
+//    productRepository.prototype.find = function (id) {}
+    /**
+     * Find the index of a task
+     * Param: id of the task to find
+     * Returns: the index of the task identified by id
+     */
+//    productRepository.prototype.findIndex = function (id) {}
+    /**
+     * Retrieve all tasks
+     * Returns: array of tasks
+     */
+//    productRepository.prototype.findAll = function () {
+//        return this.tasks;
+//    }
+    /**
+     * Save a task (create or update)
+     * Param: task the task to save
+     */
+    ProductRepository.prototype.save = function (product) {
+        console.log('RESPONSE', product);
+    }
+    /**
+     * Remove a task
+     * Param: id the of the task to remove
+     */
+//    productRepository.prototype.remove = function (id) {}
+
+
     function Insert(client, done, data, selectOpts) {
         var strMaskParams = GetStringCountParams(selectOpts);
         var strTitleParams = GetTitleSelectOpts(selectOpts);
@@ -29,6 +63,7 @@ module.exports = function(app) {
     }
 
     function GetStringCountParams (selectOpts) {
+        console.log(selectOpts);
         var valueList = []
             , count = Object.keys(selectOpts).length
             , i;
@@ -39,6 +74,7 @@ module.exports = function(app) {
     }
 
     function GetTitleSelectOpts(selectOpts) {
+        console.log(selectOpts);
         var titleList = []
             , i;
         for (i in selectOpts) {
@@ -64,6 +100,7 @@ module.exports = function(app) {
 
         for (i in req.files) {
             SpreadsheetReader.read(req.files[i]['path'], opts, function (err, workbook) {
+                console.log(req.files[i]['path']);
                 if (err) {
                     res.send(err);
                 }
@@ -106,6 +143,7 @@ module.exports = function(app) {
 	// api ---------------------------------------------------------------------
 	// get all products
 	app.get('/api/products', function(req, res) {
+        console.log(req);
         pg.connect(connString, function(err, client, done) {
             if (err) {
                 res.json(err);
@@ -116,6 +154,7 @@ module.exports = function(app) {
                     if (err) {
                         console.log(err);
                     }
+                    console.log(result.rows);
                     res.json(result.rows);
                 }
             );
@@ -123,24 +162,38 @@ module.exports = function(app) {
 
     });
 
-	// create todo and send back all todos after creation
-	app.post('/api/todos', function(req, res) {
+	// create goods and send back all goods after creation
+	app.post('/api/goods', function(req, res) {
 
-		// create a todo, information comes from AJAX request from Angular
-		Todo.create({
-			text : req.body.text,
-			done : false
-		}, function(err, todo) {
-			if (err)
-				res.send(err);
+		// create a goods, information comes from AJAX request from Angular
 
-			// get and return all the todos after you create another
-			Todo.find(function(err, todos) {
-				if (err)
-					res.send(err)
-				res.json(todos);
-			});
-		});
+        var product = req.body;
+        console.log('PRODUCT', product);
+
+        pr = new ProductRepository();
+
+        pr.save({
+            title: product.title || 'Default title',
+            price: product.price || 0,
+            amount: product.amount || 1
+        });
+        res.send(200);
+
+
+//		Todo.create({
+//			text : req.body.text,
+//			done : false
+//		}, function(err, todo) {
+//			if (err)
+//				res.send(err);
+//
+//			// get and return all the todos after you create another
+//			Todo.find(function(err, todos) {
+//				if (err)
+//					res.send(err)
+//				res.json(todos);
+//			});
+//		});
 
 	});
 
