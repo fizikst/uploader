@@ -38,26 +38,26 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
         };
     })
     .service('$fileUpload', ['$http', function($http) {
-    this.upload = function($scope, file) {
+        this.upload = function($scope, file) {
 
-        var selectOpts = $scope.selectOpt;
-        $scope.selectOpt = {};
+            var selectOpts = $scope.selectOpt;
+            $scope.selectOpt = {};
 
-        console.log('selectOpt', selectOpts);
-        $http.post('/api/files', {selectOpts: selectOpts, file:file}, {headers: {'Content-Type': false }, transformRequest:function(data) {
-            var formData = new FormData();
-            formData.append("selectOpts", angular.toJson(data.selectOpts));
-            formData.append("file", data.file);
-            return formData;
-        }}).success(function(data, status, headers, config){
-            $scope.rows = data;
-        });
+            console.log('selectOpt', selectOpts);
+            $http.post('/api/files', {selectOpts: selectOpts, file:file}, {headers: {'Content-Type': false }, transformRequest:function(data) {
+                var formData = new FormData();
+                formData.append("selectOpts", angular.toJson(data.selectOpts));
+                formData.append("file", data.file);
+                return formData;
+            }}).success(function(data, status, headers, config){
+                $scope.rows = data;
+            });
 
-//        $http({method: 'POST', url: '/api/files', data: formData, headers: {'Content-Type': undefined }, transformRequest: angular.identity})
-//             .success(function(data, status, headers, config) {
-//                 $scope.rows = data;
-//             });
-    }
+    //        $http({method: 'POST', url: '/api/files', data: formData, headers: {'Content-Type': undefined }, transformRequest: angular.identity})
+    //             .success(function(data, status, headers, config) {
+    //                 $scope.rows = data;
+    //             });
+        }
     }])
     .controller('ListCtrl', function($scope, $timeout, $resource, ngTableParams) {
 //        var Api = $resource('/api/products');
@@ -65,23 +65,23 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
 
 
 
-//        var data = [{name: "Moroni", age: 50},
-//                     {name: "Tiancum", age: 43},
-//                     {name: "Jacob", age: 27},
-//                     {name: "Nephi", age: 29},
-//                     {name: "Enos", age: 34},
-//                     {name: "Tiancum", age: 43},
-//                     {name: "Jacob", age: 27},
-//                     {name: "Nephi", age: 29},
-//                     {name: "Enos", age: 34},
-//                     {name: "Tiancum", age: 43},
-//                     {name: "Jacob", age: 27},
-//                     {name: "Nephi", age: 29},
-//                     {name: "Enos", age: 34},
-//                     {name: "Tiancum", age: 43},
-//                     {name: "Jacob", age: 27},
-//                     {name: "Nephi", age: 29},
-//                     {name: "Enos", age: 34}];
+        var data = [{name: "Moroni", age: 50},
+                     {name: "Tiancum", age: 43},
+                     {name: "Jacob", age: 27},
+                     {name: "Nephi", age: 29},
+                     {name: "Enos", age: 34},
+                     {name: "Tiancum", age: 43},
+                     {name: "Jacob", age: 27},
+                     {name: "Nephi", age: 29},
+                     {name: "Enos", age: 34},
+                     {name: "Tiancum", age: 43},
+                     {name: "Jacob", age: 27},
+                     {name: "Nephi", age: 29},
+                     {name: "Enos", age: 34},
+                     {name: "Tiancum", age: 43},
+                     {name: "Jacob", age: 27},
+                     {name: "Nephi", age: 29},
+                     {name: "Enos", age: 34}];
 
 
         $scope.tableParams = new ngTableParams({
@@ -100,8 +100,21 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
 
 
                 var Api = $resource('/api/products', params.url());
-                var data = Api.query();
-                $scope.data = data;
+                Api.query(function (data) {
+                    var res = [];
+                    data.forEach(function (value, key) {
+                        res.push(value);
+                    });
+
+                    params.total(data.length);
+                    // set new data
+                    console.log(res);
+                    $defer.resolve(res);
+
+//                    $scope.data = data;
+
+                });
+
 
 
 //                params.total(data.promise);

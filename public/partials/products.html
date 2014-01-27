@@ -11,16 +11,15 @@
 
 
 
+
     <table ng-table="tableParams" show-filter="true" class="table" >
         <tbody>
             <tr ng-repeat="user in $data">
-                {{user}}
-                <td data-title="'Name'" filter="{ 'name': 'text' }" sortable="name">
-                    {{user.name}}
-                    {{$loading}}
+                <td data-title="'Title'" sortable="title" filter="{ 'name': 'text' }">
+                    {{user.title}}
                 </td>
-                <td data-title="'Age'" sortable="age">
-                    {{user.age}}
+                <td data-title="'Price'" sortable="price">
+                    {{user.price}}
                 </td>
             </tr>
         </tbody>
