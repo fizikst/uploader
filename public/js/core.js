@@ -48,8 +48,8 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
     .service('$fileUpload', ['$http', '$resource', function($http, $resource) {
         this.upload = function($scope, file) {
 
-            console.log('SCOPE',$scope);
-            var selectOpts = $scope.selectOpt;
+//            console.log('SCOPE',$scope);
+//            var selectOpts = $scope.selectOpt;
 //            $scope.selectOpt = {};
 
 //            $http.post('/api/files', {selectOpts: selectOpts, file:file},{headers: {'Content-Type': 'multipart/form-data'}, transformRequest:  function(data) {
@@ -61,24 +61,36 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
 //                    $scope.rows = data;
 //                });
 
-            $http({
-                method: 'POST',
-                url: '/api/files',
-                headers: {'Content-Type': false},
-                data: {'selectOpts': selectOpts, 'file': file},
-                transformRequest: function(data) {
-                    var formData = new FormData();
-                    formData.append("selectOpts", angular.toJson(selectOpts));
-                    formData.append("file", data.file);
-                    return formData;
-                }
-            }).
-                success(function(data, status, headers, config){
+            var selectOpts = $scope.selectOpt;
+            $scope.selectOpt = {};
+
+            $http.post('/api/files', {selectOpts: selectOpts, file:file}, {headers: {'Content-Type': undefined }, transformRequest:function(data) {
+                var formData = new FormData();
+                formData.append("selectOpts", angular.toJson(data.selectOpts));
+                formData.append("file", data.file);
+                return formData;
+            }}).success(function(data, status, headers, config){
                     $scope.rows = data;
-                }).
-                error(function(data, status, headers, config){
-                    $scope.rows = status;
                 });
+
+//            $http({
+//                method: 'POST',
+//                url: '/api/files',
+//                headers: {'Content-Type': false},
+//                data: {'selectOpts': selectOpts, 'file': file},
+//                transformRequest: function(data) {
+//                    var formData = new FormData();
+//                    formData.append("selectOpts", angular.toJson(selectOpts));
+//                    formData.append("file", data.file);
+//                    return formData;
+//                }
+//            }).
+//                success(function(data, status, headers, config){
+//                    $scope.rows = data;
+//                }).
+//                error(function(data, status, headers, config){
+//                    $scope.rows = status;
+//                });
 
 
 
