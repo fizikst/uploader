@@ -90,6 +90,8 @@ module.exports = function(app) {
             , opts = {}
             , i;
 
+        console.log('REQ', req);
+
         if (req.body) {
             var selectOpts = JSON.parse(req.body.selectOpts);
             if (_.isEmpty(selectOpts)) {

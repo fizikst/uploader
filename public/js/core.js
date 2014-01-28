@@ -21,6 +21,7 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
             link: function($scope, elem, attrs) {
                 var fileInput = elem.find('input[type="file"]');
                 fileInput.bind('change', function(e) {
+                    console.log(e.target.files[0]);
                     $scope.file = e.target.files[0];
                 });
             },
@@ -37,21 +38,60 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
             }
         };
     })
-    .service('$fileUpload', ['$http', function($http) {
+/*
+    .controller('MainCtrl', ['$fileUpload', function($http) {
+        this.upload = function($scope, file) {
+//            var Upload = $resource('/api/files',{});
+        }
+    }])
+*/
+    .service('$fileUpload', ['$http', '$resource', function($http, $resource) {
         this.upload = function($scope, file) {
 
+            console.log('SCOPE',$scope);
             var selectOpts = $scope.selectOpt;
-            $scope.selectOpt = {};
+//            $scope.selectOpt = {};
 
-            console.log('selectOpt', selectOpts);
-            $http.post('/api/files', {selectOpts: selectOpts, file:file}, {headers: {'Content-Type': false }, transformRequest:function(data) {
-                var formData = new FormData();
-                formData.append("selectOpts", angular.toJson(data.selectOpts));
-                formData.append("file", data.file);
-                return formData;
-            }}).success(function(data, status, headers, config){
-                $scope.rows = data;
-            });
+//            $http.post('/api/files', {selectOpts: selectOpts, file:file},{headers: {'Content-Type': 'multipart/form-data'}, transformRequest:  function(data) {
+//                    var formData = new FormData();
+//                    formData.append("selectOpts", angular.toJson(data.selectOpts));
+//                    formData.append("file", data.file);
+//                    return formData;
+//                }}).success( function(data, status, headers, config) {
+//                    $scope.rows = data;
+//                });
+
+            $http({
+                method: 'POST',
+                url: '/api/files',
+                headers: {'Content-Type': false},
+                data: {'selectOpts': selectOpts, 'file': file},
+                transformRequest: function(data) {
+                    var formData = new FormData();
+                    formData.append("selectOpts", angular.toJson(selectOpts));
+                    formData.append("file", data.file);
+                    return formData;
+                }
+            }).
+                success(function(data, status, headers, config){
+                    $scope.rows = data;
+                }).
+                error(function(data, status, headers, config){
+                    $scope.rows = status;
+                });
+
+
+
+//
+//            $http.post('/api/files', {selectOpts: selectOpts, file: file}, {headers: {'Content-Type': false }, transformRequest:function(data) {
+//                var formData = new FormData();
+//                formData.append("selectOpts", angular.toJson(data.selectOpts));
+//                formData.append("file", data.file);
+//                return formData;
+//            }}).success(function(data, status, headers, config){
+//                $scope.rows = data;
+//            });
+
 
     //        $http({method: 'POST', url: '/api/files', data: formData, headers: {'Content-Type': undefined }, transformRequest: angular.identity})
     //             .success(function(data, status, headers, config) {
@@ -111,15 +151,7 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
                     console.log(res);
                     $defer.resolve(res);
 
-//                    $scope.data = data;
-
                 });
-
-
-
-//                params.total(data.promise);
-//                console.log(data.total);
-//                $defer.resolve(data);
 
 //                var Api = $resource('/api/products',
 //                    {}, {
@@ -149,6 +181,7 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
         });
     })
 ;
+
 
 
 function MainCtrl($scope) {
