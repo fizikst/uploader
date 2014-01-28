@@ -145,19 +145,64 @@ module.exports = function(app) {
 	// api ---------------------------------------------------------------------
 	// get all products
 	app.get('/api/products', function(req, res) {
-        console.log(req);
+        console.log(req.query);
         pg.connect(connString, function(err, client, done) {
             if (err) {
                 res.json(err);
             }
-            client.query("SELECT * FROM goods",
+            var sql = "SELECT * FROM goods";
+            console.log(req.query);
+
+            if (req.query.filter) {
+                var filter = [];
+                for (var i in req.query.filter) {
+                    filter.push("LOWER(" + i + ") LIKE '%" + req.query.filter[i] +"%'");
+                }
+                if (Object.keys(req.query.filter).length > 0) {
+                    sql += ' WHERE ' + filter.join(', ');
+                }
+            }
+
+            if (req.query.sorting) {
+                var sort = [];
+                for (var i in req.query.sorting) {
+                    sort.push(i + " " + req.query.sorting[i]);
+                }
+                if (Object.keys(req.query.sorting).length > 0) {
+                    sql += ' ORDER BY ' + sort.join(', ');
+                }
+            }
+
+            if (req.query.count) {
+                sql += " limit " + req.query.count;
+            }
+            if (req.query.page) {
+                var offset = (req.query.page - 1) * req.query.count;
+                sql += " offset " + offset;
+            }
+
+
+            console.log('SQL', sql);
+            client.query(sql,
                 function (err, result) {
-                    done();
+
                     if (err) {
                         console.log(err);
                     }
-                    console.log(result.rows);
-                    res.json(result.rows);
+
+                    client.query(sql, function (err, result1) {
+                        done();
+                        if (err) {
+                            console.log(err);
+                        }
+                        var data = {};
+                        data.total = result1.rowCount;
+                        data.rows = result.rows;
+//                        console.log(result.rows);
+                        res.json(data);
+
+                    });
+
                 }
             );
         });

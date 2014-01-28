@@ -15,10 +15,10 @@
     <table ng-table="tableParams" show-filter="true" class="table" >
         <tbody>
             <tr ng-repeat="user in $data">
-                <td data-title="'Title'" sortable="title" filter="{ 'name': 'text' }">
+                <td data-title="'Title'" sortable="title" filter="{ 'title': 'text' }">
                     {{user.title}}
                 </td>
-                <td data-title="'Price'" sortable="price">
+                <td data-title="'Price'" sortable="price" filter="{ 'price': 'text' }">
                     {{user.price}}
                 </td>
             </tr>

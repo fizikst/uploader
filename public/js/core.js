@@ -71,39 +71,10 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
                 return formData;
             }}).success(function(data, status, headers, config){
                     $scope.rows = data;
+                }).
+                error(function(data, status, headers, config){
+                    $scope.rows = status;
                 });
-
-//            $http({
-//                method: 'POST',
-//                url: '/api/files',
-//                headers: {'Content-Type': false},
-//                data: {'selectOpts': selectOpts, 'file': file},
-//                transformRequest: function(data) {
-//                    var formData = new FormData();
-//                    formData.append("selectOpts", angular.toJson(selectOpts));
-//                    formData.append("file", data.file);
-//                    return formData;
-//                }
-//            }).
-//                success(function(data, status, headers, config){
-//                    $scope.rows = data;
-//                }).
-//                error(function(data, status, headers, config){
-//                    $scope.rows = status;
-//                });
-
-
-
-//
-//            $http.post('/api/files', {selectOpts: selectOpts, file: file}, {headers: {'Content-Type': false }, transformRequest:function(data) {
-//                var formData = new FormData();
-//                formData.append("selectOpts", angular.toJson(data.selectOpts));
-//                formData.append("file", data.file);
-//                return formData;
-//            }}).success(function(data, status, headers, config){
-//                $scope.rows = data;
-//            });
-
 
     //        $http({method: 'POST', url: '/api/files', data: formData, headers: {'Content-Type': undefined }, transformRequest: angular.identity})
     //             .success(function(data, status, headers, config) {
@@ -138,10 +109,11 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
 
         $scope.tableParams = new ngTableParams({
             page: 1,            // show first page
-            count: 10/*,          // count per page
-             sorting: {
-             name: 'asc'     // initial sorting
-             }*/
+            count: 10,          // count per page
+            sorting: {
+                title: 'asc',
+                price: 'asc'
+            }
         }, {
 //            total: data.length,           // length of data
 //            getData: function($defer, params) {
@@ -150,18 +122,22 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
             total: 0,
             getData: function($defer, params) {
 
-
-                var Api = $resource('/api/products', params.url());
+//                $resource('app/data/EpargneATermeRachetableCELI.json', {}, {
+//                    query: {method:'GET', params:{}, isArray:true}});
+//
+                console.log(params.url());
+                var Api = $resource('/api/products', params.url(), { query: {method:'GET'}});
                 Api.query(function (data) {
-                    var res = [];
-                    data.forEach(function (value, key) {
-                        res.push(value);
-                    });
+                    console.log('DATA', data);
+//                    var res = [];
+//                    data.forEach(function (value, key) {
+//                        res.push(value);
+//                    });
 
-                    params.total(data.length);
+                    params.total(data.total);
                     // set new data
-                    console.log(res);
-                    $defer.resolve(res);
+//                    console.log(res);
+                    $defer.resolve(data.rows);
 
                 });
 
