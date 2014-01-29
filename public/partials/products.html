@@ -10,23 +10,35 @@
 </table>-->
 
 
-
-
     <table ng-table="tableParams" show-filter="true" class="table" >
-        <tbody>
-            <tr ng-repeat="user in $data" ng-class-odd="'odd'" ng-class-even="'even'">
-                <td data-title="'Title'" sortable="title" filter="{ 'title': 'text' }">
-                    {{user.title}}
-                </td>
-                <td data-title="'Price'" sortable="price" filter="{ 'price': 'text' }">
-                    {{user.price}}
-                </td>
-                <!--<td class="rowTd" ><input type=button id="editRowBtn{{p.id}}" value="edit"-->
-                                          <!--ng-click="setEditId(p.id)"></td>-->
+        <tbody ng-repeat="p in $data">
+            <tr id="{{p.title}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                <td class="rowTd" data-title="'ID'" sortable="id" filter="{ 'id': 'text' }">{{p.id}}</td>
+                <td class="rowTd" data-title="'Название'" sortable="title" filter="{ 'title': 'text' }">{{p.title}}</td>
+                <td class="rowTd" data-title="'Цена'"   sortable="price" filter="{ 'price': 'text' }">{{p.price}}</td>
+                <td class="rowTd" ><input type=button id="editRowBtn{{p.id}}" value="edit" ng-click="setEditId(p.id)"></td>
             </tr>
-            <!--<tr ng-show="editId===p.id" ng-if="editId===p.id">-->
-                <!--<td colspan="2" ng-include src="'editRow.html'"></td>-->
-            <!--</tr>-->
+            <tr ng-show="editId===p.id" ng-if="editId===p.id">
+                <td colspan="3" ng-include src="'partials/editRow.html'"></td>
+            </tr>
         </tbody>
     </table>
+
+    <!--<table ng-table="tableParams" show-filter="true" class="table" >-->
+        <!--<tbody>-->
+            <!--<tr ng-repeat="user in $data" ng-class-odd="'odd'" ng-class-even="'even'">-->
+                <!--<td data-title="'Title'" sortable="title" filter="{ 'title': 'text' }">-->
+                    <!--{{user.title}}-->
+                <!--</td>-->
+                <!--<td data-title="'Price'" sortable="price" filter="{ 'price': 'text' }">-->
+                    <!--{{user.price}}-->
+                <!--</td>-->
+                <!--&lt;!&ndash;<td class="rowTd" ><input type=button id="editRowBtn{{p.id}}" value="edit"&ndash;&gt;-->
+                                          <!--&lt;!&ndash;ng-click="setEditId(p.id)"></td>&ndash;&gt;-->
+            <!--</tr>-->
+            <!--&lt;!&ndash;<tr ng-show="editId===p.id" ng-if="editId===p.id">&ndash;&gt;-->
+                <!--&lt;!&ndash;<td colspan="2" ng-include src="'editRow.html'"></td>&ndash;&gt;-->
+            <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+        <!--</tbody>-->
+    <!--</table>-->
 </div>

@@ -212,10 +212,7 @@ module.exports = function(app) {
                     }
                 );
             });
-
-
         });
-
     });
 
 	// create goods and send back all goods after creation
@@ -235,25 +232,42 @@ module.exports = function(app) {
         });
         res.send(200);
 
-
-//		Todo.create({
-//			text : req.body.text,
-//			done : false
-//		}, function(err, todo) {
-//			if (err)
-//				res.send(err);
-//
-//			// get and return all the todos after you create another
-//			Todo.find(function(err, todos) {
-//				if (err)
-//					res.send(err)
-//				res.json(todos);
-//			});
-//		});
-
 	});
 
-	// delete a todo
+	// get single
+    app.get('/api/products/:id', function(req, res) {
+        console.log(req.params.id);
+        pg.connect(connString, function(err, client, done) {
+            done();
+            client.query("select * from goods where id = $1 limit 1",[req.params.id],
+                function (err, result) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    console.log('GET SINGLE', result.rows[0]);
+                    res.json(result.rows[0]);
+                }
+            );
+        });
+    });
+
+    app.put('/api/products/:id', function(req, res) {
+        pg.connect(connString, function(err, client, done) {
+            console.log(req);
+            done();
+            client.query("UPDATE goods SET title = $1, price = $2 WHERE id = $3;",[req.query.title, req.query.price, req.params.id],
+                function (err, result) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    console.log('GET SINGLE', result);
+                    res.json(result.rows[0]);
+                }
+            );
+        });
+    });
+
+
 	app.delete('/api/todos/:todo_id', function(req, res) {
 		Todo.remove({
 			_id : req.params.todo_id

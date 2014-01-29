@@ -1,11 +1,13 @@
 <table class="noborder">
     <tr>
-        <td rowspan="2">ID: {{p.title}}<input type="hidden" name="id" value="{{p.title}}"></td>
-        <td>Price</td>
-        <td><input type="button" value=" save " ng-click="setRet(p.id)"></td>
+        <td rowspan="2">ID: {{p.id}}<input type="hidden" name="id" value="{{p.id}}"></td>
+        <td>Название</td>
+        <td>Цена</td>
+        <td><input type="button" value=" save " ng-click="setEdit(p.id)"></td>
     </tr>
     <tr>
-        <td><input type="text" name="fn" class="w100" value="{{p.price}}"></td>
+        <td><input type="text" name="title" class="w100" value="{{p.title}}"></td>
+        <td><input type="text" name="price" class="w100" value="{{p.price}}"></td>
         <td><input type="button" value=" cancel" ng-click="setEditId(-1)"></td>
     </tr>
 </table>
