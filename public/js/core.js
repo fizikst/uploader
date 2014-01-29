@@ -82,6 +82,12 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
     //             });
         }
     }])
+    .factory('Goods', ['$resource', function($resource) {
+        return $resource('/api/products/:id', null,
+            {
+                'update': { method:'PUT' }
+            });
+    }])
     .controller('ListCtrl', function($scope, $timeout, $resource, ngTableParams) {
 //        var Api = $resource('/api/products');
 
@@ -129,16 +135,8 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
                 var Api = $resource('/api/products', params.url(), { query: {method:'GET'}});
                 Api.query(function (data) {
                     console.log('DATA', data);
-//                    var res = [];
-//                    data.forEach(function (value, key) {
-//                        res.push(value);
-//                    });
-
                     params.total(data.total);
-                    // set new data
-//                    console.log(res);
                     $defer.resolve(data.rows);
-
                 });
 
 //                var Api = $resource('/api/products',
@@ -167,6 +165,17 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
 //                });
             }
         });
+
+//        $scope.editId = -1;
+//
+//        $scope.setEditId =  function(pid) {
+//            console.log('EDIT');
+//            $scope.editId = pid;
+//        }
+//
+//        $scope.setEdit= function (pid) {
+//            console.log(pid);
+//        }
     })
 ;
 

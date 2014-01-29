@@ -14,14 +14,19 @@
 
     <table ng-table="tableParams" show-filter="true" class="table" >
         <tbody>
-            <tr ng-repeat="user in $data">
+            <tr ng-repeat="user in $data" ng-class-odd="'odd'" ng-class-even="'even'">
                 <td data-title="'Title'" sortable="title" filter="{ 'title': 'text' }">
                     {{user.title}}
                 </td>
                 <td data-title="'Price'" sortable="price" filter="{ 'price': 'text' }">
                     {{user.price}}
                 </td>
+                <!--<td class="rowTd" ><input type=button id="editRowBtn{{p.id}}" value="edit"-->
+                                          <!--ng-click="setEditId(p.id)"></td>-->
             </tr>
+            <!--<tr ng-show="editId===p.id" ng-if="editId===p.id">-->
+                <!--<td colspan="2" ng-include src="'editRow.html'"></td>-->
+            <!--</tr>-->
         </tbody>
     </table>
 </div>

@@ -151,15 +151,26 @@ module.exports = function(app) {
                 res.json(err);
             }
             var sql = "SELECT * FROM goods";
-            console.log(req.query);
 
             if (req.query.filter) {
-                var filter = [];
+                var filter = []
+                    , pre = '';
+
                 for (var i in req.query.filter) {
-                    filter.push("LOWER(" + i + ") LIKE '%" + req.query.filter[i] +"%'");
+                    switch(i){
+                        case 'title':
+                            pre = "LOWER(" + i + ")";
+                            break;
+                        case 'price':
+                            pre = "CAST(" + i + " AS TEXT)";
+                            break;
+                        default:
+                            break;
+                    }
+                    filter.push(pre + " LIKE '%" + decodeURIComponent(req.query.filter[i]).toLowerCase() +"%'");
                 }
                 if (Object.keys(req.query.filter).length > 0) {
-                    sql += ' WHERE ' + filter.join(', ');
+                    sql += ' WHERE ' + filter.join(' AND ');
                 }
             }
 
@@ -173,38 +184,36 @@ module.exports = function(app) {
                 }
             }
 
-            if (req.query.count) {
-                sql += " limit " + req.query.count;
-            }
-            if (req.query.page) {
-                var offset = (req.query.page - 1) * req.query.count;
-                sql += " offset " + offset;
-            }
+            console.log('SQL1', sql);
 
+            client.query(sql, function (err, result1) {
+                done();
+                if (err) {
+                    console.log(err);
+                }
 
-            console.log('SQL', sql);
-            client.query(sql,
-                function (err, result) {
-
-                    if (err) {
-                        console.log(err);
-                    }
-
-                    client.query(sql, function (err, result1) {
-                        done();
+                if (req.query.count) {
+                    sql += " limit " + req.query.count;
+                }
+                if (req.query.page) {
+                    var offset = (req.query.page - 1) * req.query.count;
+                    sql += " offset " + offset;
+                }
+                console.log('SQL2', sql);
+                client.query(sql,
+                    function (err, result) {
                         if (err) {
                             console.log(err);
                         }
                         var data = {};
                         data.total = result1.rowCount;
                         data.rows = result.rows;
-//                        console.log(result.rows);
                         res.json(data);
+                    }
+                );
+            });
 
-                    });
 
-                }
-            );
         });
 
     });
