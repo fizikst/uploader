@@ -91,28 +91,6 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
     .controller('ListCtrl', ['$scope', '$resource', 'ngTableParams', 'Product', function($scope, $resource, ngTableParams, Product) {
 //        var Api = $resource('/api/products');
 
-
-
-
-        var data = [{name: "Moroni", age: 50},
-                     {name: "Tiancum", age: 43},
-                     {name: "Jacob", age: 27},
-                     {name: "Nephi", age: 29},
-                     {name: "Enos", age: 34},
-                     {name: "Tiancum", age: 43},
-                     {name: "Jacob", age: 27},
-                     {name: "Nephi", age: 29},
-                     {name: "Enos", age: 34},
-                     {name: "Tiancum", age: 43},
-                     {name: "Jacob", age: 27},
-                     {name: "Nephi", age: 29},
-                     {name: "Enos", age: 34},
-                     {name: "Tiancum", age: 43},
-                     {name: "Jacob", age: 27},
-                     {name: "Nephi", age: 29},
-                     {name: "Enos", age: 34}];
-
-
         $scope.tableParams = new ngTableParams({
             page: 1,            // show first page
             count: 10,          // count per page
@@ -174,18 +152,33 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
         }
 
         $scope.setEdit= function (pid) {
-
-//            var product_tm = $resource('/api/product/:id', {id:'@id'});
-
             var prod = Product.get({id:pid});
-            console.log('PROD', prod);
-
             Product.update({id:pid, title: 'testing', price: 123}, prod);
-
-//            var note = Notes.get({ id:$routeParams.id });
         }
-    }])
-;
+
+        $scope.setDelete= function (pid) {
+            var prod = Product.get({id:pid});
+            Product.delete({id:pid}, prod);
+            $scope.tableParams.reload();
+        }
+
+        $scope.vote = 0;
+        $scope.expand = function(vote) {
+            $scope.vote = vote;
+        }
+
+        $scope.setPost = function (p) {
+            console.log('POST', p);
+
+            var prod = new Product();
+            console.log(prod);
+            /*http://jsfiddle.net/7MhLd/60/*/
+            prod.title = "create prod";
+            prod.price = 123;
+            prod.$save();
+            $scope.tableParams.reload();
+        }
+}]);
 
 
 

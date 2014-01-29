@@ -260,29 +260,43 @@ module.exports = function(app) {
                     if (err) {
                         console.log(err);
                     }
-                    console.log('GET SINGLE', result);
+                    console.log('GET SINGLE');
                     res.json(result.rows[0]);
                 }
             );
         });
     });
 
-
-	app.delete('/api/todos/:todo_id', function(req, res) {
-		Todo.remove({
-			_id : req.params.todo_id
-		}, function(err, todo) {
-			if (err)
-				res.send(err);
-
-			// get and return all the todos after you create another
-			Todo.find(function(err, todos) {
-				if (err)
-					res.send(err)
-				res.json(todos);
-			});
-		});
+	app.delete('/api/products/:id', function(req, res) {
+        pg.connect(connString, function(err, client, done) {
+            done();
+            client.query("DELETE FROM goods WHERE id = $1;",[req.params.id],
+                function (err, result) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    console.log('DELETE');
+                    res.json(result.rows[0]);
+                }
+            );
+        });
 	});
+
+    app.post('/api/products', function(req, res) {
+        var data = req.body;
+        pg.connect(connString, function(err, client, done) {
+            done();
+            client.query("INSERT INTO goods (title, price, amount) values ($1, $2, $3);",[data.title,data.price,1],
+                function (err, result) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    console.log('POST');
+                    res.json('200');
+                }
+            );
+        });
+    });
 
 	// application -------------------------------------------------------------
 	app.get('*', function(req, res) {
