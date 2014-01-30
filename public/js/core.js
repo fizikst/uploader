@@ -88,8 +88,7 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
                 'update': { method:'PUT' }
             });
     }])
-    .controller('ListCtrl', ['$scope', '$resource', 'ngTableParams', 'Product', function($scope, $resource, ngTableParams, Product) {
-//        var Api = $resource('/api/products');
+    .controller('ListCtrl', ['$scope', '$resource', '$q', 'ngTableParams', 'Product', function($scope, $resource, $q, ngTableParams, Product) {
 
         $scope.tableParams = new ngTableParams({
             page: 1,            // show first page
@@ -111,10 +110,9 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
 //
                 console.log(params.url());
                 var Api = $resource('/api/products', params.url(), { query: {method:'GET'}});
-                Api.query(function (data) {
-                    console.log('DATA', data);
-                    params.total(data.total);
-                    $defer.resolve(data.rows);
+                Api.query(function (res1) {
+                    params.total(res1.total);
+                    $defer.resolve($scope.users = res1.rows);
                 });
 
 //                var Api = $resource('/api/products',
@@ -177,6 +175,47 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
             prod.$save();
             $scope.tableParams.reload();
         };
+
+    var inArray = Array.prototype.indexOf ?
+        function (val, arr) {
+            return arr.indexOf(val)
+        } :
+        function (val, arr) {
+            var i = arr.length;
+            while (i--) {
+                if (arr[i] === val) return i;
+            }
+            return -1
+        };
+
+        $scope.checkboxes = { 'checked': false, items: {} };
+
+        // watch for check all checkbox
+        $scope.$watch('checkboxes.checked', function(value) {
+            angular.forEach($scope.users, function(item) {
+                if (angular.isDefined(item.id)) {
+                    $scope.checkboxes.items[item.id] = value;
+                }
+            });
+        });
+
+        // watch for data checkboxes
+        $scope.$watch('checkboxes.items', function(values) {
+            if (!$scope.users) {
+                return;
+            }
+            var checked = 0, unchecked = 0,
+                total = $scope.users.length;
+            angular.forEach($scope.users, function(item) {
+                checked   +=  ($scope.checkboxes.items[item.id]) || 0;
+                unchecked += (!$scope.checkboxes.items[item.id]) || 0;
+            });
+            if ((unchecked == 0) || (checked == 0)) {
+                $scope.checkboxes.checked = (checked == total);
+            }
+            // grayed checkbox
+            angular.element(document.getElementById("select_all")).prop("indeterminate", (checked != 0 && unchecked != 0));
+        }, true);
 }]);
 
 
