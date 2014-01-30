@@ -167,17 +167,16 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
             $scope.vote = vote;
         }
 
-        $scope.setPost = function (p) {
-            console.log('POST', p);
-
+        $scope.setPost = function (formId) {
             var prod = new Product();
-            console.log(prod);
-            /*http://jsfiddle.net/7MhLd/60/*/
-            prod.title = "create prod";
-            prod.price = 123;
+
+            $('.' + formId).find('input:text').each(function (idx, input) {
+                prod[$(input).attr('name')] = $(input).val();
+            });
+
             prod.$save();
             $scope.tableParams.reload();
-        }
+        };
 }]);
 
 
