@@ -162,6 +162,7 @@ module.exports = function(app) {
                             pre = "LOWER(" + i + ")";
                             break;
                         case 'price':
+                        case 'id':
                             pre = "CAST(" + i + " AS TEXT)";
                             break;
                         default:
