@@ -8,8 +8,6 @@
         </td>
     </tr>
 </table>-->
-    {{checkboxes.items}}
-
 
     <table ng-table="tableParams" show-filter="true" class="table" >
         <tbody ng-repeat="p in $data">
@@ -29,7 +27,8 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="5"><input type=button id="new" value="new" ng-click="expand(1)"></td>
+                <td colspan="1"><input type=button id="new" value="new" ng-click="expand(1)"></td>
+                <td colspan="4"><input type=button id="deleteRows" value="deleteRows" ng-click="deleteRows()"></td>
             </tr>
             <tr ng-show="vote===1" ng-if="vote===1">
                 <td colspan="5" ng-include src="'partials/createRow.html'"></td>

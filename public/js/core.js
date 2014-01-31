@@ -147,23 +147,35 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
         $scope.setEditId =  function(pid) {
             console.log('EDIT', pid);
             $scope.editId = pid;
-        }
+        };
 
         $scope.setEdit= function (pid) {
-            var prod = Product.get({id:pid});
-            Product.update({id:pid, title: 'testing', price: 123}, prod);
-        }
+            var prod = new Product();
+            prod.id = pid;
+            $('.row_' + pid).find('input:text').each(function (idx, input) {
+                prod[$(input).attr('name')] = $(input).val();
+            });
+            Product.update(prod, prod);
+            $scope.editId = -1;
+            $scope.tableParams.reload();
+        };
 
         $scope.setDelete= function (pid) {
-            var prod = Product.get({id:pid});
+            var prod = new Product();
             Product.delete({id:pid}, prod);
             $scope.tableParams.reload();
-        }
+        };
+
+        $scope.remove= function (pid) {
+            var prod = new Product();
+            Product.delete({id:pid}, prod);
+        };
+
 
         $scope.vote = 0;
         $scope.expand = function(vote) {
             $scope.vote = vote;
-        }
+        };
 
         $scope.setPost = function (formId) {
             var prod = new Product();
@@ -173,8 +185,11 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
             });
 
             prod.$save();
+            $scope.vote = 0;
             $scope.tableParams.reload();
         };
+
+
 
     var inArray = Array.prototype.indexOf ?
         function (val, arr) {
@@ -190,6 +205,7 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
 
         $scope.checkboxes = { 'checked': false, items: {} };
 
+
         // watch for check all checkbox
         $scope.$watch('checkboxes.checked', function(value) {
             angular.forEach($scope.users, function(item) {
@@ -198,6 +214,15 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
                 }
             });
         });
+
+        $scope.deleteRows = function () {
+            angular.forEach($scope.checkboxes.items, function (item, key) {
+                if (item) {
+                    $scope.remove(key);
+                }
+            });
+            $scope.tableParams.reload();
+        };
 
         // watch for data checkboxes
         $scope.$watch('checkboxes.items', function(values) {
