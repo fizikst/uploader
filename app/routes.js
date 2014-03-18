@@ -3,7 +3,18 @@ var SpreadsheetReader = require('pyspreadsheet').SpreadsheetReader;
 var _ = require('underscore');
 var config = require('../config');
 var util = require('util');
+var sys = require('sys');
+
+var mongoose = require('mongoose');
+
+var Schema = mongoose.Schema;
+var productSchema = Schema({
+    name: String
+},{ strict: false });
+var Product = mongoose.model('Product', productSchema);
+
 console.log('config', config);
+require('mongoose-pagination');
 
 /*  postgres */
 var pg = require('pg');
@@ -62,7 +73,7 @@ module.exports = function(app) {
         );
     }
 
-    function GetStringCountParams (selectOpts) {
+    function GetStringCountParams(selectOpts) {
         console.log(selectOpts);
         var valueList = []
             , count = Object.keys(selectOpts).length
@@ -90,10 +101,13 @@ module.exports = function(app) {
             , opts = {}
             , i;
 
-        console.log('REQ', req);
+//        console.log('REQ', req);
 
         if (req.body) {
             var selectOpts = JSON.parse(req.body.selectOpts);
+            var checkboxOpts = JSON.parse(req.body.checkboxOpts);
+            console.log('CHECKBOXOPT', checkboxOpts);
+            console.log('SELECTOPT', selectOpts);
             if (_.isEmpty(selectOpts)) {
                 opts.maxRows = 3;
                 console.log('is empty row 3');
@@ -101,6 +115,7 @@ module.exports = function(app) {
         }
 
         for (i in req.files) {
+            console.log('FILES', req.files[i]['path']);
             SpreadsheetReader.read(req.files[i]['path'], opts, function (err, workbook) {
                 console.log(req.files[i]['path']);
                 if (err) {
@@ -111,26 +126,84 @@ module.exports = function(app) {
                 workbook.sheets.forEach(function (sheet) {
 
                     if (_.isEmpty(opts)) {
-                        pg.connect(connString, function(err, client, done) {
-                            if (err) {
-                                res.json(err);
-                            }
+
+                            var dataRow = {}, dataCheckbox = {};
+                            sheet.rows.shift();
                             sheet.rows.forEach(function (row) {
-                                var dataRow = [];
                                 for (var k = 0; k < row.length; k++) {
                                     if (selectOpts.hasOwnProperty(row[k].column)) {
-                                        dataRow.push(row[k].value);
+//                                        para[selectOpts[row[k].column]] = row[k].value;
+//                                        product.set(para);
+                                        dataRow[selectOpts[row[k].column]] = row[k].value;
+                                    }
+                                    if (checkboxOpts.hasOwnProperty(row[k].column) && checkboxOpts[row[k].column] === 'YES') {
+                                        dataCheckbox[selectOpts[row[k].column]] = row[k].value;
                                     }
                                 }
-                                if (k != 0 ) {
-                                    Insert(client,done,dataRow, selectOpts);
+
+
+                                console.log('DATA', dataRow);
+                                if (_.isEmpty(dataCheckbox)) {
+                                    console.log('CONDISHEN EMPTY', dataCheckbox);
+                                    Product.update({ $or: [dataRow] }, dataRow, {upsert: true}, function(err){
+                                        if (err) console.log(err);
+                                    });
+                                } else {
+                                    console.log('CONDISHEN NO EMPTY', dataCheckbox);
+                                    Product.update({ $and: [dataCheckbox] }, dataRow, {upsert: true}, function(err){
+                                        if (err) console.log(err);
+                                    });
                                 }
+
+
+//                                Product.update(dataCheckbox, dataRow, {}, function(err){
+//                                    if (err) console.log(err);
+//                                });
+                                                           //{ $or: [dataCheckbox] }
+//                                Product.update(dataRow, {}, {upsert: true}, function (err, data, numberAffected) {
+//                                    console.log('NUMBERAFFECTED',numberAffected);
+//                                    if (err) console.error(err);
+//                                });
                             });
-                        });
+
+
+//                        pg.connect(connString, function(err, client, done) {
+//                            if (err) {
+//                                res.json(err);
+//                            }
+//                            sheet.rows.forEach(function (row) {
+//                                var dataRow = [];
+//                                for (var k = 0; k < row.length; k++) {
+//                                    if (selectOpts.hasOwnProperty(row[k].column)) {
+//                                        dataRow.push(row[k].value);
+//                                    }
+//                                }
+//                                if (k != 0 ) {
+//                                    Insert(client,done,dataRow, selectOpts);
+//                                }
+//                            });
+//                        });
 
                         res.json(data);
-                    }  else {
-                        data = sheet.rows;
+                    } else {
+                        var headers = [];
+
+                        sheet.rows[0].forEach(function (row, index) {
+                            var pattern = {};
+                            pattern.name = row.value;
+                            pattern.code = row.value;
+                            headers.push(pattern);
+                        });
+
+//                        data.headers = [
+//                            { name: 'Наименование', code: 'title' },
+//                            { name: 'Цена', code: 'price' }
+//                        ];
+                        data.headers = headers;
+                        data.rows = sheet.rows;
+//                        sheet.rows.shift();
+//                        data.rows = sheet.rows;
+                        console.log(data.rows);
                         res.json(data);
                     }
                     res.json(new Error('error SpreadsheetReader'));
@@ -146,7 +219,68 @@ module.exports = function(app) {
 	// get all products
 	app.get('/api/products', function(req, res) {
         console.log(req.query);
-        pg.connect(connString, function(err, client, done) {
+        var sorting = {}, order, skip;
+        if (req.query.filter) {
+            var filter = {};
+            for(var k in req.query.filter) {
+                var key = decodeURIComponent(k);
+                console.log(decodeURIComponent(k));
+                filter[key] = {'$regex': decodeURIComponent(req.query.filter[k]), '$options': 'i'};
+            }
+            console.log('FILTERS LIST', filter);
+        }
+        if (filter) {
+            var request = filter;
+        } else {
+            var request = {};
+        }
+
+        if (req.query.sorting) {
+            for (var i in req.query.sorting) {
+                if (req.query.sorting[i] === 'asc') {
+                    order = 1;
+                } else {
+                    order = -1;
+                }
+                sorting[decodeURIComponent(i)] = order;
+            }
+        }
+        console.log('SORTING', sorting);
+
+        skip = (req.query.page-1) * req.query.count;
+
+        Product.find(request).paginate(req.query.page, req.query.count).lean().exec(function(err, results) {
+            console.log('results', results);
+            var data = {};
+            var options = [];
+            var headers = [];
+
+            for (var i = 0; i < results.length; i++) {
+                var names = Object.keys(results[i]);
+                options = _.union(options, names)
+            }
+
+            console.log('OPTIONS', options);
+            options.sort();
+            for (var i = 0; i < options.length; i++) {
+                headers.push({title: options[i], field: options[i], visible: true});
+            }
+
+            console.log('HEADERS', headers);
+
+            Product.count({}, function( err, count){
+                data.total = count;
+                data.options = headers;
+                data.rows = results;
+                res.json(data);
+
+            });
+
+
+        });
+
+//        .sort('mykey', 1).skip(from).limit(to)
+/*        pg.connect(connString, function(err, client, done) {
             if (err) {
                 res.json(err);
             }
@@ -208,11 +342,12 @@ module.exports = function(app) {
                         var data = {};
                         data.total = result1.rowCount;
                         data.rows = result.rows;
+                        console.log(data.rows);
                         res.json(data);
                     }
                 );
             });
-        });
+        });*/
     });
 
 	// create goods and send back all goods after creation
@@ -236,50 +371,65 @@ module.exports = function(app) {
 
 	// get single
     app.get('/api/products/:id', function(req, res) {
-        console.log(req.params.id);
-        pg.connect(connString, function(err, client, done) {
-            done();
-            client.query("select * from goods where id = $1 limit 1",[req.params.id],
-                function (err, result) {
-                    if (err) {
-                        console.log(err);
-                    }
-                    console.log('GET SINGLE', result.rows[0]);
-                    res.json(result.rows[0]);
-                }
-            );
-        });
+        console.log(req.params._id);
+//        models.visits.update({ _id: req.body.id }, upsertData, { multi: false }, function(err) {
+//            if(err) { throw err; }
+//            //...
+//        }
+//        pg.connect(connString, function(err, client, done) {
+//            done();
+//            client.query("select * from goods where id = $1 limit 1",[req.params.id],
+//                function (err, result) {
+//                    if (err) {
+//                        console.log(err);
+//                    }
+//                    console.log('GET SINGLE', result.rows[0]);
+//                    res.json(result.rows[0]);
+//                }
+//            );
+//        });
     });
 
     app.put('/api/products/:id', function(req, res) {
-        pg.connect(connString, function(err, client, done) {
-            console.log(req);
-            done();
-            client.query("UPDATE goods SET title = $1, price = $2 WHERE id = $3;",[req.query.title, req.query.price, req.params.id],
-                function (err, result) {
-                    if (err) {
-                        console.log(err);
-                    }
-                    console.log('GET SINGLE');
-                    res.json(result.rows[0]);
-                }
-            );
+        console.log('ID', req.query);
+        Product.update({ _id: req.params.id }, req.query, { multi: false }, function(err) {
+            if(err) { console.log(err); }
         });
+//        pg.connect(connString, function(err, client, done) {
+//            console.log(req);
+//            done();
+//            client.query("UPDATE goods SET title = $1, price = $2 WHERE id = $3;",[req.query.title, req.query.price, req.params.id],
+//                function (err, result) {
+//                    if (err) {
+//                        console.log(err);
+//                    }
+//                    console.log('GET SINGLE');
+//                    res.json(result.rows[0]);
+//                }
+//            );
+//        });
     });
 
 	app.delete('/api/products/:id', function(req, res) {
-        pg.connect(connString, function(err, client, done) {
-            done();
-            client.query("DELETE FROM goods WHERE id = $1;",[req.params.id],
-                function (err, result) {
-                    if (err) {
-                        console.log(err);
-                    }
-                    console.log('DELETE');
-                    res.json(result.rows[0]);
-                }
-            );
+        console.log(req.params.id);
+        Product.remove({ _id: req.params.id }, function(err,result) {
+            if (err) {
+                console.log(err);
+            }
+            res.json();
         });
+//        pg.connect(connString, function(err, client, done) {
+//            done();
+//            client.query("DELETE FROM goods WHERE id = $1;",[req.params.id],
+//                function (err, result) {
+//                    if (err) {
+//                        console.log(err);
+//                    }
+//                    console.log('DELETE');
+//                    res.json(result.rows[0]);
+//                }
+//            );
+//        });
 	});
 
     app.post('/api/products', function(req, res) {

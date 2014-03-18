@@ -1,0 +1,35 @@
+html(lang="en")
+  include includes/head
+
+  body
+    include includes/navbar
+
+    div.container
+      div.row
+        div.span9
+          h2
+            #{textTitle1}
+
+          for pi in paragraphs
+            p #{pi}
+
+        div.span3
+          div.well
+            p
+              | Hello,
+              em #{username}
+            p
+              a(href="/logout").btn.btn-small.btn-inverse Sign Out
+
+
+      include includes/footer
+
+
+
+
+
+
+
+
+
+
