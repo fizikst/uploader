@@ -218,7 +218,11 @@ module.exports = function(app) {
 	// api ---------------------------------------------------------------------
 	// get all products
 	app.get('/api/products', function(req, res) {
-        console.log(req.query);
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+        console.log("GET PRODUCTS", req.query);
         var sorting = {}, order, skip;
         if (req.query.filter) {
             var filter = {};
@@ -254,8 +258,22 @@ module.exports = function(app) {
             var data = {};
             var options = [];
             var headers = [];
+            var type = {};
+            var model;
 
             for (var i = 0; i < results.length; i++) {
+
+                Object.keys(results[i]).forEach(function(key) {
+                    var value = results[i][key];
+                    if (_.isNumber(value))  {
+                        type[key] = 'number';
+                    } else if (_.isBoolean(value)) {
+                        type[key] = 'boolean';
+                    } else {
+                        type[key] = 'text';
+                    }
+                });
+
                 var names = Object.keys(results[i]);
                 options = _.union(options, names)
             }
@@ -263,7 +281,7 @@ module.exports = function(app) {
             console.log('OPTIONS', options);
             options.sort();
             for (var i = 0; i < options.length; i++) {
-                headers.push({title: options[i], field: options[i], visible: true});
+                headers.push({title: options[i], field: options[i], visible: true, type: type[options[i]]});
             }
 
             console.log('HEADERS', headers);
