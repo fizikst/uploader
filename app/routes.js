@@ -4,6 +4,11 @@ var _ = require('underscore');
 var config = require('../config');
 var util = require('util');
 var sys = require('sys');
+var http = require('http');
+async = require("async");
+var validator = require('validator');
+
+
 
 var mongoose = require('mongoose');
 
@@ -94,6 +99,9 @@ module.exports = function(app) {
         return titleList.join(', ');
     }
 
+
+
+//    console.log('DOWNLOAD', download('http://kupitdveri59.ru/assets/images/dveri/model_7.jpg'));
     // api ---------------------------------------------------------------------
     // post fileconsole.log(req.files);
     app.post('/api/files', function(req, res) {
@@ -127,33 +135,120 @@ module.exports = function(app) {
 
                     if (_.isEmpty(opts)) {
 
-                            var dataRow = {}, dataCheckbox = {};
+
                             sheet.rows.shift();
                             sheet.rows.forEach(function (row) {
-                                for (var k = 0; k < row.length; k++) {
-                                    if (selectOpts.hasOwnProperty(row[k].column)) {
-//                                        para[selectOpts[row[k].column]] = row[k].value;
-//                                        product.set(para);
-                                        dataRow[selectOpts[row[k].column]] = row[k].value;
+                                var dataRow = {}, dataCheckbox = {};
+                                async.concatSeries(row,
+                                    function(loop, cb){
+
+                                        if (selectOpts.hasOwnProperty(loop.column)) {
+
+                                            if (checkboxOpts.hasOwnProperty(loop.column) && checkboxOpts[loop.column] === 'YES') {
+                                                dataCheckbox[selectOpts[loop.column]] = loop.value;
+                                            }
+
+                                            if (validator.isURL(loop.value)) {
+                                                http.get(loop.value, function(res) {
+
+                                                    var buffers = [];
+                                                    var length = 0;
+
+                                                    res.on("data", function(chunk) {
+
+                                                        // store each block of data
+                                                        length += chunk.length;
+                                                        buffers.push(chunk);
+
+                                                    });
+
+                                                    res.on("end", function() {
+
+                                                        // combine the binary data into single buffer
+                                                        var image = Buffer.concat(buffers);
+
+                                                        // determine the type of the image
+                                                        // with image/jpeg being the default
+                                                        var type = 'image/jpeg';
+                                                        if (res.headers['content-type'] !== undefined)
+                                                            type = res.headers['content-type'];
+
+                                                        dataRow[selectOpts[loop.column]] = image;
+                                                        _.extend(dataRow, { type: type })
+                                                        cb(null);
+                                                    });
+                                                });
+                                            } else {
+                                                dataRow[selectOpts[loop.column]] = loop.value;
+                                                cb(null);
+                                            }
+
+                                        } else {
+                                            cb(null);
+                                        }
+                                    },
+                                    function(err, result){
+                                        if (err) console.log(err);
+                                        if (_.isEmpty(dataCheckbox)) {
+                                            console.log('CONDISHEN EMPTY', dataCheckbox);
+                                            Product.update({ $or: [dataRow] }, dataRow, {upsert: true}, function(err){
+                                                if (err) console.log(err);
+                                            });
+                                        } else {
+                                            console.log('CONDISHEN NO EMPTY', dataCheckbox);
+                                            Product.update({ $and: [dataCheckbox] }, dataRow, {upsert: true}, function(err){
+                                                if (err) console.log(err);
+                                            });
+                                        }
                                     }
-                                    if (checkboxOpts.hasOwnProperty(row[k].column) && checkboxOpts[row[k].column] === 'YES') {
-                                        dataCheckbox[selectOpts[row[k].column]] = row[k].value;
-                                    }
-                                }
+                                );
 
 
-                                console.log('DATA', dataRow);
-                                if (_.isEmpty(dataCheckbox)) {
-                                    console.log('CONDISHEN EMPTY', dataCheckbox);
-                                    Product.update({ $or: [dataRow] }, dataRow, {upsert: true}, function(err){
-                                        if (err) console.log(err);
-                                    });
-                                } else {
-                                    console.log('CONDISHEN NO EMPTY', dataCheckbox);
-                                    Product.update({ $and: [dataCheckbox] }, dataRow, {upsert: true}, function(err){
-                                        if (err) console.log(err);
-                                    });
-                                }
+//                                for (var k = 0; k < row.length; k++) {
+//                                    var file;
+//
+//                                    if (validator.isURL(row[k].value)) {
+//
+//                                        http.get(row[k].value, function(res) {
+//
+//                                            var buffers = [];
+//                                            var length = 0;
+//
+//                                            res.on("data", function(chunk) {
+//
+//                                                // store each block of data
+//                                                length += chunk.length;
+//                                                buffers.push(chunk);
+//
+//                                            });
+//
+//                                            res.on("end", function() {
+//
+//                                                // combine the binary data into single buffer
+//                                                var image = Buffer.concat(buffers);
+//
+//                                                // determine the type of the image
+//                                                // with image/jpeg being the default
+//                                                var type = 'image/jpeg';
+//                                                if (res.headers['content-type'] !== undefined)
+//                                                    type = res.headers['content-type'];
+//
+//                                                _.extend(dataRow, { type: type, image: image })
+//                                                console.log('RRRRRRRRRRRRRRR', dataRow);
+//
+//                                            });
+//                                        });
+//                                    } else {
+//                                        if (selectOpts.hasOwnProperty(row[k].column)) {
+//                                            dataRow[selectOpts[row[k].column]] = row[k].value;
+//                                        }
+//                                        if (checkboxOpts.hasOwnProperty(row[k].column) && checkboxOpts[row[k].column] === 'YES') {
+//                                            dataCheckbox[selectOpts[row[k].column]] = row[k].value;
+//                                        }
+//                                    }
+//                                }
+
+
 
 
 //                                Product.update(dataCheckbox, dataRow, {}, function(err){
@@ -366,6 +461,132 @@ module.exports = function(app) {
                 );
             });
         });*/
+    });
+
+    app.get('/api/v1/products', function(req, res) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+        console.log("GET PRODUCTS", req.query);
+        var sorting = {}, order, skip;
+        if (req.query) {
+            var filter = {};
+            var metaArr = ['pageNumber', 'sortDir', 'sortedBy']
+            for(var k in req.query) {
+                var key = decodeURIComponent(k);
+                if (_.indexOf(metaArr, decodeURIComponent(k)) >= 0) {
+                    console.log('--------', _.indexOf(metaArr, decodeURIComponent(k)));
+                }  else {
+//                        filter[key] = {'$regex': req.query[k], '$options': 'i'};
+                    if (key === 'price') {
+                        filter[key] = parseFloat(req.query[k]);
+                    } else {
+                        filter[key] = req.query[k];
+                    }
+                    console.log('FILTERS LIST', filter);
+                }
+            }
+        }
+
+        if (filter) {
+            var request = filter;
+        } else {
+            var request = {};
+        }
+
+        console.log('REQUEST', request);
+
+//        if (req.query.sorting) {
+//            for (var i in req.query.sorting) {
+//                if (req.query.sorting[i] === 'asc') {
+//                    order = 1;
+//                } else {
+//                    order = -1;
+//                }
+//                sorting[decodeURIComponent(i)] = order;
+//            }
+//        }
+//        console.log('SORTING', sorting);
+
+//        skip = (req.query.page-1) * req.query.count;
+
+        Product.find(request)/*.paginate(req.query.page, req.query.count)*/.lean().exec(function(err, results) {
+            console.log('RESULTS', results);
+            var data = {};
+            var options = [];
+            var headers = [];
+            var type = {};
+            var model;
+
+            for (var i = 0; i < results.length; i++) {
+
+                Object.keys(results[i]).forEach(function(key) {
+                    var value = results[i][key];
+                    if (_.isNumber(value))  {
+                        type[key] = 'number';
+                    } else if (_.isBoolean(value)) {
+                        type[key] = 'boolean';
+                    } else {
+                        type[key] = 'text';
+                    }
+                });
+
+                var names = Object.keys(results[i]);
+                options = _.union(options, names)
+            }
+
+//            console.log('OPTIONS', options);
+//            options.sort();
+//            for (var opt in options) {
+//                var key = options[opt];
+//                var temp = {
+//                    title : key,
+//                    field : key,
+//                    visible: true,
+//                    type: type[key]
+//                };
+//                console.log('adsad', temp)
+//                Product.find().distinct(key, function(error, names) {
+//                    temp.data = names;
+//                    headers.push(temp);
+//                    console.log('HEADERS', headers);
+//                });
+//            }
+
+            options.sort();
+            console.log('OPTIONS',options);
+            async.eachSeries(options,
+                function(loop, cb){
+                    Product.find(request).distinct(loop, function(error, names) {
+                        headers.push({title: loop, field: loop, visible: true, type: type[loop], data: names});
+                        cb();
+                    });
+                },
+                function(err){
+                    if (err) console.log(err);
+                    console.log('HEADERS', headers);
+                    Product.count({}, function( err, count){
+                        data.data = results;
+                        data.filter = headers;
+                        data.meta = {meta : {"total" : count}};
+                        res.json(data);
+                    });
+                }
+            );
+
+
+
+
+//            console.log('OPTIONS', options);
+//            options.sort();
+//            for (var i = 0; i < options.length; i++) {
+//                headers.push({title: options[i], field: options[i], visible: true, type: type[options[i]]});
+//            }
+
+
+
+        });
     });
 
 	// create goods and send back all goods after creation
