@@ -1,0 +1,19 @@
+{
+  "name": "Demo",
+  "description": "Demo app",
+  "version": "0.0.2",
+  "main": "index.html",
+  "window": {
+    "title": "Demo app",
+    "toolbar": false,
+    "frame": true,
+    "position": "center",
+    "fullscreen": true,
+    "resizable": true
+  },
+  "node-remote": "<local>",
+  "dependencies": {
+    "express": "3.x",
+    "nedb": "~0.8.0"
+  }
+}
