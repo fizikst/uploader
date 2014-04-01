@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="30f40f26-12f6-4f98-81d6-2a57c163c111" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/NodeAPI" afterPath="$PROJECT_DIR$/temp/NodeAPI" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/angular-dashboard-app" afterPath="$PROJECT_DIR$/temp/angular-dashboard-app" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/angular-phonecat" afterPath="$PROJECT_DIR$/temp/angular-phonecat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/angular-real-time-charts" afterPath="$PROJECT_DIR$/temp/angular-real-time-charts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/node-webkit-nedb-rest-angular" afterPath="$PROJECT_DIR$/temp/node-webkit-nedb-rest-angular" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp/passport-auth-example" afterPath="$PROJECT_DIR$/temp/passport-auth-example" />
+    </list>
+    <ignored path="uploader.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <file path="/Dummy.txt" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1394774015936" ignored="false" />
+    <file path="/core.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1394621756651" ignored="false" />
+    <file path="/package.json" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1392815359781" ignored="false" />
+    <file path="/index.html" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390823454141" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/schema/index.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390885929883" ignored="false" />
+    <file path="/index.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390885913731" ignored="false" />
+    <file path="/download.html" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389687451869" ignored="false" />
+    <file path="/products.html" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1394620245371" ignored="false" />
+    <file path="/import.html" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390905330746" ignored="false" />
+    <file path="/routes.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1394619642914" ignored="false" />
+    <file path="/README.md" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389709281020" ignored="false" />
+    <file path="/a.dummy" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389696445642" ignored="false" />
+    <file path="/list.html" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389710647377" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/config/config.json.dist" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1394797759637" ignored="false" />
+    <file path="/config.json.dist" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390375622523" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/config/deploy.rb" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1394798167419" ignored="false" />
+    <file path="/deploy.rb" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1394798167419" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/libs/log.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389868238864" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/test/test-app.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1394796635861" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/libs/db.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1394779019578" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/migrations/20140115122148-create-table-wj-event-type.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389788719088" ignored="false" />
+    <file path="/20140115122148-create-table-wj-event-type.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389788661534" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/migrations/20140115122623-create-table-wj-object-type.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389788879730" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/migrations/20140115122634-create-table-wj-pit-type.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389788867187" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/migrations/20140115122645-create-table-wj-substance.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389789302150" ignored="false" />
+    <file path="/20140115122645-create-table-wj-substance.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389789302150" ignored="false" />
+    <file path="/db.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389789908069" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/config/config.json" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1393242712499" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/migrations/20131216120615-create-table-wj-car.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389793554389" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/log/access.log" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1393243103260" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/fixtures/wj_car.json" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389793554389" ignored="false" />
+    <file path="/app.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1393242823089" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/migrations/20140115131811-create-table-wj-modify-task.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389792162065" ignored="false" />
+    <file path="/20140115131811-create-table-wj-modify-task.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389792132033" ignored="false" />
+    <file path="/test-app.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1394788307327" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/migrations/20131211103422-create-table-wj-users.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389793554389" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/models/ecu.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390369978260" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/fixtures/wj_user.json" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389793554389" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/migrations/20131216060727-create-table-wj-ecu.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389793554389" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/package.json" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390478901527" ignored="false" />
+    <file path="$PROJECT_DIR$/../redispubsub/app.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389945069125" ignored="false" />
+    <file path="$PROJECT_DIR$/../redispubsub/app_1.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389944827013" ignored="false" />
+    <file path="$PROJECT_DIR$/../redispubsub/cluster.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389944336613" ignored="false" />
+    <file path="/cluster.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1389943893886" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/tclocal.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390283997570" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/tcdev2.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390310397175" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/asd" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390484123194" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/client1.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390371234994" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/wj_servers/app_dev.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390391717667" ignored="false" />
+    <file path="/app_dev.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390368138056" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/app_dev.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390368317859" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/handlers/concat.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1393582304347" ignored="false" />
+    <file path="/asd" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390371098355" ignored="false" />
+    <file path="/client1.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390371236766" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/t1.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390375462859" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/t2.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1393240164498" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/helper/index.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390375586761" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/wj_servers/handlers/save_file.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390394577813" ignored="false" />
+    <file path="/client2.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1393240601128" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/binary_serv.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390387464846" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/handlers/save_file.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1393582238397" ignored="false" />
+    <file path="/save_file.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1393582238397" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/bin/worker.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1390483378148" ignored="false" />
+    <file path="/concat.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1393582303959" ignored="false" />
+    <file path="/editRow.html" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1391159795081" ignored="false" />
+    <file path="/createRow.html" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1391093989799" ignored="false" />
+    <file path="/deleteRows.html" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1391157939723" ignored="false" />
+    <file path="/merged_cells.py" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1392372107312" ignored="false" />
+    <file path="/server.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1392812002504" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/pool_connect.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1392972687934" ignored="false" />
+    <file path="/pool_connect.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1392967616307" ignored="false" />
+    <file path="/t2.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1393240162485" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/r1" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1392966874146" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/r2" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1392980671994" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/sema.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1392972318406" ignored="false" />
+    <file path="/sema.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1392972160317" ignored="false" />
+    <file path="/config.json" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1393240962075" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/handlers/ecu.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1393241996563" ignored="false" />
+    <file path="/ecu.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1393241984426" ignored="false" />
+    <file path="/mongo_test.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1394013514492" ignored="false" />
+    <file path="/tpl.html" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1394171906795" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/app.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1394781943880" ignored="false" />
+    <file path="$PROJECT_DIR$/temp/angular-phonecat/app/css/app.css" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1394708891149" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/test/err.log" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1394797733959" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/test/out.log" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1394797733961" ignored="false" />
+    <file path="$PROJECT_DIR$/../wj_servers/handlers/track_start.js" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1394788819896" ignored="false" />
+    <file path="$PROJECT_DIR$/../cssframe/48611.html" changelist="30f40f26-12f6-4f98-81d6-2a57c163c111" time="1395057402447" ignored="false" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="uploader" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="routes.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/routes.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="417" column="66" selection-start="14830" selection-end="14830" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="products.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/partials/products.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="0" selection-start="401" selection-end="401" vertical-scroll-proportion="0.017103763">
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="import.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/partials/import.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="editRow.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/partials/editRow.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="74" selection-start="452" selection-end="514" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="createRow.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/partials/createRow.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="list.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/template/list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="27" selection-start="1288" selection-end="1288" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="core.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/core.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="239" column="0" selection-start="8869" selection-end="9644" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tpl.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/template/tpl.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="190" selection-start="305" selection-end="327" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="database.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/database.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="44" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/merged_cells.py" />
+        <option value="$PROJECT_DIR$/temp/beardog/pages/jade/login.jade" />
+        <option value="$PROJECT_DIR$/temp/beardog/pages/jade/mainPage.jade" />
+        <option value="$PROJECT_DIR$/temp/beardog/pages/jade/single.jade" />
+        <option value="$PROJECT_DIR$/temp/angular-real-time-charts/app.js" />
+        <option value="$PROJECT_DIR$/temp/NodeAPI/libs/mongoose.js" />
+        <option value="$PROJECT_DIR$/temp/node-webkit-nedb-rest-angular/package.json" />
+        <option value="$PROJECT_DIR$/temp/NodeAPI/server.js" />
+        <option value="$PROJECT_DIR$/temp/NodeAPI/mongo_test.js" />
+        <option value="$PROJECT_DIR$/temp/beardog/server.js" />
+        <option value="$PROJECT_DIR$/public/template/tpl.html" />
+        <option value="$PROJECT_DIR$/config/database.js" />
+        <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/app/routes.js" />
+        <option value="$PROJECT_DIR$/public/js/core.js" />
+        <option value="$PROJECT_DIR$/public/partials/products.html" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1985" />
+    <option name="y" value="24" />
+    <option name="width" value="1855" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents ProjectPane="true" />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="temp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="temp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular-phonecat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="template" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="partials" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="options.lastSelected" value="settings.nodejs" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/temp/angular-phonecat" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/template" />
+      <recent name="$PROJECT_DIR$/public/partials" />
+      <recent name="$PROJECT_DIR$/public/js" />
+      <recent name="$PROJECT_DIR$/public/css" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="$PROJECT_DIR$">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
+      <method />
+    </configuration>
+    <list size="0" />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="30f40f26-12f6-4f98-81d6-2a57c163c111" name="Default" comment="" />
+      <created>1389593699886</created>
+      <updated>1389593699886</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1985" y="24" width="1855" height="1056" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22185792" sideWeight="0.49946293" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22185792" sideWeight="0.50053704" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_NEW_TODO" value="true" />
+    <option name="myTodoPanelSettings">
+      <value>
+        <are-packages-shown value="false" />
+        <are-modules-shown value="false" />
+        <flatten-packages value="false" />
+        <is-autoscroll-to-source value="false" />
+      </value>
+    </option>
+    <option name="PERFORM_UPDATE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
+    <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
+    <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
+    <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
+    <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
+    <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
+    <option name="SHORT_DIFF_HORIZONTALLY" value="true" />
+    <option name="SHORT_DIFF_EXTRA_LINES" value="2" />
+    <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
+    <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
+    <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
+    <option name="LIMIT_HISTORY" value="true" />
+    <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
+    <option name="UPDATE_FILTER_SCOPE_NAME" />
+    <option name="USE_COMMIT_MESSAGE_MARGIN" value="false" />
+    <option name="COMMIT_MESSAGE_MARGIN_SIZE" value="72" />
+    <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
+    <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
+    <option name="LAST_COMMIT_MESSAGE" />
+    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
+    <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
+    <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
+    <option name="ACTIVE_VCS_NAME" />
+    <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
+    <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
+    <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
+    <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
+    <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../wj_servers/config/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="52" selection-start="822" selection-end="822" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../wj_servers/client2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="186" column="39" selection-start="5147" selection-end="5147" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../wj_servers/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="296" selection-end="326" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="36" selection-start="1495" selection-end="1495" vertical-scroll-proportion="-36.875">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="462" selection-end="462" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/todo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/template/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/partials/createRow.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/partials/import.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="27" selection-start="1288" selection-end="1288" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/partials/editRow.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="74" selection-start="452" selection-end="514" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/template/tpl.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="190" selection-start="305" selection-end="327" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="239" column="0" selection-start="8869" selection-end="9644" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="417" column="66" selection-start="14830" selection-end="14830" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/partials/products.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="401" selection-end="401" vertical-scroll-proportion="0.017103763">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/database.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="44" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+
