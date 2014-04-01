@@ -8,22 +8,61 @@
         </td>
     </tr>
 </table>-->
-
+    <label class="checkbox" ng-repeat="column in columns">
+        <input type="checkbox" ng-model="column.visible" /> {{column.title}}
+    </label>
     <table ng-table="tableParams" show-filter="true" class="table" >
-        <tbody ng-repeat="p in $data">
-            <tr id="{{p.title}}" ng-class-odd="'odd'" ng-class-even="'even'">
-                <td width="30" style="text-align: left" header="'ng-table/headers/checkbox.html'">
-                    <input type="checkbox" ng-model="checkboxes.items[p.id]" />
+        <thead>
+        <tr>
+            <td>
+                <input type="checkbox" ng-model="checkboxes.checked" id="select_all" name="filter-checkbox" value="" class="ng-scope ng-pristine ng-valid">
+            </td>
+            <th ng-repeat="column in columns" ng-show="column.visible"
+                class="text-center sortable" ng-class="{
+                    'sort-asc': tableParams.isSortBy(column.field, 'asc'),
+                    'sort-desc': tableParams.isSortBy(column.field, 'desc')
+                  }"
+                ng-click="tableParams.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')">
+                {{column.title}}
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="p in $data" class="row_{{p._id}}">
+                <td width="30" style=" text-align: left;" header="'ng-table/headers/checkbox.html'">
+                    <input type="checkbox" ng-model="checkboxes.items[p._id]" />
                 </td>
-                <td class="rowTd" data-title="'ID'" sortable="id" filter="{ 'id': 'text' }">{{p.id}}</td>
-                <td class="rowTd" data-title="'Название'" sortable="title" filter="{ 'title': 'text' }">{{p.title}}</td>
-                <td class="rowTd" data-title="'Цена'"   sortable="price" filter="{ 'price': 'text' }">{{p.price}}</td>
-                <td class="rowTd" ><input type=button id="editRowBtn{{p.id}}" value="edit" ng-click="setEditId(p.id)"></td>
-                <td class="rowTd" ><input type=button id="setDelete{{p.id}}" value="delete" ng-click="setDelete(p.id)"></td>
+                <!--<td ng-repeat="(k,v) in p" data-title="'{{k}}'">{{v}}</td>-->
+
+                <td ng-repeat="column in columns" ng-show="column.visible" sortable="column.field" ng-if="editId!==p._id">
+                    {{p[column.field]}}
+                </td>
+
+                <td ng-repeat="column in columns" ng-show="column.visible" sortable="column.field" ng-if="editId===p._id">
+                    <div ng-if="column.field==='_id'">{{p[column.field]}}</div>
+                    <input type="hidden" name="column.field" value="{{p[column.field]}}" ng-if="column.field==='_id'">
+                    <input type="text" name="{{column.field}}" value="{{p[column.field]}}" ng-if="column.field!=='_id'">
+                </td>
+
+
+                <!--<td data-title="'_id'" sortable="'_id'" data-title-text="_id" class="ng-scope ng-binding">531972fb32041a55b17ebf37</td>-->
+                <!--<td data-title="'Название'" sortable="'Название'" data-title-text="Название" class="ng-scope ng-binding">Дверь Рома 11</td>-->
+                <!--<td data-title="'Цена'" sortable="'Цена'" data-title-text="Цена" class="ng-scope ng-binding">3990</td>-->
+
+                <!--<td class="rowTd" data-title="'Название'" sortable="Название" filter="{ 'Название': 'text' }"></td>-->
+                <!--<td class="rowTd" data-title="'Цена'"   sortable="price" filter="{ 'price': 'text' }">{{p.price}}</td>-->
+                <td class="rowTd" ng-if="editId===p._id"><input type="button" value=" save " ng-click="setEdit(p._id)"><br><input type="button" value=" cancel" ng-click="setEditId(-1)"></td>
+
+                <td class="rowTd" ng-if="editId!==p._id"><input type=button id="editRowBtn{{p._id}}" value="edit" ng-click="setEditId(p._id)"></td>
+                <td class="rowTd" ><input type=button id="setDelete{{p._id}}" value="delete" ng-click="setDelete(p._id)"></td>
+
             </tr>
-            <tr ng-show="editId===p.id" ng-if="editId===p.id">
+<!--
+            <tr ng-show="editId==p._id" ng-if="editId==p._id">
                 <td colspan="5" ng-include src="'partials/editRow.html'"></td>
             </tr>
+-->
+
         </tbody>
         <tfoot>
             <tr>
@@ -35,25 +74,26 @@
             </tr>
         </tfoot>
     </table>
+
+<!--    <table ng-table="tableParams" show-filter="true" class="table" >
+        <tbody>
+            <tr ng-repeat="tr in $data" ng-class-odd="'odd'" ng-class-even="'even'">
+                <td ng-repeat="(k,v) in tr" data-title="'Название'" sortable="Нзавание">
+                    {{v}}
+                </td>
+                &lt;!&ndash;<td data-title="'Price'" sortable="price" filter="{ 'price': 'text' }">&ndash;&gt;
+                    &lt;!&ndash;{{user.price}}&ndash;&gt;
+                &lt;!&ndash;</td>&ndash;&gt;
+                &lt;!&ndash;<td class="rowTd" ><input type=button id="editRowBtn{{p.id}}" value="edit"&ndash;&gt;
+                                          &lt;!&ndash;ng-click="setEditId(p.id)"></td>&ndash;&gt;
+            </tr>
+            &lt;!&ndash;<tr ng-show="editId===p.id" ng-if="editId===p.id">&ndash;&gt;
+                &lt;!&ndash;<td colspan="2" ng-include src="'editRow.html'"></td>&ndash;&gt;
+            &lt;!&ndash;</tr>&ndash;&gt;
+        </tbody>
+    </table>
     <script type="text/ng-template" id="ng-table/headers/checkbox.html">
         <input type="checkbox" ng-model="checkboxes.checked" id="select_all" name="filter-checkbox" value="" />
-    </script>
+    </script>-->
 
-    <!--<table ng-table="tableParams" show-filter="true" class="table" >-->
-        <!--<tbody>-->
-            <!--<tr ng-repeat="user in $data" ng-class-odd="'odd'" ng-class-even="'even'">-->
-                <!--<td data-title="'Title'" sortable="title" filter="{ 'title': 'text' }">-->
-                    <!--{{user.title}}-->
-                <!--</td>-->
-                <!--<td data-title="'Price'" sortable="price" filter="{ 'price': 'text' }">-->
-                    <!--{{user.price}}-->
-                <!--</td>-->
-                <!--&lt;!&ndash;<td class="rowTd" ><input type=button id="editRowBtn{{p.id}}" value="edit"&ndash;&gt;-->
-                                          <!--&lt;!&ndash;ng-click="setEditId(p.id)"></td>&ndash;&gt;-->
-            <!--</tr>-->
-            <!--&lt;!&ndash;<tr ng-show="editId===p.id" ng-if="editId===p.id">&ndash;&gt;-->
-                <!--&lt;!&ndash;<td colspan="2" ng-include src="'editRow.html'"></td>&ndash;&gt;-->
-            <!--&lt;!&ndash;</tr>&ndash;&gt;-->
-        <!--</tbody>-->
-    <!--</table>-->
 </div>

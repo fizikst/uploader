@@ -1,0 +1,15 @@
+<ul style="width: 250px; height: 250px">
+    <li ng-repeat="option in options">
+        <input name="option.field" ng-model="search[option.field]" type="{{option.type}}" >{{option}}
+    </li>
+</ul>
+
+
+<table class="table" width="500px">
+    <tr ng-repeat="row in rows | filter:search ">
+        <td>{{row._id}}</td>
+        <td>{{row.name}}</td>
+        <td>{{row.price}}</td>
+        <td>{{row.url}}</td>
+    </tr>
+</table>

@@ -57,10 +57,10 @@ module.exports = function (grunt) {
     },
     connect: {
       options: {
-        port: 9000,
+        port: 9112,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost',
-        livereload: 35729
+        livereload: 35711
       },
       livereload: {
         options: {
@@ -297,12 +297,6 @@ module.exports = function (grunt) {
         'htmlmin'
       ]
     },
-    /*karma: {
-      unit: {
-        configFile: 'karma.conf.js',
-        singleRun: true
-      }
-    },*/
     cdnify: {
       dist: {
         html: ['<%= yeoman.dist %>/*.html']

@@ -4,6 +4,7 @@
 <table border="1">
     <tr ng-repeat="row in rows">
         <td ng-repeat="cell in row">
+            <input ng-show="$parent.$first === true" type="checkbox" ng-model="check" ng-true-value="YES" ng-false-value="NO" ng-change="changeCheckbox(check,$index);">Должно быть уникальным<br>
             <select ng-show="$parent.$first === true" ng-model="myOpt" ng-change="changeSelect(myOpt,$index);" ng-options="header.code as header.name for header in headersOpt"></select><br />
             {{cell.value}}
         </td>
