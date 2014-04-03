@@ -1,28 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22aa36a2-73fc-4a76-86b0-6dc21010df26" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/main-style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/lib/underscore.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/app.js" afterPath="$PROJECT_DIR$/app/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers.js" afterPath="$PROJECT_DIR$/app/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/directives.js" afterPath="$PROJECT_DIR$/app/js/directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/services.js" afterPath="$PROJECT_DIR$/app/js/services.js" />
-    </list>
+    <list default="true" id="22aa36a2-73fc-4a76-86b0-6dc21010df26" name="Default" comment="" />
     <ignored path="angular-phonecat.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1396329068843" ignored="false" />
+    <file path="/Dummy.txt" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1396418679448" ignored="false" />
     <file path="/app.js" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1395991818659" ignored="false" />
-    <file path="/controllers.js" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1395834954425" ignored="false" />
-    <file path="/routes.js" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1395904718408" ignored="false" />
+    <file path="/controllers.js" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1396531730360" ignored="false" />
+    <file path="/routes.js" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1396528731951" ignored="false" />
     <file path="/filter.html" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1395220116644" ignored="false" />
     <file path="/filters.js" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1395219504011" ignored="false" />
-    <file path="$PROJECT_DIR$/../../../wj_servers/client2.js" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1396004234058" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../wj_servers/client2.js" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1396505629772" ignored="false" />
     <file path="/save_file.js" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1395378785751" ignored="false" />
     <file path="$PROJECT_DIR$/../../../wj_servers/test/out.log" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1396002476171" ignored="false" />
     <file path="$PROJECT_DIR$/../../../wj_servers/test/err.log" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1396002476171" ignored="false" />
     <file path="/concat.js" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1395397783140" ignored="false" />
-    <file path="/services.js" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1395832706541" ignored="false" />
+    <file path="/services.js" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1396422832829" ignored="false" />
     <file path="/phone-list.html" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1396356072915" ignored="false" />
     <file path="/a.dummy" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1395735268207" ignored="false" />
     <file path="/directives.js" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1395745231772" ignored="false" />
@@ -30,6 +23,10 @@
     <file path="/client2.js" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1395988048079" ignored="false" />
     <file path="/temp1.html" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1396271680935" ignored="false" />
     <file path="$PROJECT_DIR$/../../../wj_servers/config/deploy.rb" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1396352314213" ignored="false" />
+    <file path="/temp2.html" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1396419015805" ignored="false" />
+    <file path="$PROJECT_DIR$/../../app/routes.js" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1396528739135" ignored="false" />
+    <file path="/phone-detail.html" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1396533710950" ignored="false" />
+    <file path="$PROJECT_DIR$/../../../wj_servers/config/config.json.dist" changelist="22aa36a2-73fc-4a76-86b0-6dc21010df26" time="1396523077130" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,45 +46,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="routes.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../app/routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="176" column="0" selection-start="6225" selection-end="6225" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="products.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../public/partials/products.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="20" selection-start="1888" selection-end="1922" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="117" column="0" selection-start="3802" selection-end="3802" vertical-scroll-proportion="0.0">
+            <state line="130" column="0" selection-start="4208" selection-end="4208" vertical-scroll-proportion="0.0">
               <folding>
-                <marker date="1395836600552" expanded="true" signature="3991:4021" placeholder="{...}" />
-                <marker date="1395836600552" expanded="true" signature="4039:4198" placeholder="{...}" />
+                <marker date="1396531832208" expanded="true" signature="4003:4737" placeholder="{...}" />
+                <marker date="1396531832208" expanded="true" signature="4755:115408" placeholder="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index.html">
+      <file leaf-file-name="directives.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/directives.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="0" selection-start="6235" selection-end="6235" vertical-scroll-proportion="-5.625">
-              <folding>
-                <element signature="n#style#0;n#p#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1396357647478" expanded="true" signature="7388:7440" placeholder="..." />
-                <marker date="1396357647478" expanded="true" signature="7441:7682" placeholder="..." />
-              </folding>
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="filters.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/filters.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -95,16 +79,16 @@
       <file leaf-file-name="main-style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/css/main-style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1278" column="14" selection-start="40168" selection-end="40179" vertical-scroll-proportion="-12.392858">
+            <state line="1293" column="4" selection-start="40809" selection-end="40833" vertical-scroll-proportion="-11.615385">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="save_file.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../wj_servers/handlers/save_file.js">
+      <file leaf-file-name="services.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="352" column="31" selection-start="12497" selection-end="12506" vertical-scroll-proportion="0.0">
+            <state line="41" column="64" selection-start="1203" selection-end="1203" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -113,41 +97,48 @@
       <file leaf-file-name="phone-list.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/partials/phone-list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="619" selection-end="619" vertical-scroll-proportion="-9.375">
+            <state line="25" column="151" selection-start="1365" selection-end="1421" vertical-scroll-proportion="-15.625">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="phone-detail.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/partials/phone-detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="56" selection-start="1142" selection-end="1142" vertical-scroll-proportion="0.08971292">
               <folding>
-                <element signature="n#style#0;n#img#0;n#a#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="core.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../public/js/core.js">
+      <file leaf-file-name="animations.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/css/animations.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="334" selection-end="334" vertical-scroll-proportion="0.0">
+            <state line="4" column="28" selection-start="60" selection-end="65" vertical-scroll-proportion="-1.1428572">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="concat.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../wj_servers/handlers/concat.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="0" selection-start="246" selection-end="250" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="temp1.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="temp1.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/temp1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="216" column="0" selection-start="23618" selection-end="24895" vertical-scroll-proportion="0.49760765">
+            <state line="216" column="0" selection-start="23618" selection-end="24895" vertical-scroll-proportion="-26.875">
               <folding>
                 <element signature="n#style#0;n#p#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1396343320827" expanded="false" signature="6243:6295" placeholder="..." />
-                <marker date="1396343320827" expanded="true" signature="6296:6537" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/css/app.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="20" selection-start="244" selection-end="244" vertical-scroll-proportion="-8.035714">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -170,22 +161,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/../../public/js/core.js" />
-        <option value="$PROJECT_DIR$/../angular-phonecat.old/app/js/controllers.js" />
-        <option value="$PROJECT_DIR$/app/css/app.css" />
         <option value="$PROJECT_DIR$/app/css/animations.css" />
-        <option value="$PROJECT_DIR$/app/js/app.js" />
         <option value="$PROJECT_DIR$/app/js/directives.js" />
-        <option value="$PROJECT_DIR$/app/js/services.js" />
-        <option value="$PROJECT_DIR$/app/js/controllers.js" />
         <option value="$PROJECT_DIR$/../../../wj_servers/app.js" />
         <option value="$PROJECT_DIR$/../../app/routes.js" />
         <option value="$PROJECT_DIR$/../../../wj_servers/handlers/temp_.txt" />
         <option value="$PROJECT_DIR$/../../../wj_servers/handlers/concat.js" />
         <option value="$PROJECT_DIR$/temp1.html" />
         <option value="$PROJECT_DIR$/app/css/main-style.css" />
-        <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/partials/phone-list.html" />
+        <option value="$PROJECT_DIR$/app/index.html" />
+        <option value="$PROJECT_DIR$/temp2.html" />
+        <option value="$PROJECT_DIR$/app/js/app.js" />
+        <option value="$PROJECT_DIR$/app/js/services.js" />
+        <option value="$PROJECT_DIR$/app/js/controllers.js" />
+        <option value="$PROJECT_DIR$/app/css/app.css" />
+        <option value="$PROJECT_DIR$/app/partials/phone-detail.html" />
       </list>
     </option>
   </component>
@@ -221,32 +212,31 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular-phonecat" />
+              <option name="myItemId" value="angular-phonecat_" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular-phonecat" />
+              <option name="myItemId" value="angular-phonecat_" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular-phonecat" />
+              <option name="myItemId" value="angular-phonecat_" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular-phonecat" />
+              <option name="myItemId" value="angular-phonecat_" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular-phonecat" />
+              <option name="myItemId" value="angular-phonecat_" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -256,11 +246,29 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular-phonecat" />
+              <option name="myItemId" value="angular-phonecat_" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular-phonecat" />
+              <option name="myItemId" value="angular-phonecat_" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="phones" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular-phonecat_" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular-phonecat_" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -274,11 +282,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular-phonecat" />
+              <option name="myItemId" value="angular-phonecat_" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular-phonecat" />
+              <option name="myItemId" value="angular-phonecat_" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -292,11 +300,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular-phonecat" />
+              <option name="myItemId" value="angular-phonecat_" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular-phonecat" />
+              <option name="myItemId" value="angular-phonecat_" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -310,11 +318,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular-phonecat" />
+              <option name="myItemId" value="angular-phonecat_" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="angular-phonecat" />
+              <option name="myItemId" value="angular-phonecat_" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -328,6 +336,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -336,8 +345,8 @@
     <property name="options.lastSelected" value="settings.nodejs" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../wj_servers" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -461,109 +470,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="21" selection-start="192" selection-end="210" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../wj_servers/test/test-app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="96" selection-start="2224" selection-end="2303" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/directives.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="412" selection-end="412" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="58" selection-start="1078" selection-end="1078" vertical-scroll-proportion="-13.928572" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../wj_servers/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="187" column="43" selection-start="7498" selection-end="7498" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1396004127987" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396004127987" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396004127987" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396004127987" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396004127987" expanded="true" signature="-1:-1" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../public/partials/products.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="20" selection-start="1888" selection-end="1922" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../app/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="176" column="0" selection-start="6225" selection-end="6225" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../public/js/core.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="334" selection-end="334" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="0" selection-start="3802" selection-end="3802" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1395836600552" expanded="true" signature="3991:4021" placeholder="{...}" />
-            <marker date="1395836600552" expanded="true" signature="4039:4198" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../wj_servers/handlers/save_file.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="352" column="31" selection-start="12497" selection-end="12506" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/css/main-style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1278" column="14" selection-start="40168" selection-end="40179" vertical-scroll-proportion="-12.392858">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="0" selection-start="6235" selection-end="6235" vertical-scroll-proportion="-5.625">
-          <folding>
-            <element signature="n#style#0;n#p#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1396357647478" expanded="true" signature="7388:7440" placeholder="..." />
-            <marker date="1396357647478" expanded="true" signature="7441:7682" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/partials/phone-list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="619" selection-end="619" vertical-scroll-proportion="-9.375">
-          <folding>
-            <element signature="n#style#0;n#img#0;n#a#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../wj_servers/handlers/concat.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="0" selection-start="246" selection-end="250" vertical-scroll-proportion="0.0">
@@ -571,13 +477,145 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="224" column="0" selection-start="21200" selection-end="21355" vertical-scroll-proportion="-6.480769">
+          <folding>
+            <marker date="1396419604901" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1396419604901" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/temp2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="216" column="0" selection-start="36129" selection-end="36129" vertical-scroll-proportion="-4.326923">
+          <folding>
+            <element signature="n#style#0;n#iframe#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#iframe#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#li#1;n#ul#0;n#nav#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#0;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#li#2;n#ul#0;n#nav#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#0;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#li#3;n#ul#0;n#nav#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#0;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#li#1;n#ul#0;n#li#3;n#ul#0;n#nav#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#0;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#iframe#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#iframe#0;n#div#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#iframe#1;n#div#0;n#div#0;n#div#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#li#1;n#ul#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#iframe#0;n#span#0;n#div#1;n#li#1;n#ul#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#li#2;n#ul#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#iframe#0;n#div#0;n#li#2;n#ul#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#li#0;n#ol#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#li#1;n#ol#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#small#0;n#h3#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#iframe#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1396420140525" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1396420140525" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1396420140525" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/phones/dell-streak-7.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="90" selection-start="1936" selection-end="1936" vertical-scroll-proportion="-10.519231">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/phones/motorola-xoom-with-wi-fi.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="9" selection-start="1063" selection-end="1063" vertical-scroll-proportion="-20.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="26" selection-start="520" selection-end="520" vertical-scroll-proportion="-9.178572">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="64" selection-start="1203" selection-end="1203" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/filters.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/directives.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/partials/phone-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="151" selection-start="1365" selection-end="1421" vertical-scroll-proportion="-15.625">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="130" column="0" selection-start="4208" selection-end="4208" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1396531832208" expanded="true" signature="4003:4737" placeholder="{...}" />
+            <marker date="1396531832208" expanded="true" signature="4755:115408" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/css/animations.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="28" selection-start="60" selection-end="65" vertical-scroll-proportion="-1.1428572">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="20" selection-start="244" selection-end="244" vertical-scroll-proportion="-8.035714">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/temp1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="216" column="0" selection-start="23618" selection-end="24895" vertical-scroll-proportion="0.49760765">
+        <state line="216" column="0" selection-start="23618" selection-end="24895" vertical-scroll-proportion="-26.875">
           <folding>
             <element signature="n#style#0;n#p#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1396343320827" expanded="false" signature="6243:6295" placeholder="..." />
-            <marker date="1396343320827" expanded="true" signature="6296:6537" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/css/main-style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1293" column="4" selection-start="40809" selection-end="40833" vertical-scroll-proportion="-11.615385">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/partials/phone-detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="56" selection-start="1142" selection-end="1142" vertical-scroll-proportion="0.08971292">
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

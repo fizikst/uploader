@@ -37,6 +37,9 @@ api.factory('Api', function (Restangular) {
         products: {
             search: function (query) {
                 return Restangular.all('products').getList(query);
+            },
+            get : function (query) {
+                return Restangular.one('products', query.id).get();
             }
         }
     };
