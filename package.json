@@ -11,6 +11,7 @@
     "underscore": "~1.5.2",
     "pg": "~2.11.0",
     "util": "~0.10.2",
-    "validator": "~3.5.0"
+    "validator": "~3.5.0",
+    "mongoose-pagination": "~1.0.0"
   }
 }
