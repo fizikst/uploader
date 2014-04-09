@@ -39,7 +39,7 @@ img.phone {
   background-color: white;
   padding: 2em;
   height: 400px;
-  width: 400px;
+  /*width: 400px;*/
 }
 
 ul.phone-thumbs {
