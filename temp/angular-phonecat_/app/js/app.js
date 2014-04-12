@@ -32,7 +32,7 @@ phonecatApp
           });
       }
 ]).config(['RestangularProvider',function (RestangularProvider) {
-        var baseUrl = 'http://127.0.0.1:8011/api/v1/';
+        var baseUrl = 'http://91.146.58.74:8011/api/v1/';
         RestangularProvider.setBaseUrl(baseUrl);
         RestangularProvider.setRestangularFields({
           id: "_id"
