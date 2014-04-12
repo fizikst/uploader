@@ -23,7 +23,7 @@ phonecatApp
             templateUrl: 'partials/phone-list.html',
             controller: 'PhoneListCtrl'
           }).
-          when('/phones/:phoneId', {
+          when('/phones/:id', {
             templateUrl: 'partials/phone-detail.html',
             controller: 'PhoneDetailCtrl'
           }).

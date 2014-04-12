@@ -100,6 +100,37 @@ module.exports = function(app) {
     }
 
 
+//    function SaveFile(loop, cb, dataRow) {
+//        http.get(loop.value, function(res) {
+//
+//            var buffers = [];
+//            var length = 0;
+//
+//            res.on("data", function(chunk) {
+//
+//                // store each block of data
+//                length += chunk.length;
+//                buffers.push(chunk);
+//
+//            });
+//
+//            res.on("end", function() {
+//
+//                // combine the binary data into single buffer
+//                var image = Buffer.concat(buffers);
+//
+//                // determine the type of the image
+//                // with image/jpeg being the default
+//                var type = 'image/jpeg';
+//                if (res.headers['content-type'] !== undefined)
+//                    type = res.headers['content-type'];
+//
+//                dataRow[selectOpts[loop.column]] = image;
+//                _.extend(dataRow, { type: type })
+//                cb(null);
+//            });
+//        });
+//    }
 
 //    console.log('DOWNLOAD', download('http://kupitdveri59.ru/assets/images/dveri/model_7.jpg'));
     // api ---------------------------------------------------------------------
@@ -139,46 +170,100 @@ module.exports = function(app) {
                             sheet.rows.shift();
                             sheet.rows.forEach(function (row) {
                                 var dataRow = {}, dataCheckbox = {};
+//                                console.log('ROWWWWWWWWWWWWWWWWWWW', row);
                                 async.concatSeries(row,
                                     function(loop, cb){
-
                                         if (selectOpts.hasOwnProperty(loop.column)) {
+                                            if (_.isString(loop.value)) {
+                                                if (loop.value.indexOf('|') > 0) {
+                                                    var values = loop.value.split('|');
+                                                    if (values.length > 1) {
+                                                        async.concatSeries(values,
+                                                            function(loop1, cb1){
+                                                                var val = {};
+                                                                if (validator.isURL(loop1)) {
+                                                                    http.get(loop1, function(res) {
+                                                                        var buffers = [];
+                                                                        var length = 0;
 
-                                            if (checkboxOpts.hasOwnProperty(loop.column) && checkboxOpts[loop.column] === 'YES') {
-                                                dataCheckbox[selectOpts[loop.column]] = loop.value;
-                                            }
+                                                                        res.on("data", function(chunk) {
 
-                                            if (validator.isURL(loop.value)) {
-                                                http.get(loop.value, function(res) {
+                                                                            // store each block of data
+                                                                            length += chunk.length;
+                                                                            buffers.push(chunk);
 
-                                                    var buffers = [];
-                                                    var length = 0;
+                                                                        });
 
-                                                    res.on("data", function(chunk) {
+                                                                        res.on("end", function() {
 
-                                                        // store each block of data
-                                                        length += chunk.length;
-                                                        buffers.push(chunk);
+                                                                            // combine the binary data into single buffer
+                                                                            var image = Buffer.concat(buffers);
 
-                                                    });
+                                                                            // determine the type of the image
+                                                                            // with image/jpeg being the default
+                                                                            var type = 'image/jpeg';
+                                                                            if (res.headers['content-type'] !== undefined)
+                                                                                type = res.headers['content-type'];
 
-                                                    res.on("end", function() {
+                                                                            val.image = image;
+                                                                            _.extend(val, { type: type })
+                                                                            cb1(null, val);
+                                                                        });
+                                                                    });
+                                                                } else if (loop1 !== undefined || loop1 !== ''){
+                                                                    val = loop1;
+                                                                    cb(null, val);
+                                                                } else {
+                                                                    cb(null);
+                                                                }
+                                                            },
+                                                            function(err1, result1){
+                                                                console.log('COOOONNNNNSSSSSSs', result1);
+                                                                if (err1) console.log(err1);
+                                                                dataRow[selectOpts[loop.column]] = result1;
+                                                                cb(null);
+                                                            }
+                                                        );
+                                                    }
+                                                } else {
+                                                    if (validator.isURL(loop.value)) {
+                                                        http.get(loop.value, function(res) {
+                                                            var buffers = [];
+                                                            var length = 0;
 
-                                                        // combine the binary data into single buffer
-                                                        var image = Buffer.concat(buffers);
+                                                            res.on("data", function(chunk) {
 
-                                                        // determine the type of the image
-                                                        // with image/jpeg being the default
-                                                        var type = 'image/jpeg';
-                                                        if (res.headers['content-type'] !== undefined)
-                                                            type = res.headers['content-type'];
+                                                                // store each block of data
+                                                                length += chunk.length;
+                                                                buffers.push(chunk);
 
-                                                        dataRow[selectOpts[loop.column]] = image;
-                                                        _.extend(dataRow, { type: type })
+                                                            });
+
+                                                            res.on("end", function() {
+
+                                                                // combine the binary data into single buffer
+                                                                var image = Buffer.concat(buffers);
+
+                                                                // determine the type of the image
+                                                                // with image/jpeg being the default
+                                                                var type = 'image/jpeg';
+                                                                if (res.headers['content-type'] !== undefined)
+                                                                    type = res.headers['content-type'];
+
+                                                                dataRow[selectOpts[loop.column]] = [{image:image, type: type}];
+                                                                cb(null);
+                                                            });
+                                                        });
+                                                    } else {
+                                                        dataRow[selectOpts[loop.column]] = loop.value;
                                                         cb(null);
-                                                    });
-                                                });
+                                                    }
+                                                }
                                             } else {
+                                                if (checkboxOpts.hasOwnProperty(loop.column) && checkboxOpts[loop.column] === 'YES') {
+                                                    dataCheckbox[selectOpts[loop.column]] = loop.value;
+                                                }
+
                                                 dataRow[selectOpts[loop.column]] = loop.value;
                                                 cb(null);
                                             }
@@ -188,6 +273,9 @@ module.exports = function(app) {
                                         }
                                     },
                                     function(err, result){
+
+                                        console.log('RRREERERERER', result);
+
                                         if (err) console.log(err);
                                         if (_.isEmpty(dataCheckbox)) {
                                             console.log('CONDISHEN EMPTY', dataCheckbox);
@@ -389,79 +477,50 @@ module.exports = function(app) {
 
             });
 
-
         });
 
 //        .sort('mykey', 1).skip(from).limit(to)
-/*        pg.connect(connString, function(err, client, done) {
-            if (err) {
-                res.json(err);
-            }
-            var sql = "SELECT * FROM goods";
+    });
 
-            if (req.query.filter) {
-                var filter = []
-                    , pre = '';
+    // get single
+    app.get('/api/v1/products/:id', function(req, res) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
 
-                for (var i in req.query.filter) {
-                    switch(i){
-                        case 'title':
-                            pre = "LOWER(" + i + ")";
-                            break;
-                        case 'price':
-                        case 'id':
-                            pre = "CAST(" + i + " AS TEXT)";
-                            break;
-                        default:
-                            break;
-                    }
-                    filter.push(pre + " LIKE '%" + decodeURIComponent(req.query.filter[i]).toLowerCase() +"%'");
-                }
-                if (Object.keys(req.query.filter).length > 0) {
-                    sql += ' WHERE ' + filter.join(' AND ');
-                }
-            }
+        console.log('GET PRODUCT', req.params['id']);
+        var data = {};
 
-            if (req.query.sorting) {
-                var sort = [];
-                for (var i in req.query.sorting) {
-                    sort.push(i + " " + req.query.sorting[i]);
-                }
-                if (Object.keys(req.query.sorting).length > 0) {
-                    sql += ' ORDER BY ' + sort.join(', ');
-                }
-            }
-
-            console.log('SQL1', sql);
-
-            client.query(sql, function (err, result1) {
-                done();
+        if (req.params['id']) {
+            Product.findById(req.params['id'], function (err, product) {
                 if (err) {
                     console.log(err);
                 }
-
-                if (req.query.count) {
-                    sql += " limit " + req.query.count;
-                }
-                if (req.query.page) {
-                    var offset = (req.query.page - 1) * req.query.count;
-                    sql += " offset " + offset;
-                }
-                console.log('SQL2', sql);
-                client.query(sql,
-                    function (err, result) {
-                        if (err) {
-                            console.log(err);
-                        }
-                        var data = {};
-                        data.total = result1.rowCount;
-                        data.rows = result.rows;
-                        console.log(data.rows);
-                        res.json(data);
-                    }
-                );
+                data = product;
+                res.json(data);
             });
-        });*/
+        } else {
+            res.json(data);
+        }
+
+
+
+//        models.visits.update({ _id: req.body.id }, upsertData, { multi: false }, function(err) {
+//            if(err) { throw err; }
+//            //...
+//        }
+//        pg.connect(connString, function(err, client, done) {
+//            done();
+//            client.query("select * from goods where id = $1 limit 1",[req.params.id],
+//                function (err, result) {
+//                    if (err) {
+//                        console.log(err);
+//                    }
+//                    console.log('GET SINGLE', result.rows[0]);
+//                    res.json(result.rows[0]);
+//                }
+//            );
+//        });
     });
 
     app.get('/api/v1/products', function(req, res) {
