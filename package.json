@@ -12,6 +12,7 @@
     "pg": "~2.11.0",
     "util": "~0.10.2",
     "validator": "~3.5.0",
-    "async": "~0.6.2"
+    "async": "~0.6.2",
+    "mongoose-pagination": "~1.0.0"
   }
 }
