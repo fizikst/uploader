@@ -11,7 +11,7 @@
     </div>
     <a href ng-click="empty()">сбросить</a>.<br>
 </div>
-
+<b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
 
 <div class="span9">
     <div id="post-203" class="post-203 page type-page status-publish hentry page">
@@ -27,7 +27,10 @@
                                 <h3>{{p.name}}</h3>
                             </a>
                             <span class="price"><span class=rouble>Р</span><span class="amount">{{p.price}}</span></span>
-                            <a href="http://woocommerce_48611/?add-to-cart=1958" rel="nofollow" data-product_id="1958" data-product_sku="" class="button add_to_cart_button product_type_simple">Add to cart</a>
+                            <a href="" ng-click="cart.addItem(p._id, p.name, p.price, 1)" >
+                                add to cart
+                            </a>
+                            <!--<a href="http://woocommerce_48611/?add-to-cart=1958" rel="nofollow" data-product_id="1958" data-product_sku="" class="button add_to_cart_button product_type_simple">Add to cart</a>-->
                         </li>
 
                         <!--<li class="post-1950 product type-product status-publish last featured shipping-taxable purchasable product-type-simple product-cat-books-pads product-cat-facilities product-tag-etiam-dictum product-tag-mauris-posuere product-tag-sed-blandit-massa product-tag-vel-mauris instock">-->

@@ -4,8 +4,8 @@
 
 var phonecatControllers = angular.module('phonecatControllers', []);
 
-phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_',
-  function($scope, Api, _) {
+phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', 'DataService',
+  function($scope, Api, _, DataService) {
 
 /*
       http://plnkr.co/edit/wZuIbDl6sGQ9VgYpLIP3?p=preview
@@ -22,6 +22,9 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_',
 //          {name:'fd4', price:15, amount: 123},
 //          {name:'fd7', price:16}
 //      ] ;
+
+//      console.log('DataService', DataService);
+      $scope.cart = DataService.cart;
 
       $scope.totalPages = 0;
       $scope.customersCount = 0;

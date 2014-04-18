@@ -12,7 +12,8 @@ var phonecatApp = angular.module('phonecatApp', [
   'phonecatDirectives',
   'underscore',
   'api',
-  'restangular'
+  'restangular',
+  'DataService'
 ]);
 
 phonecatApp
