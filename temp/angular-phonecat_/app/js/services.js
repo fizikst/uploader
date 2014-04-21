@@ -81,6 +81,7 @@ function shoppingCart(cartName) {
     this.clearCart = false;
     this.checkoutParameters = {};
     this.items = [];
+    this.count = '';
 
     // load items from local storage when initializing
     this.loadItems();
@@ -114,6 +115,7 @@ shoppingCart.prototype.loadItems = function () {
             // ignore errors while loading...
         }
     }
+    this.getShowTitle();
 }
 
 // clear the cart
@@ -131,6 +133,7 @@ shoppingCart.prototype.saveItems = function () {
 
 // adds an item to the cart
 shoppingCart.prototype.addItem = function (sku, name, price, quantity) {
+
     quantity = this.toNumber(quantity);
     if (quantity != 0) {
 
@@ -153,10 +156,23 @@ shoppingCart.prototype.addItem = function (sku, name, price, quantity) {
             this.items.push(item);
         }
 
+        this.getShowTitle();
         // save changes
         this.saveItems();
     }
 }
+
+shoppingCart.prototype.getShowTitle = function () {
+    var suf = this.getTotalCount();
+    console.log('RRRRRRRRRRRRRRTTTTTTTTTTTTTTTT', suf);
+    if (suf==1) return this.count = 'товар';
+
+    if (suf <= 4 && suf != 1) return this.count = 'товара';
+
+    if (suf > 4) return this.count = 'товаров';
+}
+
+
 shoppingCart.prototype.toNumber = function (value) {
     value = value * 1;
     return isNaN(value) ? 0 : value;
@@ -174,7 +190,6 @@ shoppingCart.prototype.getTotalCount = function (sku) {
     var count = 0;
     for (var i = 0; i < this.items.length; i++) {
         var item = this.items[i];
-        console.log(item);
         if (sku == null || item.sku == sku) {
             count += this.toNumber(item.quantity);
         }

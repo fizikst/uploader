@@ -90,3 +90,6 @@ ul.specs dt {
 h1 {
   border-bottom: 1px solid gray;
 }
+button.btn, input[type="submit"].btn {
+    width: 150px;
+}

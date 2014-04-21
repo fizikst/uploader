@@ -4,8 +4,8 @@
 
 var phonecatControllers = angular.module('phonecatControllers', []);
 
-phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', 'DataService',
-  function($scope, Api, _, DataService) {
+phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_',
+  function($scope, Api, _) {
 
 /*
       http://plnkr.co/edit/wZuIbDl6sGQ9VgYpLIP3?p=preview
@@ -24,7 +24,6 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', 'DataServ
 //      ] ;
 
 //      console.log('DataService', DataService);
-      $scope.cart = DataService.cart;
 
       $scope.totalPages = 0;
       $scope.customersCount = 0;
@@ -123,8 +122,10 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', 'DataServ
 //    $scope.orderProp = 'age';
   }]);
 
-phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone', 'Api', '_',
-  function($scope, $routeParams, Phone, Api, _) {
+phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone', 'Api', '_', 'DataService',
+  function($scope, $routeParams, Phone, Api, _, DataService) {
+
+      $scope.cart = DataService.cart;
 
       Api.products.get($routeParams).then(function (data) {
           console.log('GET_PRODUCT', data);
@@ -170,3 +171,11 @@ phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Ph
     }
 
   }]);
+
+
+phonecatControllers.controller('ShoppingCartCtrl', ['$scope', '$routeParams', 'DataService',
+    function($scope, $routeParams, DataService) {
+
+        $scope.cart = DataService.cart;
+
+    }]);

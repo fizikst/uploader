@@ -28,6 +28,10 @@ phonecatApp
             templateUrl: 'partials/phone-detail.html',
             controller: 'PhoneDetailCtrl'
           }).
+          when('/cart', {
+            templateUrl: 'partials/shopping-cart.html',
+            controller: 'ShoppingCartCtrl'
+          }).
           otherwise({
             redirectTo: '/phones'
           });

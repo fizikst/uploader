@@ -162,13 +162,19 @@
                             </div>
                         </div>
                         <div class="span6 search-block" >
-                            <div id="woocommerce_widget_cart-2" class="visible-all-devices cart-holder"><h3>Shopping Cart</h3><div class="widget_shopping_cart_content">No products in the cart.</div></div>
-                            <div class="search-form search-form__h clearfix">
-                                <form id="search-header" class="navbar-form pull-right" method="get" action="http://livedemo00.template-help.com/woocommerce_48611/" accept-charset="utf-8">
-                                    <input type="text" name="s" placeholder="Search" class="search-form_it">
-                                    <input type="submit" value="" id="search-form_is" class="search-form_is btn btn-primary">
-                                </form>
+                            <div id="woocommerce_widget_cart-2" class="visible-all-devices cart-holder">
+                                <h3>Shopping Cart</h3>
+                                <div class="widget_shopping_cart_content" shopping-cart>
+                                    <a ng-show="cart.getTotalCount() > 0" href="index.html#/cart"><b>{{cart.getTotalCount()}}</b> {{cart.count}}, <span class=rouble>Р</span><b>{{cart.getTotalPrice() | currency: "" }} </b></b></a>
+                                    <div ng-show="cart.getTotalCount() < 1">No products in the cart.</div>
+                                </div>
                             </div>
+                            <!--<div class="search-form search-form__h clearfix">-->
+                                <!--<form id="search-header" class="navbar-form pull-right" method="get" action="http://livedemo00.template-help.com/woocommerce_48611/" accept-charset="utf-8">-->
+                                    <!--<input type="text" name="s" placeholder="Search" class="search-form_it">-->
+                                    <!--<input type="submit" value="" id="search-form_is" class="search-form_is btn btn-primary">-->
+                                <!--</form>-->
+                            <!--</div>-->
                         </div>
                     </div>
                     <div class="menu-holder">
