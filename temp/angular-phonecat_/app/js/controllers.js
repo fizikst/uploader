@@ -23,6 +23,8 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_',
 //          {name:'fd7', price:16}
 //      ] ;
 
+//      console.log('DataService', DataService);
+
       $scope.totalPages = 0;
       $scope.customersCount = 0;
       $scope.checked = [];
@@ -120,8 +122,10 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_',
 //    $scope.orderProp = 'age';
   }]);
 
-phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone', 'Api', '_',
-  function($scope, $routeParams, Phone, Api, _) {
+phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone', 'Api', '_', 'DataService',
+  function($scope, $routeParams, Phone, Api, _, DataService) {
+
+      $scope.cart = DataService.cart;
 
       Api.products.get($routeParams).then(function (data) {
           console.log('GET_PRODUCT', data);
@@ -167,3 +171,11 @@ phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Ph
     }
 
   }]);
+
+
+phonecatControllers.controller('ShoppingCartCtrl', ['$scope', '$routeParams', 'DataService',
+    function($scope, $routeParams, DataService) {
+
+        $scope.cart = DataService.cart;
+
+    }]);

@@ -23,3 +23,12 @@ phonecatDirectives.directive('onBlurChange', function ($parse) {
         });
     };
 });
+
+phonecatDirectives.directive('shoppingCart', function ($parse, DataService) {
+
+
+    return function (scope, element, attr) {
+        scope.htmlb = "<span class=rouble>Р</span>";
+        scope.cart = DataService.cart;
+    };
+});
