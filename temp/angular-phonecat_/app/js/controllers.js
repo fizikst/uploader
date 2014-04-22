@@ -189,17 +189,20 @@ phonecatControllers.controller('ShoppingCartCtrl', ['$scope', '$routeParams', 'D
         };
 
 
-        $scope.getValue = function(){
+/*
+        $scope.getValue = function() {
             //here get the value of that inserted in the element with the id of "input_" + id
-            return $scope.order.phone;
+            return $scope.order;
         }
+*/
 
-        console.log($scope.getValue());
+
 
         $scope.send = function () {
-            console.log('asd', $scope.cart.items);
-            Api.orders.post({name:"asda", price:123}).then(function (data) {
-                console.log('POST ORDER', data);
+//            console.log($scope.order);
+//            console.log('ITEMS', $scope.cart.items);
+            Api.orders.post({order:$scope.order, data:$scope.cart.items}).then(function (data) {
+//                console.log('POST ORDER', data);
 //            $scope.order = data;
 
 //            if (data.url.length > 0) {

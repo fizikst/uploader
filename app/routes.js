@@ -18,6 +18,11 @@ var productSchema = Schema({
 },{ strict: false });
 var Product = mongoose.model('Product', productSchema);
 
+var orderSchema = Schema({
+},{ strict: false });
+var Order = mongoose.model('Order', orderSchema);
+
+
 console.log('config', config);
 require('mongoose-pagination');
 
@@ -512,9 +517,17 @@ module.exports = function(app) {
         res.header('Access-Control-Allow-Headers', 'Content-Type');
 
         console.log('POST ORDER___________________________________________', req.body);
-        var data = {code:"succesful"};
 
-        res.json(data);
+
+        var order = new Order(req.body);
+
+        order.save(function (err) {
+            if (err) {
+                console.log('ORDER_ADD', err);
+                res.json({err:err});
+            }
+            res.json({code:200});
+        });
     });
 
     app.options('/api/v1/orders', function(req, res) {
