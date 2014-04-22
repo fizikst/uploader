@@ -11,6 +11,7 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_',
       http://plnkr.co/edit/wZuIbDl6sGQ9VgYpLIP3?p=preview
           http://plnkr.co/edit/kt7jjp16MUOXBqdxeUSZ?p=preview
           http://nadeemkhedr.wordpress.com/2013/09/01/build-angularjs-grid-with-server-side-paging-sorting-filtering/
+
 */
 
 //      $scope.input = [
@@ -173,9 +174,53 @@ phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Ph
   }]);
 
 
-phonecatControllers.controller('ShoppingCartCtrl', ['$scope', '$routeParams', 'DataService',
-    function($scope, $routeParams, DataService) {
+phonecatControllers.controller('ShoppingCartCtrl', ['$scope', '$routeParams', 'DataService', 'Api',
+    function($scope, $routeParams, DataService, Api) {
 
+            //http://jsfiddle.net/7MhLd/60/
         $scope.cart = DataService.cart;
+
+        $scope.order = {
+            name: '',
+            email: '',
+            phone: '',
+            address: '',
+            comments: ''
+        };
+
+
+        $scope.getValue = function(){
+            //here get the value of that inserted in the element with the id of "input_" + id
+            return $scope.order.phone;
+        }
+
+        console.log($scope.getValue());
+
+        $scope.send = function () {
+            console.log('asd', $scope.cart.items);
+            Api.orders.post({name:"asda", price:123}).then(function (data) {
+                console.log('POST ORDER', data);
+//            $scope.order = data;
+
+//            if (data.url.length > 0) {
+//                $scope.mainImageUrl = data.url[0].image;
+//                console.log('change image', $scope.mainImageUrl);
+//            }
+            }, function () {
+                console.log('POST ORDER EMPTY', $routeParams);
+            });
+        }
+
+//        $scope.phoneNumberPattern = (function() {
+//            var regexp = /^\(?(\d{3})\)?[ .-]?(\d{3})[ .-]?(\d{4})$/;
+//            return {
+//                test: function(value) {
+//                    /*if( $scope.requireTel === false )*/ return true;
+////            else return regexp.test(value);
+//                }
+//            };
+//        })();
+
+
 
     }]);

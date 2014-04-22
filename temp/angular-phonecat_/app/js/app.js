@@ -54,7 +54,13 @@ phonecatApp
             }
             return response;
         });
-}]);
+}])
+
+/*.config(['$httpProvider',function ($httpProvider) {
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+}])*/;
+
 
 //function (RestangularProvider) {
 //    var baseUrl = 'http://127.0.0.1:8011/api';

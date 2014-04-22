@@ -482,6 +482,51 @@ module.exports = function(app) {
 //        .sort('mykey', 1).skip(from).limit(to)
     });
 
+
+/*
+    app.options('/api/v1/orders', function(req, res) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+        console.log('POST ORDER___________________________________________', req.body);
+        var data = {};
+
+//        if (req.params['id']) {
+//            Product.findById(req.params['id'], function (err, product) {
+//                if (err) {
+//                    console.log(err);
+//                }
+//                data = product;
+//                res.json(data);
+//            });
+//        } else {
+            res.json(data);
+//        }
+    });
+*/
+
+    app.post('/api/v1/orders', function(req, res) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+        console.log('POST ORDER___________________________________________', req.body);
+        var data = {code:"succesful"};
+
+        res.json(data);
+    });
+
+    app.options('/api/v1/orders', function(req, res) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+        var data = {};
+        res.json(data);
+    });
+
+
+
     // get single
     app.get('/api/v1/products/:id', function(req, res) {
         res.header('Access-Control-Allow-Origin', "*");
