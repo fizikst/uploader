@@ -18,6 +18,11 @@ var productSchema = Schema({
 },{ strict: false });
 var Product = mongoose.model('Product', productSchema);
 
+var orderSchema = Schema({
+},{ strict: false });
+var Order = mongoose.model('Order', orderSchema);
+
+
 console.log('config', config);
 require('mongoose-pagination');
 
@@ -481,6 +486,59 @@ module.exports = function(app) {
 
 //        .sort('mykey', 1).skip(from).limit(to)
     });
+
+
+/*
+    app.options('/api/v1/orders', function(req, res) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+        console.log('POST ORDER___________________________________________', req.body);
+        var data = {};
+
+//        if (req.params['id']) {
+//            Product.findById(req.params['id'], function (err, product) {
+//                if (err) {
+//                    console.log(err);
+//                }
+//                data = product;
+//                res.json(data);
+//            });
+//        } else {
+            res.json(data);
+//        }
+    });
+*/
+
+    app.post('/api/v1/orders', function(req, res) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+        console.log('POST ORDER___________________________________________', req.body);
+
+
+        var order = new Order(req.body);
+
+        order.save(function (err) {
+            if (err) {
+                console.log('ORDER_ADD', err);
+                res.json({err:err});
+            }
+            res.json({code:200});
+        });
+    });
+
+    app.options('/api/v1/orders', function(req, res) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+        var data = {};
+        res.json(data);
+    });
+
+
 
     // get single
     app.get('/api/v1/products/:id', function(req, res) {

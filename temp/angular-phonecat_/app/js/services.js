@@ -33,6 +33,13 @@ api.factory('Api', function (Restangular) {
             get : function (query) {
                 return Restangular.one('products', query.id).get();
             }
+        },
+        orders: {
+            post: function (data) {
+//                console.log('DAAAAAAAAAAAAAAAAAAT', Restangular.one('products'));
+
+                return Restangular.one('orders').post('',data);
+            }
         }
     };
 
@@ -82,6 +89,7 @@ function shoppingCart(cartName) {
     this.checkoutParameters = {};
     this.items = [];
     this.count = '';
+    this.orderproc = false;
 
     // load items from local storage when initializing
     this.loadItems();
@@ -164,7 +172,6 @@ shoppingCart.prototype.addItem = function (sku, name, price, quantity) {
 
 shoppingCart.prototype.getShowTitle = function () {
     var suf = this.getTotalCount();
-    console.log('RRRRRRRRRRRRRRTTTTTTTTTTTTTTTT', suf);
     if (suf==1) return this.count = 'товар';
 
     if (suf <= 4 && suf != 1) return this.count = 'товара';
@@ -208,3 +215,7 @@ shoppingCart.prototype.getTotalPrice = function (sku) {
     }
     return total;
 }
+
+shoppingCart.prototype.has_items = function() {
+    return this.getTotalPrice() > 0;
+};
