@@ -67,9 +67,8 @@
                 </tr>
             </table>
 
-            <div>
+            <div ng-show="!cart.orderproc">
                 <div>
-                    {{getValue()}
                     <form novalidate class="form-horizontal" id="orderform" name="orderform">
                         <div class="form-group" ng-class="{'has-success': order.name}">
                             <label for="order_name" class="control-label col-lg-3">Имя:</label>
@@ -109,6 +108,9 @@
                     </form>
                 </div>
                 <div class="col-md-2"></div>
+            </div>
+            <div ng-show="cart.orderproc">
+                Спасибо за заказ. Мы Вам ответим в ближайщее время.
             </div>
 
             <!--<div class="row">-->

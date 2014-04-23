@@ -179,6 +179,7 @@ phonecatControllers.controller('ShoppingCartCtrl', ['$scope', '$routeParams', 'D
 
             //http://jsfiddle.net/7MhLd/60/
         $scope.cart = DataService.cart;
+        $scope.cart.orderproc = false;
 
         $scope.order = {
             name: '',
@@ -209,6 +210,8 @@ phonecatControllers.controller('ShoppingCartCtrl', ['$scope', '$routeParams', 'D
 //                $scope.mainImageUrl = data.url[0].image;
 //                console.log('change image', $scope.mainImageUrl);
 //            }
+               $scope.cart.clearItems();
+               $scope.cart.orderproc = true;
             }, function () {
                 console.log('POST ORDER EMPTY', $routeParams);
             });
