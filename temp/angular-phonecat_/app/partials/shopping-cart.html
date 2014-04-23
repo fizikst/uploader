@@ -141,10 +141,12 @@
                         ng-disabled="cart.getTotalCount() < 1" >
                     <i class="icon-trash icon-white" /> Очистить корзину
                 </button>
-                <div ng-switch="orderform.$valid && !cart.orderproc && cart.has_items()">
-                    <button ng-switch-when="true" ng-click="send()" class="btn btn-block btn-info" ><i class="icon-ok icon-white" />Оформить заказ</button>
-                    <button ng-switch-default class="btn btn-block btn-info" disabled><i class="icon-ok icon-white" />Оформить заказ</button>
-                </div>
+                <button ng-show="orderform.$valid && !cart.orderproc && cart.has_items()" ng-click="send()" class="btn btn-block btn-info" ><i class="icon-ok icon-white" />Оформить заказ</button>
+                <button ng-show="!(orderform.$valid && !cart.orderproc && cart.has_items())" class="btn btn-block btn-info" disabled><i class="icon-ok icon-white" />Оформить заказ</button>
+                 <!--<div ng-switch="orderform.$valid && !cart.orderproc && cart.has_items()">-->
+                    <!--<button ng-switch-when="true" ng-click="send()" class="btn btn-block btn-info" ><i class="icon-ok icon-white" />Оформить заказ</button>-->
+                    <!--<button ng-switch-default class="btn btn-block btn-info" disabled><i class="icon-ok icon-white" />Оформить заказ</button>-->
+                <!--</div>-->
 
             <!--<button-->
                         <!--class="btn btn-block btn-info"-->
