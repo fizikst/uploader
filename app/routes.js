@@ -22,6 +22,11 @@ var orderSchema = Schema({
 },{ strict: false });
 var Order = mongoose.model('Order', orderSchema);
 
+var articleSchema = Schema({
+    title: String,
+    desc: String
+});
+var Article = mongoose.model('Article', articleSchema);
 
 console.log('config', config);
 require('mongoose-pagination');
@@ -538,6 +543,80 @@ module.exports = function(app) {
         res.json(data);
     });
 
+
+//------------------------- Articles ----------------------------------
+
+    app.get('/api/v1/articles', function(req, res) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+        var data = {};
+        Article.find({}).paginate(req.query.page, req.query.count).lean().exec(function(err, results) {
+            if (err) {
+                res.json({err:err});
+            }
+            Article.count({}, function(err, count){
+                data.total = count;
+                data.rows = results;
+                res.json(data);
+            });
+        });
+    });
+
+    app.post('/api/v1/articles', function(req, res) {
+        var article = new Article(req.body);
+
+        article.save(function (err) {
+            if (err) {
+                console.log('ARTICLE_ADD', err);
+                res.json({err:err});
+            }
+            res.json({code:200});
+        });
+
+    });
+
+    app.put('/api/v1/articles/:id', function(req, res) {
+        Article.update({ _id: req.params.id }, req.query, { multi: false }, function(err) {
+            if(err) {
+                console.log(err);
+            }
+            res.json({code:200});
+        });
+    });
+
+    app.delete('/api/v1/articles/:id', function(req, res) {
+        console.log(req.params.id);
+        Article.remove({ _id: req.params.id }, function(err,result) {
+            if (err) {
+                console.log(err);
+            }
+            res.json();
+        });
+    });
+
+//    app.get('/api/v1/articles/:id', function(req, res) {
+//        res.header('Access-Control-Allow-Origin', "*");
+//        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//        res.header('Access-Control-Allow-Headers', 'Content-Type');
+//
+//        console.log('GET ARTICLE', req.params['id']);
+//        var data = {};
+//
+//        if (req.params['id']) {
+//            Article.findById(req.params['id'], function (err, article) {
+//                if (err) {
+//                    console.log(err);
+//                }
+//                data = article;
+//                res.json(data);
+//            });
+//        } else {
+//            res.json(data);
+//        }
+//    });
+//------------------------- End Articles ----------------------------------
 
 
     // get single

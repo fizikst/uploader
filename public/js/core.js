@@ -3,6 +3,7 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
         $routeProvider.
             when('/import', {templateUrl: 'partials/import.html',   controller: 'MainCtrl'}).
             when('/products', {templateUrl: 'partials/products.html', controller: 'ListCtrl'}).
+            when('/articles', {templateUrl: 'partials/articles.html', controller: 'ArticleCtrl'}).
             otherwise({redirectTo: '/products'});
     }])
 //    .factory("Product", function ($resource) {
@@ -254,7 +255,68 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
 //            // grayed checkbox
 //            angular.element(document.getElementById("select_all")).prop("indeterminate", (checked != 0 && unchecked != 0));
 //        }, true);
-}]);
+}])
+    .factory('Article', ['$resource', function($resource) {
+        return $resource('/api/v1/articles/:id', null,
+            {
+                'update': { method:'PUT' }
+            });
+    }])
+    .controller('ArticleCtrl', ['$scope', '$filter', '$resource', '$q', 'ngTableParams', 'Article',  function($scope, $filter, $resource, $q, ngTableParams, Article) {
+
+        $scope.tableParams = new ngTableParams({
+            page: 1,            // show first page
+            count: 10,          // count per page
+            sorting: {
+            }
+        }, {
+            total: 0,
+            getData: function($defer, params) {
+                var Api = $resource('/api/v1/articles', params.url(), { query: {method:'GET'}});
+                Api.query(function (res1) {
+                    params.total(res1.total);
+                    $defer.resolve($scope.data = res1.rows);
+                });
+            }
+
+        });
+
+        $scope.editArticle = function(pid) {
+            var article = new Article();
+            article.id = pid;
+
+            $('#row_' + pid).find('input:text').each(function (idx, input) {
+                article[$(input).attr('name')] = $(input).val();
+            });
+
+            Article.update(article, article);
+        }
+
+        $scope.vote = 0;
+        $scope.expand = function(vote) {
+            $scope.vote = vote;
+        };
+
+        $scope.createArticle = function (formId) {
+            var article = new Article();
+
+            $('#' + formId).find('input:text').each(function (idx, input) {
+                article[$(input).attr('name')] = $(input).val();
+            });
+
+            article.$save();
+            $scope.vote = 0;
+            $scope.tableParams.reload();
+        };
+
+        $scope.deleteArticle= function (pid) {
+            console.log(pid);
+            var article = new Article();
+            Article.delete({id:pid}, article);
+            $scope.tableParams.reload();
+        };
+
+    }]);
 
 
 
