@@ -101,6 +101,82 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
                 'update': { method:'PUT' }
             });
     }])
+    .directive('ckEditor', [function () {
+        return {
+            require: '?ngModel',
+            restrict: 'C',
+            link: function (scope, elm, attr, model) {
+                var isReady = false;
+                var data = [];
+                var ck = CKEDITOR.replace(elm[0]);
+
+                function setData() {
+                    if (!data.length) {
+                        return;
+                    }
+
+                    var d = data.splice(0, 1);
+                    ck.setData(d[0] || '<span></span>', function () {
+                        setData();
+                        isReady = true;
+                    });
+                }
+
+                ck.on('instanceReady', function (e) {
+                    if (model) {
+                        setData();
+                    }
+                });
+
+                elm.bind('$destroy', function () {
+                    ck.destroy(false);
+                });
+
+                if (model) {
+                    ck.on('change', function () {
+                        scope.$apply(function () {
+                            var data = ck.getData();
+                            if (data == '<span></span>') {
+                                data = null;
+                            }
+                            model.$setViewValue(data);
+                        });
+                    });
+
+                    model.$render = function (value) {
+                        if (model.$viewValue === undefined) {
+                            model.$setViewValue(null);
+                            model.$viewValue = null;
+                        }
+
+                        data.push(model.$viewValue);
+
+                        if (isReady) {
+                            isReady = false;
+                            setData();
+                        }
+                    };
+                }
+
+            }
+        };
+    }])
+    .directive('bindHtmlUnsafe', function( $parse, $compile ) {
+        return function( $scope, $element, $attrs ) {
+            var compile = function( newHTML ) {
+                newHTML = $compile(newHTML)($scope);
+                $element.html('').append(newHTML);
+            };
+
+            var htmlName = $attrs.bindHtmlUnsafe;
+
+            $scope.$watch(htmlName, function( newHTML ) {
+                if(!newHTML) return;
+                compile(newHTML);
+            });
+
+        };
+    })
     .controller('ListCtrl', ['$scope', '$filter', '$resource', '$q', 'ngTableParams', 'Product', function($scope, $filter, $resource, $q, ngTableParams, Product) {
 
         $scope.tableParams = new ngTableParams({
@@ -264,6 +340,10 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
     }])
     .controller('ArticleCtrl', ['$scope', '$filter', '$resource', '$q', 'ngTableParams', 'Article',  function($scope, $filter, $resource, $q, ngTableParams, Article) {
 
+        $scope.article_create = '';
+
+//        console.log('DESC',$scope.article_create);
+
         $scope.tableParams = new ngTableParams({
             page: 1,            // show first page
             count: 10,          // count per page
@@ -281,15 +361,23 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
 
         });
 
+
+
         $scope.editArticle = function(pid) {
             var article = new Article();
             article.id = pid;
 
-            $('#row_' + pid).find('input:text').each(function (idx, input) {
+            var rowId = '#row_' + pid;
+
+            $(rowId).find(':text').each(function (idx, input) {
                 article[$(input).attr('name')] = $(input).val();
             });
 
-            Article.update(article, article);
+            var timeout = setInterval(function() {
+                article['desc'] = $(rowId).find('div.article_html').html();
+                Article.update(article, article);
+                clearInterval(timeout);
+            }, 1000);
         }
 
         $scope.vote = 0;
@@ -299,11 +387,12 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
 
         $scope.createArticle = function (formId) {
             var article = new Article();
-
-            $('#' + formId).find('input:text').each(function (idx, input) {
+            $('#' + formId).find(':text').each(function (idx, input) {
                 article[$(input).attr('name')] = $(input).val();
             });
 
+            article['desc'] = $('#articleId').html();
+            console.log('RRRRRRRRRRR', article);
             article.$save();
             $scope.vote = 0;
             $scope.tableParams.reload();

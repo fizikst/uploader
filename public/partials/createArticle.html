@@ -6,7 +6,12 @@
     </tr>
     <tr>
         <td><input type="text" name="title" class="w100" value=""></td>
-        <td><input type="text" name="desc" class="w100" value=""></td>
+        <!--<td><input type="text" name="desc" class="w100" value=""></td>-->
+        <td>
+            <textarea name="desc" class="ck-editor" ng-model="article_create"></textarea>
+            <div bind-html-unsafe="article_create" id="articleId"></div>
+        </td>
+
         <td><input type="button" value="cancel" ng-click="expand(0)"></td>
     </tr>
 </table>

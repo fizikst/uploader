@@ -58,13 +58,17 @@
                 <span ng-if="!article.$edit">{{article.title}}</span>
                 <div ng-if="article.$edit"><input class="form-control" name="title" type="text" ng-model="article.title" /></div>
             </td>
-            <td data-title="'Описание'" width="200">
-                <span ng-if="!article.$edit">{{article.desc}}</span>
-                <div ng-if="article.$edit"><input class="form-control" name="desc" type="text" ng-model="article.desc" /></div>
+            <td data-title="'Описание'">
+                <span ng-if="!article.$edit">
+                    <div bind-html-unsafe="article.desc" class="article_html"></div>
+                </span>
+                <div ng-if="article.$edit">
+                    <textarea name="desc" class="ck-editor" ng-model="article.desc"></textarea>
+                </div>
             </td>
             <td data-title="'Операции'" width="200">
                 <a ng-if="!article.$edit" href="" class="btn btn-default btn-xs" ng-click="article.$edit = true">Изменить</a>
-                <a ng-if="article.$edit" href="" class="btn btn-primary btn-xs" ng-click="editArticle(article._id); article.$edit = false">Save</a>
+                <a ng-if="article.$edit" href="" class="btn btn-primary btn-xs" ng-click="article.$edit = false; editArticle(article._id);">Save</a>
                 <a href="" class="btn btn-default btn-xs" ng-click="deleteArticle(article._id)">Удалить</a>
             </td>
         </tr>
