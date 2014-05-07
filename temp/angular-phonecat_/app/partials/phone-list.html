@@ -1,5 +1,12 @@
+<style>
+    #woocommerce_product_categories-2 h2, #woocommerce_products-123 h2{
+        font-size: 22px;
+        font-weight: bold;
+    }
+</style>
+
 <div class="span3 home-page-widget">
-    <div id="woocommerce_product_categories-2" class="visible-all-devices "><h2>categories</h2>
+    <div id="woocommerce_product_categories-2" class="visible-all-devices "><h2>Фильтр</h2>
         <ul ng-repeat="head in filter" class="product-categories">
             <li class="cat-item">
                 {{head.field}}
@@ -9,8 +16,64 @@
             </li>
         </ul>
     </div>
-    <a href ng-click="empty()">сбросить</a>.<br>
+    <a href ng-click="empty()" style="margin-bottom: 32px; display: block;">сбросить</a>.<br>
+
+    <style>
+        #woocommerce_products-123 ul li a img {
+            float: left;
+            margin-top: -5px;
+        }
+        #woocommerce_products-123 ul li {
+            display: block;
+            float: left;
+            font-size: 13px;
+            height: 2.6em;
+            line-height: 1.3em;
+            list-style: none outside none;
+            padding: 10px 0;
+            width: 240px;
+        }
+        #woocommerce_products-123 ul li a {
+            color: red;
+        }
+    </style>
+    <div id="woocommerce_products-123" class="visible-all-devices "><h2>Полезная информация</h2>
+        <ul style="margin: 0px;">
+            <li class="bprice">
+                <a title="Самые выгодные цены на межкомнатные двери" href="index.php?id=56">
+                    <img src="./img/rup.png">
+                    Суперцена
+                </a>
+                от 890 руб.
+            </li>
+            <li class="size">
+                Бесплатный
+                <a title="Бесплатные выезд замерщика при заказе межкомнатных и входных дверей" href="index.php?id=52">
+                    <img src="./img/sample.png">
+                    замер
+                </a>
+            </li>
+            <li class="shipping">
+                <a title="Доставка межкомнатных и металлических дверей" href="index.php?id=52">
+                    <img src="./img/delivery.png">
+                    Доставка
+                </a>
+                на
+                <br>
+                следующий день
+            </li>
+            <li class="inst">
+                Профессиональная
+                <a title="Профессиональная установка дверей" href="index.php?id=50">
+                    <img src="./img/working.png">
+                    установка
+                </a>
+            </li>
+        </ul>
+    </div>
+
 </div>
+
 
 <div class="span9">
     <div id="post-203" class="post-203 page type-page status-publish hentry page">
