@@ -351,11 +351,6 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
             { key: 'install', value : 'Установка'}
         ];
 
-//        $scope.curtype = '';
-//        $scope.update = function(item, article) {
-//            $scope.curtype = item;
-//        };
-
         $scope.tableParams = new ngTableParams({
             page: 1,            // show first page
             count: 10,          // count per page
@@ -366,14 +361,13 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
             getData: function($defer, params) {
                 var Api = $resource('/api/v1/articles', params.url(), { query: {method:'GET'}});
                 Api.query(function (res1) {
-                    params.total(res1.total);
-                    $defer.resolve($scope.data = res1.rows);
+                    console.log('ARTICLE ', res1);
+                    params.total(res1.meta.meta.total);
+                    $defer.resolve($scope.data = res1.data);
                 });
             }
 
         });
-
-
 
         $scope.editArticle = function(pid) {
             var article = new Article();

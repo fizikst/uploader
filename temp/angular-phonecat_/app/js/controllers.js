@@ -36,8 +36,20 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_',
           sortedBy: 'id'
       };
 
+      $scope.helpful = function() {
+          return Api.articles.get({type:'article'}).then(function (data) {
+              console.log('REST_ARTICLE', data);
+              $scope.articleOpts = data;
+//              console.log('ARt', $scope.articleOpts);
+//              console.log($scope.totalPages);
+          }, function () {
+              console.log('REST_ARTICLE EMPTY');
+          });
 
+      };
 
+      $scope.helpful();
+//
 //      Api.headers.search($scope.filterCriteria).then(function (data) {
 //          $scope.headers = data;
 //          console.log('HEADERS', data);

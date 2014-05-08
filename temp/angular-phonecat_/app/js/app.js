@@ -44,7 +44,6 @@ phonecatApp
         });
         RestangularProvider.setResponseExtractor(function(response, operation) {
             // This is a get for a list
-
             if (operation === "getList") {
                 // Here we're returning an Array which has one special property metadata with our extra information
                 var newResponse = response.data;

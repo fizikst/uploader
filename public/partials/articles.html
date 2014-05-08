@@ -1,59 +1,5 @@
 <div ng-controller="ArticleCtrl" style="width:800px;">
 
-
-
-<!--
-http://www.templatemonster.com/demo/48611.html
-    <label class="checkbox" ng-repeat="column in columns">
-        <input type="checkbox" ng-model="column.visible" /> {{column.title}}
-    </label>
-    <table ng-table="tableParams" show-filter="true" class="table" >
-        <thead>
-        <tr>
-            <td>
-                <input type="checkbox" ng-model="checkboxes.checked" id="select_all" name="filter-checkbox" value="" class="ng-scope ng-pristine ng-valid">
-            </td>
-            <th ng-repeat="column in columns" ng-show="column.visible"
-                class="text-center sortable" ng-class="{
-                    'sort-asc': tableParams.isSortBy(column.field, 'asc'),
-                    'sort-desc': tableParams.isSortBy(column.field, 'desc')
-                  }"
-                ng-click="tableParams.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')">
-                {{column.title}}
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="p in $data" class="row_{{p._id}}">
-
-                <td ng-repeat="column in columns" >
-                    {{column}}
-                </td>
-
-                &lt;!&ndash;<td ng-repeat="column in columns" ng-show="column.visible" sortable="column.field" ng-if="editId===p._id">&ndash;&gt;
-                    &lt;!&ndash;<div ng-if="column.field==='_id'">{{p[column.field]}}</div>&ndash;&gt;
-                    &lt;!&ndash;<input type="hidden" name="column.field" value="{{p[column.field]}}" ng-if="column.field==='_id'">&ndash;&gt;
-                    &lt;!&ndash;<input type="text" name="{{column.field}}" value="{{p[column.field]}}" ng-if="column.field!=='_id'">&ndash;&gt;
-                &lt;!&ndash;</td>&ndash;&gt;
-
-
-&lt;!&ndash;
-                <td class="rowTd" ng-if="editId===p._id"><input type="button" value=" save " ng-click="setEdit(p._id)"><br><input type="button" value=" cancel" ng-click="setEditId(-1)"></td>
-
-                <td class="rowTd" ng-if="editId!==p._id"><input type=button id="editRowBtn{{p._id}}" value="edit" ng-click="setEditId(p._id)"></td>
-                <td class="rowTd" ><input type=button id="setDelete{{p._id}}" value="delete" ng-click="setDelete(p._id)"></td>
-&ndash;&gt;
-
-            </tr>
-&lt;!&ndash;
-            <tr ng-show="editId==p._id" ng-if="editId==p._id">
-                <td colspan="5" ng-include src="'partials/editRow.html'"></td>
-            </tr>
-&ndash;&gt;
-
-        </tbody>
--->
-
     <table ng-table="tableParams" class="table">
         <tbody>
         <tr ng-repeat="article in $data" id="row_{{article._id}}">
@@ -64,12 +10,10 @@ http://www.templatemonster.com/demo/48611.html
             <td data-title="'Тип'">
                 <span ng-if="!article.$edit && type.key == article.type" ng-repeat="type in article_type">
                     {{type.value}}
-
                 </span>
 
                 <div ng-if="article.$edit">
                     <select ng-model="articleList" x-ng-change="article.type = articleList" name="type">
-                    <!--<select name="type" class="w100" ng-options="type.key as type.value for type in article_type " ng-model="item" x-ng-change="update(item)">-->
                         <option ng-selected="{{type.key == article.type}}" ng-repeat="type in article_type" value="{{type.key}}">
                             {{type.value}}
                         </option>
@@ -103,6 +47,5 @@ http://www.templatemonster.com/demo/48611.html
             </tr>
         </tfoot>
     </table>
-
 
 </div>
