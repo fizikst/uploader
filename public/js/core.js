@@ -342,7 +342,19 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
 
         $scope.article_create = '';
 
-//        console.log('DESC',$scope.article_create);
+        $scope.article_type = [
+            { key: 'article' , value :  'Полезная информация'},
+            { key: 'menu' , value: 'Меню'},
+            { key: 'spec_price', value : 'Спец. цена'},
+            { key: 'metering', value : 'Замер'},
+            { key: 'delivery', value :  'Доставка'},
+            { key: 'install', value : 'Установка'}
+        ];
+
+//        $scope.curtype = '';
+//        $scope.update = function(item, article) {
+//            $scope.curtype = item;
+//        };
 
         $scope.tableParams = new ngTableParams({
             page: 1,            // show first page
@@ -369,9 +381,11 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
 
             var rowId = '#row_' + pid;
 
-            $(rowId).find(':text').each(function (idx, input) {
+            $(rowId).find(':text, select').each(function (idx, input) {
                 article[$(input).attr('name')] = $(input).val();
             });
+
+            console.log('ARTICLE', article);
 
             var timeout = setInterval(function() {
                 article['desc'] = $(rowId).find('div.article_html').html();
@@ -387,7 +401,7 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
 
         $scope.createArticle = function (formId) {
             var article = new Article();
-            $('#' + formId).find(':text').each(function (idx, input) {
+            $('#' + formId).find(':text, select').each(function (idx, input) {
                 article[$(input).attr('name')] = $(input).val();
             });
 

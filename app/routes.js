@@ -24,7 +24,8 @@ var Order = mongoose.model('Order', orderSchema);
 
 var articleSchema = Schema({
     title: String,
-    desc: String
+    desc: String,
+    type: String
 });
 var Article = mongoose.model('Article', articleSchema);
 

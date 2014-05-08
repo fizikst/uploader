@@ -1,6 +1,9 @@
 <div ng-controller="ArticleCtrl" style="width:800px;">
 
+
+
 <!--
+http://www.templatemonster.com/demo/48611.html
     <label class="checkbox" ng-repeat="column in columns">
         <input type="checkbox" ng-model="column.visible" /> {{column.title}}
     </label>
@@ -58,6 +61,22 @@
                 <span ng-if="!article.$edit">{{article.title}}</span>
                 <div ng-if="article.$edit"><input class="form-control" name="title" type="text" ng-model="article.title" /></div>
             </td>
+            <td data-title="'Тип'">
+                <span ng-if="!article.$edit && type.key == article.type" ng-repeat="type in article_type">
+                    {{type.value}}
+
+                </span>
+
+                <div ng-if="article.$edit">
+                    <select ng-model="articleList" x-ng-change="article.type = articleList" name="type">
+                    <!--<select name="type" class="w100" ng-options="type.key as type.value for type in article_type " ng-model="item" x-ng-change="update(item)">-->
+                        <option ng-selected="{{type.key == article.type}}" ng-repeat="type in article_type" value="{{type.key}}">
+                            {{type.value}}
+                        </option>
+                    </select>
+
+                </div>
+            </td>
             <td data-title="'Описание'">
                 <span ng-if="!article.$edit">
                     <div bind-html-unsafe="article.desc" class="article_html"></div>
@@ -66,19 +85,21 @@
                     <textarea name="desc" class="ck-editor" ng-model="article.desc"></textarea>
                 </div>
             </td>
+
             <td data-title="'Операции'" width="200">
                 <a ng-if="!article.$edit" href="" class="btn btn-default btn-xs" ng-click="article.$edit = true">Изменить</a>
-                <a ng-if="article.$edit" href="" class="btn btn-primary btn-xs" ng-click="article.$edit = false; editArticle(article._id);">Save</a>
-                <a href="" class="btn btn-default btn-xs" ng-click="deleteArticle(article._id)">Удалить</a>
+                <a ng-if="article.$edit" href="" class="btn btn-primary btn-xs" ng-click="article.$edit = false; editArticle(article._id);">Сохранить</a>
+                <a ng-if="article.$edit" href="" class="btn btn-warning btn-xs" ng-click="article.$edit = false;">Отменить</a>
+                <a href="" class="btn btn-danger btn-xs" ng-click="deleteArticle(article._id)">Удалить</a>
             </td>
         </tr>
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="3"><input type=button id="new" value="new" ng-click="expand(1)"></td>
+                <td colspan="4"><input type=button id="new" value="new" ng-click="expand(1)"></td>
             </tr>
             <tr ng-show="vote===1" ng-if="vote===1">
-                <td colspan="3" ng-include src="'partials/createArticle.html'"></td>
+                <td colspan="4" ng-include src="'partials/createArticle.html'"></td>
             </tr>
         </tfoot>
     </table>

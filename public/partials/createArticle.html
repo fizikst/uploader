@@ -1,11 +1,19 @@
 <table class="create" id="create_article">
     <tr>
         <td>Название</td>
+        <td>Тип статьи</td>
         <td>Описание</td>
         <td><input type="button" value="save" ng-click="createArticle('create_article')"></td>
     </tr>
     <tr>
         <td><input type="text" name="title" class="w100" value=""></td>
+        <td>
+            <select name="type" class="w100" >
+                <option ng-repeat=" type in article_type" value="{{type.key}}">
+                    {{type.value}}
+                </option>
+            </select>
+        </td>
         <!--<td><input type="text" name="desc" class="w100" value=""></td>-->
         <td>
             <textarea name="desc" class="ck-editor" ng-model="article_create"></textarea>
