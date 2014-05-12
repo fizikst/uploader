@@ -32,6 +32,10 @@ phonecatApp
             templateUrl: 'partials/shopping-cart.html',
             controller: 'ShoppingCartCtrl'
           }).
+          when('/articles/:id', {
+              templateUrl: 'partials/article-detail.html',
+              controller: 'ArticleDetailCtrl'
+          }).
           otherwise({
             redirectTo: '/phones'
           });
@@ -54,6 +58,7 @@ phonecatApp
             return response;
         });
 }])
+
 
 /*.config(['$httpProvider',function ($httpProvider) {
     $httpProvider.defaults.useXDomain = true;

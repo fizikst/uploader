@@ -35,11 +35,12 @@ api.factory('Api', function (Restangular) {
             }
         },
         articles: {
-            /*search: function (query) {
+            search : function (query) {
                 return Restangular.all('articles').getList(query);
-            },*/
+            },
             get : function (query) {
-                return Restangular.all('articles').getList(query);
+                console.log('ARTICLE ID', query);
+                return Restangular.one('articles', query.id).get();
             }
         },
         orders: {

@@ -602,26 +602,26 @@ module.exports = function(app) {
         });
     });
 
-//    app.get('/api/v1/articles/:id', function(req, res) {
-//        res.header('Access-Control-Allow-Origin', "*");
-//        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-//        res.header('Access-Control-Allow-Headers', 'Content-Type');
-//
-//        console.log('GET ARTICLE', req.params['id']);
-//        var data = {};
-//
-//        if (req.params['id']) {
-//            Article.findById(req.params['id'], function (err, article) {
-//                if (err) {
-//                    console.log(err);
-//                }
-//                data = article;
-//                res.json(data);
-//            });
-//        } else {
-//            res.json(data);
-//        }
-//    });
+    app.get('/api/v1/articles/:id', function(req, res) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+        console.log('GET ARTICLE', req.params['id']);
+        var data = {};
+
+        if (req.params['id']) {
+            Article.findById(req.params['id'], function (err, article) {
+                if (err) {
+                    console.log(err);
+                }
+                data = article;
+                res.json(data);
+            });
+        } else {
+            res.json(data);
+        }
+    });
 //------------------------- End Articles ----------------------------------
 
 

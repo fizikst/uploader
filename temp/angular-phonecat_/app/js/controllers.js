@@ -37,7 +37,7 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_',
       };
 
       $scope.helpful = function() {
-          return Api.articles.get({type:'article'}).then(function (data) {
+          return Api.articles.search({type:'article'}).then(function (data) {
               console.log('REST_ARTICLE', data);
               $scope.articleOpts = data;
 //              console.log('ARt', $scope.articleOpts);
@@ -238,6 +238,20 @@ phonecatControllers.controller('ShoppingCartCtrl', ['$scope', '$routeParams', 'D
 //                }
 //            };
 //        })();
+
+
+
+    }]);
+
+phonecatControllers.controller('ArticleDetailCtrl', ['$scope', '$routeParams', 'Api', '_',
+    function($scope, $routeParams, Api, _) {
+
+        Api.articles.get($routeParams).then(function (data) {
+            console.log('GET_ARTICLE', data);
+            $scope.article = data;
+        }, function () {
+            console.log('GET_ARTICLE EMPTY');
+        });
 
 
 
