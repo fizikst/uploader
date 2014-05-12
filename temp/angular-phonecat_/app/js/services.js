@@ -34,6 +34,15 @@ api.factory('Api', function (Restangular) {
                 return Restangular.one('products', query.id).get();
             }
         },
+        articles: {
+            search : function (query) {
+                return Restangular.all('articles').getList(query);
+            },
+            get : function (query) {
+                console.log('ARTICLE ID', query);
+                return Restangular.one('articles', query.id).get();
+            }
+        },
         orders: {
             post: function (data) {
 //                console.log('DAAAAAAAAAAAAAAAAAAT', Restangular.one('products'));

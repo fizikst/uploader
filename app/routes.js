@@ -24,7 +24,8 @@ var Order = mongoose.model('Order', orderSchema);
 
 var articleSchema = Schema({
     title: String,
-    desc: String
+    desc: String,
+    type: String
 });
 var Article = mongoose.model('Article', articleSchema);
 
@@ -551,14 +552,19 @@ module.exports = function(app) {
         res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
         res.header('Access-Control-Allow-Headers', 'Content-Type');
 
-        var data = {};
-        Article.find({}).paginate(req.query.page, req.query.count).lean().exec(function(err, results) {
+        var data = {}, request = {};
+        if (req.query.page || req.query.count) {
+        } else {
+            request = req.query;
+        }
+
+        Article.find(request).paginate(req.query.page, req.query.count).lean().exec(function(err, results) {
             if (err) {
                 res.json({err:err});
             }
             Article.count({}, function(err, count){
-                data.total = count;
-                data.rows = results;
+                data.data = results;
+                data.meta = {meta:{total:count}};
                 res.json(data);
             });
         });
@@ -596,26 +602,26 @@ module.exports = function(app) {
         });
     });
 
-//    app.get('/api/v1/articles/:id', function(req, res) {
-//        res.header('Access-Control-Allow-Origin', "*");
-//        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-//        res.header('Access-Control-Allow-Headers', 'Content-Type');
-//
-//        console.log('GET ARTICLE', req.params['id']);
-//        var data = {};
-//
-//        if (req.params['id']) {
-//            Article.findById(req.params['id'], function (err, article) {
-//                if (err) {
-//                    console.log(err);
-//                }
-//                data = article;
-//                res.json(data);
-//            });
-//        } else {
-//            res.json(data);
-//        }
-//    });
+    app.get('/api/v1/articles/:id', function(req, res) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+        console.log('GET ARTICLE', req.params['id']);
+        var data = {};
+
+        if (req.params['id']) {
+            Article.findById(req.params['id'], function (err, article) {
+                if (err) {
+                    console.log(err);
+                }
+                data = article;
+                res.json(data);
+            });
+        } else {
+            res.json(data);
+        }
+    });
 //------------------------- End Articles ----------------------------------
 
 

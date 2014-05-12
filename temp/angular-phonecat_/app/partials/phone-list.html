@@ -25,7 +25,6 @@
         }
         #woocommerce_products-123 ul li {
             display: block;
-            float: left;
             font-size: 13px;
             height: 2.6em;
             line-height: 1.3em;
@@ -34,10 +33,10 @@
             width: 240px;
         }
         #woocommerce_products-123 ul li a {
-            color: red;
+            color: #3264C8;
         }
     </style>
-    <div id="woocommerce_products-123" class="visible-all-devices "><h2>Полезная информация</h2>
+    <div id="woocommerce_products-123" class="visible-all-devices"><h2>Преимущества</h2>
         <ul style="margin: 0px;">
             <li class="bprice">
                 <a title="Самые выгодные цены на межкомнатные двери" href="index.php?id=56">
@@ -71,7 +70,29 @@
             </li>
         </ul>
     </div>
-
+    <style>
+        .item-list ul li {
+            list-style: disc outside url("./img/list-arrow.png");
+        }
+        .item-list ul li a{
+            color: #3264C8;
+            outline: medium none;
+            text-decoration: underline;
+            font-size: 13px;
+        }
+    </style>
+    <div id="woocommerce_products-234" class="visible-all-devices item-list">
+        <h2>Полезная информация</h2>
+        <ul style="margin: 0px;">
+            <li class="views-row views-row-odd views-row-odd" ng-repeat=" opt in articleOpts">
+                <div class="views-field views-field-title">
+                    <span class="field-content">
+                        <a href="index.html#/articles/{{opt._id}}">{{opt.title}}</a>
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>
 
 
