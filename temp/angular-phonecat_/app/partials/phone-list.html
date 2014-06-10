@@ -103,7 +103,6 @@
                 <div class="woocommerce columns-3">
                     <ul class="products">
 
-
                         <li ng-repeat="p in products" class="product type-product status-publish featured shipping-taxable purchasable product-type-simple product-cat-books-pads product-cat-digital-storage product-cat-facilities product-cat-technology product-tag-etiam-dictum product-tag-mauris-posuere product-tag-vel-mauris instock">
                             <a href="#/phones/{{p._id}}">
                                 <img style="height: 270px !important; width: auto !important;" ng-if="p.url" ng-src="data:{{p.url[0].type}};base64, {{p.url[0].image}}" class="attachment-shop_catalog wp-post-image tumb" alt="{{p.name}}">
@@ -130,6 +129,12 @@
                         <!--</li>-->
 
                     </ul>
+
+                    <button ng-click="pagination.prevPage()">Previous</button>
+                    <span ng-repeat="n in [] | range: pagination.numPages" ng-class="{current: n == pagination.page}">
+                        <button ng-click="pagination.toPageId(n)">{{n + 1}}</button>
+                    </span>
+                    <button ng-click="pagination.nextPage()">Next</button>
                 </div>
             </div>
         </div>
