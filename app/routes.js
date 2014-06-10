@@ -675,7 +675,7 @@ module.exports = function(app) {
         var sorting = {}, order, skip;
         if (req.query) {
             var filter = {};
-            var metaArr = ['pageNumber', 'sortDir', 'sortedBy']
+            var metaArr = ['pageNumber', 'sortDir', 'sortedBy', 'count']
             for(var k in req.query) {
                 var key = decodeURIComponent(k);
                 if (_.indexOf(metaArr, decodeURIComponent(k)) >= 0) {
@@ -700,21 +700,11 @@ module.exports = function(app) {
 
         console.log('REQUEST', request);
 
-//        if (req.query.sorting) {
-//            for (var i in req.query.sorting) {
-//                if (req.query.sorting[i] === 'asc') {
-//                    order = 1;
-//                } else {
-//                    order = -1;
-//                }
-//                sorting[decodeURIComponent(i)] = order;
-//            }
-//        }
 //        console.log('SORTING', sorting);
 
 //        skip = (req.query.page-1) * req.query.count;
 
-        Product.find(request)/*.paginate(req.query.page, req.query.count)*/.lean().exec(function(err, results) {
+        Product.find(request).paginate(req.query.pageNumber, req.query.count).lean().exec(function(err, results) {
             console.log('RESULTS', results);
             var data = {};
             var options = [];
@@ -778,16 +768,11 @@ module.exports = function(app) {
                 }
             );
 
-
-
-
 //            console.log('OPTIONS', options);
 //            options.sort();
 //            for (var i = 0; i < options.length; i++) {
 //                headers.push({title: options[i], field: options[i], visible: true, type: type[options[i]]});
 //            }
-
-
 
         });
     });

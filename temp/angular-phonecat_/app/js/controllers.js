@@ -30,10 +30,65 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_',
       $scope.customersCount = 0;
       $scope.checked = [];
 
+      $scope.pagination = {
+          numPages: 1,
+          perPage: 10,
+          page: 1
+      };
+
       $scope.filterCriteria = {
-          pageNumber: 1,
+          pageNumber: $scope.pagination.page,
           sortDir: 'asc',
-          sortedBy: 'id'
+          sortedBy: 'id',
+          count:10
+      };
+
+//      $scope.pagination = Pagination.getNew(10);
+
+
+      $scope.pagination.nextPage = function() {
+
+          if ($scope.pagination.page < $scope.pagination.numPages) {
+              $scope.pagination.page += 1;
+
+              $scope.filterCriteria = {
+                  pageNumber: $scope.pagination.page,
+                  sortDir: 'asc',
+                  sortedBy: 'id',
+                  count:$scope.pagination.perPage
+              };
+              $scope.fetchResult();
+          }
+      };
+
+      $scope.pagination.prevPage = function() {
+          if ($scope.pagination.page > 0) {
+              $scope.pagination.page -= 1;
+
+              $scope.filterCriteria = {
+                  pageNumber: $scope.pagination.page,
+                  sortDir: 'asc',
+                  sortedBy: 'id',
+                  count:$scope.pagination.perPage
+              };
+              $scope.fetchResult();
+          }
+      };
+
+      $scope.pagination.toPageId = function(id) {
+          console.log('Id', id);
+          if (id >= 0 && id <= $scope.pagination.page) {
+              id++;
+              $scope.pagination.page = id;
+
+              $scope.filterCriteria = {
+                  pageNumber: $scope.pagination.page,
+                  sortDir: 'asc',
+                  sortedBy: 'id',
+                  count:$scope.pagination.perPage
+              };
+              $scope.fetchResult();
+          }
       };
 
       $scope.helpful = function() {
@@ -66,7 +121,7 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_',
               console.log($scope.filter);
               $scope.totalPages = $scope.filterCriteria.pageNumber;
               $scope.customersCount = data.length;
-              console.log($scope.totalPages);
+              $scope.pagination.numPages = Math.ceil(data.meta.meta.total/10);
           }, function () {
               console.log('REST_PRODUCTS EMPTY');
               $scope.customers = [];
@@ -92,7 +147,8 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_',
           $scope.filterCriteria = {
               pageNumber: 1,
               sortDir: 'asc',
-              sortedBy: 'id'
+              sortedBy: 'id',
+              count:10
           };
           $scope.checked = [];
           $scope.fetchResult();
