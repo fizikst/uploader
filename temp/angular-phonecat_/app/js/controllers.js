@@ -92,13 +92,33 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_',
       };
 
       $scope.helpful = function() {
-          return Api.articles.search({type:'article'}).then(function (data) {
+          Api.articles.search({type:'article'}).then(function (data) {
               console.log('REST_ARTICLE', data);
               $scope.articleOpts = data;
 //              console.log('ARt', $scope.articleOpts);
 //              console.log($scope.totalPages);
           }, function () {
               console.log('REST_ARTICLE EMPTY');
+          });
+
+          Api.articles.search({type:'spec_price'}).then(function (data) {
+              $scope.specPrice = data;
+          }, function () {
+          });
+
+          Api.articles.search({type:'metering'}).then(function (data) {
+              $scope.metering = data;
+          }, function () {
+          });
+
+          Api.articles.search({type:'delivery'}).then(function (data) {
+              $scope.delivery = data;
+          }, function () {
+          });
+
+          Api.articles.search({type:'install'}).then(function (data) {
+              $scope.install = data;
+          }, function () {
           });
 
       };
@@ -276,7 +296,7 @@ phonecatControllers.controller('ShoppingCartCtrl', ['$scope', '$routeParams', 'D
             }, function () {
                 console.log('POST ORDER EMPTY', $routeParams);
             });
-        }
+        };
 
 //        $scope.phoneNumberPattern = (function() {
 //            var regexp = /^\(?(\d{3})\)?[ .-]?(\d{3})[ .-]?(\d{4})$/;
@@ -292,12 +312,22 @@ phonecatControllers.controller('ShoppingCartCtrl', ['$scope', '$routeParams', 'D
 
     }]);
 
-phonecatControllers.controller('ArticleDetailCtrl', ['$scope', '$routeParams', 'Api', '_',
-    function($scope, $routeParams, Api, _) {
+phonecatControllers.controller('ArticleDetailCtrl', ['$scope', '$sce', '$routeParams', 'Api', '_',
+    function($scope, $sce, $routeParams, Api, _) {
+
+//        $scope.snippet =
+//            '<p style="color:blue">an html\n' +
+//                '<em onmouseover="this.textContent=\'PWN3D!\'">click here</em>\n' +
+//                'snippet</p>';
 
         Api.articles.get($routeParams).then(function (data) {
             console.log('GET_ARTICLE', data);
             $scope.article = data;
+
+            $scope.deliberatelyTrustDangerousSnippet = function() {
+                return $sce.trustAsHtml($scope.article.desc);
+            };
+
         }, function () {
             console.log('GET_ARTICLE EMPTY');
         });

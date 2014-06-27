@@ -32,3 +32,38 @@ phonecatDirectives.directive('shoppingCart', function ($parse, DataService) {
         scope.cart = DataService.cart;
     };
 });
+
+
+phonecatDirectives.directive('bindHtmlUnsafe', function( $parse, $compile ) {
+    return function( $scope, $element, $attrs ) {
+        var compile = function( newHTML ) {
+            newHTML = $compile(newHTML)($scope);
+            $element.html('').append(newHTML);
+        };
+
+        var htmlName = $attrs.bindHtmlUnsafe;
+
+        $scope.$watch(htmlName, function( newHTML ) {
+            if(!newHTML) return;
+            compile(newHTML);
+        });
+
+    };
+});
+
+phonecatDirectives.directive('menuList', ['$routeParams', 'Api', function ($routeParams, Api) {
+
+
+    return function (scope, element, attr) {
+
+        Api.articles.search({type:'menu'}).then(function (data) {
+            console.log('GET_MENU', data);
+            scope.menu = data;
+        }, function () {
+            console.log('GET_MENU EMPTY');
+        });
+
+//        scope.htmlb = "<span class=rouble>Р</span>";
+//        scope.cart = DataService.cart;
+    };
+}]);
