@@ -2,7 +2,11 @@
     <div id="post-1967" class="post-1967 page type-page status-publish hentry page">
         <div>
             <h2>{{article.title}}</h2>
-            <div>{{article.desc}}</div>
+            <!--{{article.desc}}-->
+            <!--<div ng-bind-html='<p style="color:blue">an html</p>'></div>-->
+            <div ng-bind-html="deliberatelyTrustDangerousSnippet()">
+            </div>
+            <!--<div bind-html-unsafe><a href='http://www.google.ca'>Nexus S</a></div>-->
         </div>
         <div class="clear"></div>
 

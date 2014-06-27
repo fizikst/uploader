@@ -63,6 +63,14 @@
             position: absolute;
             top: 0.15em;
         }
+        #slogan {
+            color: #838383;
+            font-size: 1.1511em;
+            font-style: italic;
+            left: 44px;
+            position: absolute;
+            top: 35px;
+        }
     </style>
     <script>
         var system_folder = 'http://livedemo00.template-help.com/woocommerce_48611/wp-content/themes/CherryFramework/admin/data_management/',
@@ -143,30 +151,31 @@
                     <div class="row">
                         <div class="span6">
                             <div class="shop-nav">
-                                <ul id="shopnav" class="shop-menu"><li><a href="http://livedemo00.template-help.com/woocommerce_48611/wp-login.php?action=login&amp;redirect_to=/woocommerce_48611/" title="Log In">Log In</a></li><li><a href="http://livedemo00.template-help.com/woocommerce_48611/wp-login.php?action=register&amp;redirect_to=/woocommerce_48611/" class="register-link" title="Registration">Registration</a></li><li id="menu-item-1970" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1970"><a href="http://livedemo00.template-help.com/woocommerce_48611/delivery/">Delivery</a></li>
-                                    <li id="menu-item-1972" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1972"><a href="http://livedemo00.template-help.com/woocommerce_48611/checkout/">Checkout</a></li>
-                                    <li id="menu-item-1971" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1971"><a href="http://livedemo00.template-help.com/woocommerce_48611/my-account/">My Account</a></li>
-                                </ul>
+                                <div id="slogan">Продажа и установка дверей в г. Перми.</div>
+                                <!--<ul id="shopnav" class="shop-menu"><li><a href="http://livedemo00.template-help.com/woocommerce_48611/wp-login.php?action=login&amp;redirect_to=/woocommerce_48611/" title="Log In">Log In</a></li><li><a href="http://livedemo00.template-help.com/woocommerce_48611/wp-login.php?action=register&amp;redirect_to=/woocommerce_48611/" class="register-link" title="Registration">Registration</a></li><li id="menu-item-1970" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1970"><a href="http://livedemo00.template-help.com/woocommerce_48611/delivery/">Delivery</a></li>-->
+                                    <!--<li id="menu-item-1972" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1972"><a href="http://livedemo00.template-help.com/woocommerce_48611/checkout/">Checkout</a></li>-->
+                                    <!--<li id="menu-item-1971" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1971"><a href="http://livedemo00.template-help.com/woocommerce_48611/my-account/">My Account</a></li>-->
+                                <!--</ul>-->
                             </div>
                         </div>
                         <div class="span6 header-widget">
-                            <div id="text-6" class="visible-all-devices "> <div class="textwidget">Welcome to our online store!
-                                <h3>1 (800) 603 6035</h3></div>
+                            <div id="text-6" class="visible-all-devices "> <div class="textwidget">Добро пожаловать в наш интернет-магазин!
+                                <h3>+7 342 203-85-53</h3></div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="span6">
                             <div class="logo pull-left">
-                                <a href="http://livedemo00.template-help.com/woocommerce_48611/" class="logo_h logo_h__img"><img src="http://livedemo00.template-help.com/woocommerce_48611/wp-content/themes/theme48611/images/logo.png" alt="Stationery" title=""></a>
+                                <a href="/app/index.html" class="logo_h logo_h__img"><img src="./img/logo.png" alt="Stationery" title=""></a>
                             </div>
                         </div>
                         <div class="span6 search-block" >
                             <div id="woocommerce_widget_cart-2" class="visible-all-devices cart-holder">
-                                <h3>Shopping Cart</h3>
+                                <h3>Корзина</h3>
                                 <div class="widget_shopping_cart_content" shopping-cart>
                                     <a ng-show="cart.getTotalCount() > 0" href="index.html#/cart"><b>{{cart.getTotalCount()}}</b> {{cart.count}}, <span class=rouble>Р</span><b>{{cart.getTotalPrice() | currency: "" }} </b></b></a>
-                                    <div ng-show="cart.getTotalCount() < 1">No products in the cart.</div>
+                                    <div ng-show="cart.getTotalCount() < 1">Корзина пуста.</div>
                                 </div>
                             </div>
                             <!--<div class="search-form search-form__h clearfix">-->
@@ -182,13 +191,25 @@
                         <div class="row">
                             <div class="span12">
 
-                                <nav class="nav nav__primary clearfix">
-                                    <ul id="topnav" class="sf-menu sf-js-enabled"><li id="menu-item-1807" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-203 current_page_item"><a href="http://livedemo00.template-help.com/woocommerce_48611/">Home</a></li>
-                                        <li id="menu-item-1810" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="http://livedemo00.template-help.com/woocommerce_48611/about/">About</a>
+                                <nav class="nav nav__primary clearfix" menu-list>
+
+                                    <ul id="topnav" class="sf-menu sf-js-enabled">
+                                        <li ng-repeat=" item in menu" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                            <a href="index.html#/articles/{{item._id}}">{{item.title}}</a>
                                         </li>
-                                        <li id="menu-item-1969" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="http://livedemo00.template-help.com/woocommerce_48611/shop/">Shop</a>
-                                        </li>
-                                        <li id="menu-item-1808" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="http://livedemo00.template-help.com/woocommerce_48611/portfolio/">Portfolio</a>
+                                    </ul>
+                                    <!--<ul id="topnav" class="sf-menu sf-js-enabled">-->
+                                        <!--<li id="menu-item-1807" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-203 current_page_item">-->
+                                            <!--<a href="http://livedemo00.template-help.com/woocommerce_48611/">Главная</a>-->
+                                        <!--</li>-->
+                                        <!--<li id="menu-item-1810" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">-->
+                                            <!--<a href="http://livedemo00.template-help.com/woocommerce_48611/about/">Акции и скидки</a>-->
+                                        <!--</li>-->
+                                        <!--<li id="menu-item-1969" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">-->
+                                            <!--<a href="http://livedemo00.template-help.com/woocommerce_48611/shop/">Услуги</a>-->
+                                        <!--</li>-->
+                                        <!--<li id="menu-item-1808" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">-->
+                                            <!--<a href="http://livedemo00.template-help.com/woocommerce_48611/portfolio/">Контакты</a>-->
                                             <!--<ul class="sub-menu" style="visibility: hidden; display: none;">-->
                                             <!--<li id="menu-item-1815" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://livedemo00.template-help.com/woocommerce_48611/portfolio/portfolio-2/">Portfolio 2</a></li>-->
                                             <!--<li id="menu-item-1814" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="http://livedemo00.template-help.com/woocommerce_48611/portfolio/portfolio-3/">Portfolio 3</a>-->
@@ -200,10 +221,29 @@
                                             <!--</li>-->
                                             <!--<li id="menu-item-1813" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://livedemo00.template-help.com/woocommerce_48611/portfolio/portfolio-4/">Portfolio 4</a></li>-->
                                             <!--</ul>-->
-                                        </li>
-                                        <li id="menu-item-1806" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://livedemo00.template-help.com/woocommerce_48611/blog/">Blog</a></li>
-                                        <li id="menu-item-1804" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://livedemo00.template-help.com/woocommerce_48611/contacts/">Contacts</a></li>
-                                    </ul><select class="select-menu"><option value="#">Navigate to...</option><option value="http://livedemo00.template-help.com/woocommerce_48611/">Home</option><option value="http://livedemo00.template-help.com/woocommerce_48611/about/">About</option><option value="http://livedemo00.template-help.com/woocommerce_48611/about/testi/">–Testimonials</option><option value="http://livedemo00.template-help.com/woocommerce_48611/about/archives/">–Archives</option><option value="http://livedemo00.template-help.com/woocommerce_48611/about/faqs/">–FAQs</option><option value="http://livedemo00.template-help.com/woocommerce_48611/shop/">Shop</option><option value="http://livedemo00.template-help.com/woocommerce_48611/product-category/art-craft-leisure/">–ART, CRAFT &amp; LEISURE</option><option value="http://livedemo00.template-help.com/woocommerce_48611/product-category/books-pads/">–BOOKS, PADS</option><option value="http://livedemo00.template-help.com/woocommerce_48611/product-category/diaries-calendars/">–DIARIES, CALENDARS</option><option value="http://livedemo00.template-help.com/woocommerce_48611/product-category/facilities/">–FACILITIES</option><option value="http://livedemo00.template-help.com/woocommerce_48611/product-category/furniture/">–FURNITURE</option><option value="http://livedemo00.template-help.com/woocommerce_48611/portfolio/">Portfolio</option><option value="http://livedemo00.template-help.com/woocommerce_48611/portfolio/portfolio-2/">–Portfolio 2</option><option value="http://livedemo00.template-help.com/woocommerce_48611/portfolio/portfolio-3/">–Portfolio 3</option><option value="http://livedemo00.template-help.com/woocommerce_48611/portfolio/portfolio-3/category-1/">––Category 1</option><option value="http://livedemo00.template-help.com/woocommerce_48611/portfolio/portfolio-3/category-2/">––Category 2</option><option value="http://livedemo00.template-help.com/woocommerce_48611/portfolio/portfolio-3/category-3/">––Category 3</option><option value="http://livedemo00.template-help.com/woocommerce_48611/portfolio/portfolio-4/">–Portfolio 4</option><option value="http://livedemo00.template-help.com/woocommerce_48611/blog/">Blog</option><option value="http://livedemo00.template-help.com/woocommerce_48611/contacts/">Contacts</option></select></nav>  </div>
+                                        <!--</li>-->
+                                        <!--<li id="menu-item-1806" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://livedemo00.template-help.com/woocommerce_48611/blog/">Сделать заказ</a></li>-->
+                                        <!--<li id="menu-item-1804" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="http://livedemo00.template-help.com/woocommerce_48611/contacts/">О нас</a></li>-->
+                                    <!--</ul>-->
+
+                                    <!--<select class="select-menu">-->
+                                        <!--<option value="#">Navigate to...</option>-->
+                                        <!--<option value="http://livedemo00.template-help.com/woocommerce_48611/">Home</option>-->
+                                        <!--<option value="http://livedemo00.template-help.com/woocommerce_48611/about/">About</option>-->
+                                        <!--<option value="http://livedemo00.template-help.com/woocommerce_48611/about/testi/">–Testimonials</option>-->
+                                        <!--<option value="http://livedemo00.template-help.com/woocommerce_48611/about/archives/">–Archives</option>-->
+                                        <!--<option value="http://livedemo00.template-help.com/woocommerce_48611/about/faqs/">–FAQs</option>-->
+                                        <!--<option value="http://livedemo00.template-help.com/woocommerce_48611/shop/">Shop</option>-->
+                                        <!--<option value="http://livedemo00.template-help.com/woocommerce_48611/product-category/art-craft-leisure/">–ART, CRAFT &amp; LEISURE</option>-->
+                                        <!--<option value="http://livedemo00.template-help.com/woocommerce_48611/product-category/books-pads/">–BOOKS, PADS</option>-->
+                                        <!--<option value="http://livedemo00.template-help.com/woocommerce_48611/product-category/diaries-calendars/">–DIARIES, CALENDARS</option>-->
+                                        <!--<option value="http://livedemo00.template-help.com/woocommerce_48611/product-category/facilities/">–FACILITIES</option>-->
+                                        <!--<option value="http://livedemo00.template-help.com/woocommerce_48611/product-category/furniture/">–FURNITURE</option>-->
+                                        <!--<option value="http://livedemo00.template-help.com/woocommerce_48611/portfolio/">Portfolio</option>-->
+                                        <!--<option value="http://livedemo00.template-help.com/woocommerce_48611/portfolio/portfolio-2/">–Portfolio 2</option><option value="http://livedemo00.template-help.com/woocommerce_48611/portfolio/portfolio-3/">–Portfolio 3</option><option value="http://livedemo00.template-help.com/woocommerce_48611/portfolio/portfolio-3/category-1/">––Category 1</option><option value="http://livedemo00.template-help.com/woocommerce_48611/portfolio/portfolio-3/category-2/">––Category 2</option><option value="http://livedemo00.template-help.com/woocommerce_48611/portfolio/portfolio-3/category-3/">––Category 3</option><option value="http://livedemo00.template-help.com/woocommerce_48611/portfolio/portfolio-4/">–Portfolio 4</option><option value="http://livedemo00.template-help.com/woocommerce_48611/blog/">Blog</option><option value="http://livedemo00.template-help.com/woocommerce_48611/contacts/">Contacts</option>-->
+                                    <!--</select>-->
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -238,48 +278,50 @@
         <div class="container">
             <div class="row">
                 <div class="span12">
-                    <div class="row footer-widgets">
-                        <div class="span3">
-                            <div id="text-5" class="visible-all-devices "><h2>CATEGORIES</h2> <div class="textwidget"><ul>
-                                <li><a href="product-category/facilities/">FACILITIES</a></li>
-                                <li><a href="product-category/furniture/">FURNITURE</a></li>
-                                <li><a href="product-category/office-supplies/">OFFICE SUPPLIES</a></li>
-                                <li><a href="product-category/paper-products/">PAPER PRODUCTS</a></li>
-                                <li><a href="product-category/pens-pencils/">PENS, PENCILS</a></li>
-                                <li><a href="product-category/printers-cartridges/">PRINTERS, CARTRIDGES</a></li>
-                                <li><a href="product-category/school-supplies/">SCHOOL SUPPLIES</a></li>
-                            </ul></div>
-                            </div> </div>
-                        <div class="span3">
-                            <div id="text-7" class="visible-all-devices "><h2>INFORMATION</h2> <div class="textwidget"><ul>
-                                <li><a href="contacts/">Contacts</a></li>
-                                <li><a href="delivery/">Delivery</a></li>
-                                <li><a href="privacy-policy/">Privacy Policy</a></li>
-                                <li><a href="checkout/">Checkout</a></li>
-                                <li><a href="about/">About</a></li>
-                                <ul></ul></ul></div>
-                            </div> </div>
-                        <div class="span3" >
-                            <div id="text-8" class="visible-all-devices "><h2>about</h2> <div class="textwidget"><p>Lorem ipsum dolor sit ametcter adipiscing elistie lacus. Aenean nonuit mauris.</p>
-                                <p>Phasellus porta. Fusce suscvarius sociis natoque penatibu.</p></div>
-                            </div> </div>
-                        <div class="span3" >
-                            <div id="text-9" class="visible-all-devices "><h2>CONTACTS</h2> <div class="textwidget">8901 MARMORA ROAD, GLASGOW, D04 89GR
-                                <address>phone 1-800-234-5678</address></div>
-                            </div> </div>
-                    </div>
-                    <div class="row">
-                        <div class="span12">
-                        </div>
-                    </div>
+                    <!--<div class="row footer-widgets">-->
+                        <!--<div class="span3">-->
+                            <!--<div id="text-5" class="visible-all-devices "><h2>CATEGORIES</h2> <div class="textwidget"><ul>-->
+                                <!--<li><a href="product-category/facilities/">FACILITIES</a></li>-->
+                                <!--<li><a href="product-category/furniture/">FURNITURE</a></li>-->
+                                <!--<li><a href="product-category/office-supplies/">OFFICE SUPPLIES</a></li>-->
+                                <!--<li><a href="product-category/paper-products/">PAPER PRODUCTS</a></li>-->
+                                <!--<li><a href="product-category/pens-pencils/">PENS, PENCILS</a></li>-->
+                                <!--<li><a href="product-category/printers-cartridges/">PRINTERS, CARTRIDGES</a></li>-->
+                                <!--<li><a href="product-category/school-supplies/">SCHOOL SUPPLIES</a></li>-->
+                            <!--</ul></div>-->
+                            <!--</div> </div>-->
+                        <!--<div class="span3">-->
+                            <!--<div id="text-7" class="visible-all-devices "><h2>INFORMATION</h2> <div class="textwidget"><ul>-->
+                                <!--<li><a href="contacts/">Contacts</a></li>-->
+                                <!--<li><a href="delivery/">Delivery</a></li>-->
+                                <!--<li><a href="privacy-policy/">Privacy Policy</a></li>-->
+                                <!--<li><a href="checkout/">Checkout</a></li>-->
+                                <!--<li><a href="about/">About</a></li>-->
+                                <!--<ul></ul></ul></div>-->
+                            <!--</div> </div>-->
+                        <!--<div class="span3" >-->
+                            <!--<div id="text-8" class="visible-all-devices "><h2>about</h2> <div class="textwidget"><p>Lorem ipsum dolor sit ametcter adipiscing elistie lacus. Aenean nonuit mauris.</p>-->
+                                <!--<p>Phasellus porta. Fusce suscvarius sociis natoque penatibu.</p></div>-->
+                            <!--</div> </div>-->
+                        <!--<div class="span3" >-->
+                            <!--<div id="text-9" class="visible-all-devices "><h2>CONTACTS</h2> <div class="textwidget">8901 MARMORA ROAD, GLASGOW, D04 89GR-->
+                                <!--<address>phone 1-800-234-5678</address></div>-->
+                            <!--</div> </div>-->
+                    <!--</div>-->
+                    <!--<div class="row">-->
+                        <!--<div class="span12">-->
+                        <!--</div>-->
+                    <!--</div>-->
                     <div class="row copyright">
                         <div class="span12">
                             <div id="footer-text" class="footer-text">
-                                <a href="http://livedemo00.template-help.com/woocommerce_48611/" title="" class="site-name">Stationery</a> is proudly powered by <a href="http://wordpress.org">WordPress</a> <a href="http://livedemo00.template-help.com/woocommerce_48611/feed/" rel="nofollow" title="Entries (RSS)">Entries (RSS)</a> and <a href="http://livedemo00.template-help.com/woocommerce_48611/comments/feed/" rel="nofollow">Comments (RSS)</a>
-                                <a href="http://livedemo00.template-help.com/woocommerce_48611/privacy-policy/" title="Privacy Policy">Privacy Policy</a>
+                                @Copyright
+                                <!--<a href="http://livedemo00.template-help.com/woocommerce_48611/" title="" class="site-name">Stationery</a> is proudly powered by <a href="http://wordpress.org">WordPress</a> <a href="http://livedemo00.template-help.com/woocommerce_48611/feed/" rel="nofollow" title="Entries (RSS)">Entries (RSS)</a> and <a href="http://livedemo00.template-help.com/woocommerce_48611/comments/feed/" rel="nofollow">Comments (RSS)</a>-->
+                                <!--<a href="http://livedemo00.template-help.com/woocommerce_48611/privacy-policy/" title="Privacy Policy">Privacy Policy</a>-->
 
                             </div> </div>
-                    </div> </div>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
