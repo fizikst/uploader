@@ -7,6 +7,7 @@
     </tr>
     <tr>
         <td><input type="text" name="title" class="w100" value=""></td>
+        <td><input type="file" name="img_file" id="img_file"></td>
         <td>
             <select name="type" class="w100" >
                 <option ng-repeat=" type in article_type" value="{{type.key}}">
@@ -14,7 +15,8 @@
                 </option>
             </select>
         </td>
-        <!--<td><input type="text" name="desc" class="w100" value=""></td>-->
+        <td><input type="text" name="description" class="w100" value=""></td>
+        <!--<td><input type="text" name="meta" class="w100" value=""></td>-->
         <td>
             <textarea name="desc" class="ck-editor" ng-model="article_create"></textarea>
             <div bind-html-unsafe="article_create" id="articleId"></div>

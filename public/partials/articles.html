@@ -18,10 +18,23 @@
                             {{type.value}}
                         </option>
                     </select>
-
                 </div>
             </td>
+
             <td data-title="'Описание'">
+                <span ng-if="!article.$edit">{{article.description}}</span>
+                <div ng-if="article.$edit"><input class="form-control" name="description" type="text" ng-model="article.description" /></div>
+            </td>
+
+            <td data-title="'Изображение'">
+                {{article.img}}
+                <img ng-src="data:image/jpeg;base64, {{article.img}}">
+                <!--<span ng-if="!article.$edit">{{article.img}}</span>-->
+                <!--<div ng-if="article.$edit"><input class="form-control" name="description" type="text" ng-model="article.description" /></div>-->
+            </td>
+
+
+            <td data-title="'Текст'">
                 <span ng-if="!article.$edit">
                     <div bind-html-unsafe="article.desc" class="article_html"></div>
                 </span>

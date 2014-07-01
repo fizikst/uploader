@@ -7,6 +7,7 @@ var sys = require('sys');
 var http = require('http');
 async = require("async");
 var validator = require('validator');
+var fs = require('fs');
 
 
 
@@ -25,6 +26,8 @@ var Order = mongoose.model('Order', orderSchema);
 var articleSchema = Schema({
     title: String,
     desc: String,
+    img: Buffer,
+    description: String,
     type: String
 });
 var Article = mongoose.model('Article', articleSchema);
@@ -572,6 +575,22 @@ module.exports = function(app) {
 
     app.post('/api/v1/articles', function(req, res) {
         var article = new Article(req.body);
+
+
+        console.log('---------------->', req.files);
+
+        if (!_.isNull(req.files)) {
+            fs.readFile(req.files.file.path, function (err, data) {
+                var newPath = __dirname + '/1.jpg';
+                console.log('dirrrrrrrrrr', newPath);
+                fs.writeFile(newPath, data, function (err) {
+                    if (err) {
+                        console.log('Error', err);
+                    }
+                });
+            });
+
+        }
 
         article.save(function (err) {
             if (err) {

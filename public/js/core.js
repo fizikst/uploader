@@ -338,7 +338,7 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
                 'update': { method:'PUT' }
             });
     }])
-    .controller('ArticleCtrl', ['$scope', '$filter', '$resource', '$q', 'ngTableParams', 'Article',  function($scope, $filter, $resource, $q, ngTableParams, Article) {
+    .controller('ArticleCtrl', ['$scope', '$filter', '$resource', '$q', 'ngTableParams', 'Article', '$http',  function($scope, $filter, $resource, $q, ngTableParams, Article, $http) {
 
         $scope.article_create = '';
 
@@ -399,9 +399,31 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
                 article[$(input).attr('name')] = $(input).val();
             });
 
+            var file;
+            $('#' + formId).find(':file').each(function (idx, input) {
+                console.log('))))))))))', this.files[0]);
+                file = this.files[0];
+            });
+
             article['desc'] = $('#articleId').html();
             console.log('RRRRRRRRRRR', article);
-            article.$save();
+
+            $http.post('api/v1/articles', {article: article, file: file}, {headers: {'Content-Type': undefined }, transformRequest:function(data) {
+                var formData = new FormData();
+                formData.append("article", angular.toJson(data.article));
+                formData.append("file", data.file);
+                return formData;
+            }}).success(function(data, status, headers, config){
+                    console.log('DDDDDDDDDDDDDDDDDD', data);
+//                    $scope.headersOpt = data.headers;
+//                    $scope.rows = data.rows;
+                }).
+                error(function(data, status, headers, config){
+                    console.log('SSSSSSSSSSSSSSSSSSSS', status);
+//                    $scope.rows = status;
+                });
+
+//            article.$save();
             $scope.vote = 0;
             $scope.tableParams.reload();
         };
