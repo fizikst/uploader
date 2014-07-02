@@ -379,14 +379,37 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
                 article[$(input).attr('name')] = $(input).val();
             });
 
-            console.log('ARTICLE', article);
+            var file;
+            $(rowId).find(':file').each(function (idx, input) {
+                console.log('))))))))))', this.files[0]);
+                file = this.files[0];
+            });
 
+            console.log('ARTICLE', file);
+
+            $http.put('api/v1/articles/' + pid, {article: article, file: file}, {headers: {'Content-Type': undefined }, transformRequest:function(data) {
+                var formData = new FormData();
+                formData.append("article", angular.toJson(data.article));
+                formData.append("file", data.file);
+                return formData;
+            }}).success(function(data, status, headers, config){
+                    console.log('DDDDDDDDDDDDDDDDDD', data);
+//                    $scope.headersOpt = data.headers;
+//                    $scope.rows = data.rows;
+                }).
+                error(function(data, status, headers, config){
+                    console.log('SSSSSSSSSSSSSSSSSSSS', status);
+//                    $scope.rows = status;
+                });
+
+/*
             var timeout = setInterval(function() {
                 article['desc'] = $(rowId).find('div.article_html').html();
                 Article.update(article, article);
                 clearInterval(timeout);
             }, 1000);
-        }
+*/
+        };
 
         $scope.vote = 0;
         $scope.expand = function(vote) {
