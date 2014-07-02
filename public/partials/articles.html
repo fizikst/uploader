@@ -27,8 +27,7 @@
             </td>
 
             <td data-title="'Изображение'">
-                {{article.img}}
-                <img ng-src="data:image/jpeg;base64, {{article.img}}">
+                <img ng-if="article.url" ng-src="data:{{article.url[0].type}};base64, {{article.url[0].image}}">
                 <!--<span ng-if="!article.$edit">{{article.img}}</span>-->
                 <!--<div ng-if="article.$edit"><input class="form-control" name="description" type="text" ng-model="article.description" /></div>-->
             </td>

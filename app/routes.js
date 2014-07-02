@@ -26,10 +26,9 @@ var Order = mongoose.model('Order', orderSchema);
 var articleSchema = Schema({
     title: String,
     desc: String,
-    img: Buffer,
     description: String,
     type: String
-});
+}, { strict: false });
 var Article = mongoose.model('Article', articleSchema);
 
 console.log('config', config);
@@ -574,23 +573,75 @@ module.exports = function(app) {
     });
 
     app.post('/api/v1/articles', function(req, res) {
-        var article = new Article(req.body);
 
 
         console.log('---------------->', req.files);
 
-        if (!_.isNull(req.files)) {
-            fs.readFile(req.files.file.path, function (err, data) {
-                var newPath = __dirname + '/1.jpg';
-                console.log('dirrrrrrrrrr', newPath);
-                fs.writeFile(newPath, data, function (err) {
-                    if (err) {
-                        console.log('Error', err);
-                    }
-                });
-            });
+//        dataRow[selectOpts[loop.column]] = [{image: image, type: type}];
+        var image = [];
 
+        if (!_.isNull(req.files)) {
+
+            var type = 'image/jpeg';
+            if (!_.isUndefined(req.files.file.type)) {
+                type = req.files.file.type;
+            }
+
+
+            fs.readFile(req.files.file.path, function(err, data) {
+//                var imgBuf = new Buffer(req.files.file.path, 'binary');
+                var base64data = new Buffer(data);
+                image.push({'image': base64data, 'type' : type});
+
+                var data = {};
+                var jsonArticle = JSON.parse(req.body.article);
+                for (var key in jsonArticle) {
+                    data[key] = jsonArticle[key];
+                }
+                if (image.length > 0) {
+                    data['url'] = image;
+                }
+
+                console.log('************', data);
+                var article = new Article(data);
+
+
+                article.save(function (err) {
+                    if (err) {
+                        console.log('ARTICLE_ADD', err);
+                        res.json({err:err});
+                    }
+                    res.json({code:200});
+                });
+
+                return;
+            });
+//            image.push({'image': imgBuf, 'type' : type});
+
+
+//            fs.readFile(req.files.file.path, function (err, data) {
+//                var newPath = __dirname + '/1.jpg';
+//                console.log('dirrrrrrrrrr', newPath);
+//                fs.writeFile(newPath, data, function (err) {
+//                    if (err) {
+//                        console.log('Error', err);
+//                    }
+//                });
+//            });
         }
+
+        var data = {};
+        var jsonArticle = JSON.parse(req.body.article);
+        for (var key in jsonArticle) {
+            data[key] = jsonArticle[key];
+        }
+        if (image.length > 0) {
+            data['url'] = image;
+        }
+
+        console.log('************', data);
+        var article = new Article(data);
+
 
         article.save(function (err) {
             if (err) {
