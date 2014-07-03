@@ -348,7 +348,8 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
             { key: 'spec_price', value : 'Спец. цена'},
             { key: 'metering', value : 'Замер'},
             { key: 'delivery', value :  'Доставка'},
-            { key: 'install', value : 'Установка'}
+            { key: 'install', value : 'Установка'},
+            { key: 'category', value : 'Категории на главной'}
         ];
 
         $scope.tableParams = new ngTableParams({

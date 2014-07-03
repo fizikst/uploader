@@ -121,6 +121,12 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_',
           }, function () {
           });
 
+          Api.articles.search({type:'category'}).then(function (data) {
+              $scope.categories = data;
+          }, function () {
+          });
+
+
       };
 
       $scope.helpful();
