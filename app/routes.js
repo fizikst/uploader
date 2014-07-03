@@ -7,6 +7,7 @@ var sys = require('sys');
 var http = require('http');
 async = require("async");
 var validator = require('validator');
+var fs = require('fs');
 
 
 
@@ -25,8 +26,9 @@ var Order = mongoose.model('Order', orderSchema);
 var articleSchema = Schema({
     title: String,
     desc: String,
+    description: String,
     type: String
-});
+}, { strict: false });
 var Article = mongoose.model('Article', articleSchema);
 
 console.log('config', config);
@@ -571,7 +573,62 @@ module.exports = function(app) {
     });
 
     app.post('/api/v1/articles', function(req, res) {
-        var article = new Article(req.body);
+
+
+        console.log('---------------->', req.files);
+
+//        dataRow[selectOpts[loop.column]] = [{image: image, type: type}];
+        var image = [];
+
+        if (!_.isNull(req.files)) {
+
+            var type = 'image/jpeg';
+            if (!_.isUndefined(req.files.file.type)) {
+                type = req.files.file.type;
+            }
+
+
+            fs.readFile(req.files.file.path, function(err, data) {
+                var base64data = new Buffer(data);
+                image.push({'image': base64data, 'type' : type});
+
+                var data = {};
+                var jsonArticle = JSON.parse(req.body.article);
+                for (var key in jsonArticle) {
+                    data[key] = jsonArticle[key];
+                }
+                if (image.length > 0) {
+                    data['url'] = image;
+                }
+
+                console.log('************', data);
+                var article = new Article(data);
+
+
+                article.save(function (err) {
+                    if (err) {
+                        console.log('ARTICLE_ADD', err);
+                        res.json({err:err});
+                    }
+                    res.json({code:200});
+                });
+
+                return;
+            });
+        }
+
+        var data = {};
+        var jsonArticle = JSON.parse(req.body.article);
+        for (var key in jsonArticle) {
+            data[key] = jsonArticle[key];
+        }
+        if (image.length > 0) {
+            data['url'] = image;
+        }
+
+        console.log('************', data);
+        var article = new Article(data);
+
 
         article.save(function (err) {
             if (err) {
@@ -584,7 +641,48 @@ module.exports = function(app) {
     });
 
     app.put('/api/v1/articles/:id', function(req, res) {
-        Article.update({ _id: req.params.id }, req.query, { multi: false }, function(err) {
+
+        var image = [];
+
+        if (!_.isEmpty(req.files)) {
+            console.log('FFFFFIIIIILE', _.isEmpty(req.files));
+
+            var type = 'image/jpeg';
+            if (!_.isUndefined(req.files.file.type)) {
+                type = req.files.file.type;
+            }
+
+
+            fs.readFile(req.files.file.path, function(err, data) {
+                var base64data = new Buffer(data);
+                image.push({'image': base64data, 'type' : type});
+
+                var data = {};
+                var jsonArticle = JSON.parse(req.body.article);
+                for (var key in jsonArticle) {
+                    data[key] = jsonArticle[key];
+                }
+                if (image.length > 0) {
+                    data['url'] = image;
+                }
+
+                delete data.id;
+
+                console.log('************', data);
+
+                Article.update({ _id: req.params.id }, data, { multi: false }, function(err) {
+                    if(err) {
+                        console.log(err);
+                    }
+                    res.json({code:200});
+                });
+            });
+
+            return;
+        }
+
+        console.log('---------', req.body);
+        Article.update({ _id: req.params.id }, JSON.parse(req.body.article), { multi: false }, function(err) {
             if(err) {
                 console.log(err);
             }
