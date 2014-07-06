@@ -4,8 +4,175 @@
 
 var phonecatControllers = angular.module('phonecatControllers', []);
 
-phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_',
-  function($scope, Api, _) {
+phonecatControllers.controller('MainCtrl', ['$scope', '$routeParams', 'Phone', 'Api', '_', 'DataService',
+    function($scope, $routeParams, Phone, Api, _, DataService) {
+
+        $scope.totalPages = 0;
+        $scope.customersCount = 0;
+        $scope.checked = [];
+
+        $scope.pagination = {
+            numPages: 1,
+            perPage: 25,
+            page: 1
+        };
+
+        $scope.filterCriteria = {
+            pageNumber: $scope.pagination.page,
+            sortDir: 'asc',
+            sortedBy: 'id',
+            count:$scope.pagination.perPage
+        };
+
+//      $scope.pagination = Pagination.getNew(10);
+
+
+        $scope.pagination.nextPage = function() {
+
+            if ($scope.pagination.page < $scope.pagination.numPages) {
+                $scope.pagination.page += 1;
+
+                $scope.filterCriteria = {
+                    pageNumber: $scope.pagination.page,
+                    sortDir: 'asc',
+                    sortedBy: 'id',
+                    count:$scope.pagination.perPage
+                };
+                $scope.fetchResult();
+            }
+        };
+
+        $scope.pagination.prevPage = function() {
+            if ($scope.pagination.page > 0) {
+                $scope.pagination.page -= 1;
+
+                $scope.filterCriteria = {
+                    pageNumber: $scope.pagination.page,
+                    sortDir: 'asc',
+                    sortedBy: 'id',
+                    count:$scope.pagination.perPage
+                };
+                $scope.fetchResult();
+            }
+        };
+
+        $scope.pagination.toPageId = function(id) {
+            console.log('Id', id);
+            if (id >= 0 && id <= $scope.pagination.page) {
+                id++;
+                $scope.pagination.page = id;
+
+                $scope.filterCriteria = {
+                    pageNumber: $scope.pagination.page,
+                    sortDir: 'asc',
+                    sortedBy: 'id',
+                    count:$scope.pagination.perPage
+                };
+                $scope.fetchResult();
+            }
+        };
+
+        $scope.helpful = function() {
+            Api.articles.search({type:'article'}).then(function (data) {
+                console.log('REST_ARTICLE', data);
+                $scope.articleOpts = data;
+//              console.log('ARt', $scope.articleOpts);
+//              console.log($scope.totalPages);
+            }, function () {
+                console.log('REST_ARTICLE EMPTY');
+            });
+
+            Api.articles.search({type:'spec_price'}).then(function (data) {
+                $scope.specPrice = data;
+            }, function () {
+            });
+
+            Api.articles.search({type:'metering'}).then(function (data) {
+                $scope.metering = data;
+            }, function () {
+            });
+
+            Api.articles.search({type:'delivery'}).then(function (data) {
+                $scope.delivery = data;
+            }, function () {
+            });
+
+            Api.articles.search({type:'install'}).then(function (data) {
+                $scope.install = data;
+            }, function () {
+            });
+
+            Api.articles.search({type:'category'}).then(function (data) {
+                $scope.categories = data;
+            }, function () {
+            });
+
+
+        };
+
+        $scope.helpful();
+//
+//      Api.headers.search($scope.filterCriteria).then(function (data) {
+//          $scope.headers = data;
+//          console.log('HEADERS', data);
+//      }, function () {
+//          $scope.headers = [];
+//      });
+
+
+        $scope.fetchResult = function () {
+
+//          if ($routeParams.hasOwnProperty('_id')) {
+//              $scope.filterCriteria._id = $routeParams._id;
+//            console.log(':::::::::::::::::::::rout PAram', $routeParams);
+//          }
+
+            return Api.products.search($scope.filterCriteria).then(function (data) {
+                console.log('REST_PRODUCTS', data);
+                $scope.products = data;
+                $scope.filter = data.filter;
+                console.log($scope.filter);
+                $scope.totalPages = $scope.filterCriteria.pageNumber;
+                $scope.customersCount = data.length;
+                $scope.pagination.numPages = Math.ceil(data.meta.meta.total/$scope.pagination.perPage);
+            }, function () {
+                console.log('REST_PRODUCTS EMPTY');
+                $scope.customers = [];
+                $scope.totalPages = 0;
+                $scope.customersCount = 0;
+            });
+        }
+
+
+        console.log($scope.fetchResult());
+
+        $scope.filterResult = function () {
+            $scope.checked = $scope.filterCriteria;
+          console.log('------------->', $scope.filterCriteria);
+            $scope.filterCriteria.pageNumber = 1;
+            $scope.fetchResult();
+            /*    $scope.fetchResult().then(function () {
+             //The request fires correctly but sometimes the ui doesn't update, that's a fix
+             $scope.filterCriteria.pageNumber = 1;
+             });*/
+        };
+
+        $scope.empty = function () {
+            $scope.filterCriteria = {
+                pageNumber: 1,
+                sortDir: 'asc',
+                sortedBy: 'id',
+                count:$scope.pagination.perPage
+            };
+            $scope.checked = [];
+            $scope.fetchResult();
+        }
+
+    }]);
+
+
+phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routeParams',
+  function($scope, Api, _, $routeParams) {
 
 /*
       http://plnkr.co/edit/wZuIbDl6sGQ9VgYpLIP3?p=preview
@@ -26,6 +193,7 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_',
 
 //      console.log('DataService', DataService);
 
+      $scope.requestParams = false;
       $scope.totalPages = 0;
       $scope.customersCount = 0;
       $scope.checked = [];
@@ -138,8 +306,14 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_',
 //          $scope.headers = [];
 //      });
 
-
+//      console.log(':::::::::::::::::::::rout PAram', $routeParams);
       $scope.fetchResult = function () {
+
+          if ($routeParams.hasOwnProperty('catalog') && !$scope.requestParams) {
+              $scope.filterCriteria.catalog = $routeParams.catalog;
+              $scope.requestParams = true;
+          }
+
           return Api.products.search($scope.filterCriteria).then(function (data) {
               console.log('REST_PRODUCTS', data);
               $scope.products = data;
@@ -156,11 +330,12 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_',
           });
       }
 
-      console.log($scope.fetchResult());
 
+      console.log($scope.fetchResult());
 
       $scope.filterResult = function () {
           $scope.checked = $scope.filterCriteria;
+//          console.log('------------->', $scope.filterCriteria);
           $scope.filterCriteria.pageNumber = 1;
           $scope.fetchResult();
           /*    $scope.fetchResult().then(function () {

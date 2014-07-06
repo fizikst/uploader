@@ -1,0 +1,124 @@
+<style>
+    #woocommerce_product_categories-2 h2, #woocommerce_products-123 h2{
+        font-size: 22px;
+        font-weight: bold;
+    }
+</style>
+
+<div class="span3 home-page-widget">
+
+    <div id="woocommerce_product_categories-2" class="visible-all-devices "><h2>Фильтр</h2>
+        <ul ng-repeat="head in filter" class="product-categories">
+            <li class="cat-item">
+                {{head.field}}
+                <select on-blur-change="filterResult()" ng-model="filterCriteria[head.field]" >
+                    <option ng-selected="val == checked[head.field]" ng-repeat="val in head.data" value="{{val}}">{{val}}</option>
+                </select>
+            </li>
+        </ul>
+    </div>
+
+    <a href ng-click="empty()" style="margin-bottom: 32px; display: block;">сбросить</a>.<br>
+
+    <style>
+        #woocommerce_products-123 ul li a img {
+            float: left;
+            margin-top: -5px;
+        }
+        #woocommerce_products-123 ul li {
+            display: block;
+            font-size: 13px;
+            height: 2.6em;
+            line-height: 1.3em;
+            list-style: none outside none;
+            padding: 10px 0;
+            width: 240px;
+        }
+        #woocommerce_products-123 ul li a {
+            color: #3264C8;
+        }
+    </style>
+    <div id="woocommerce_products-123" class="visible-all-devices"><h2>Преимущества</h2>
+        <ul style="margin: 0px;">
+            <li class="bprice">
+                <a title="Самые выгодные цены на межкомнатные двери" href="index.html#/articles/{{specPrice[0]._id}}">
+                    <img src="./img/rup.png">
+                    Суперцена
+                </a>
+                от 890 руб.
+            </li>
+            <li class="size">
+                Бесплатный
+                <a title="Бесплатные выезд замерщика при заказе межкомнатных и входных дверей" href="index.html#/articles/{{metering[0]._id}}">
+                    <img src="./img/sample.png">
+                    замер
+                </a>
+            </li>
+            <li class="shipping">
+                <a title="Доставка межкомнатных и металлических дверей" href="index.html#/articles/{{delivery[0]._id}}">
+                    <img src="./img/delivery.png">
+                    Доставка
+                </a>
+                на
+                <br>
+                следующий день
+            </li>
+            <li class="inst">
+                Профессиональная
+                <a title="Профессиональная установка дверей" href="index.html#/articles/{{install[0]._id}}">
+                    <img src="./img/working.png">
+                    установка
+                </a>
+            </li>
+        </ul>
+    </div>
+    <style>
+        .item-list ul li {
+            list-style: disc outside url("./img/list-arrow.png");
+        }
+        .item-list ul li a{
+            color: #3264C8;
+            outline: medium none;
+            text-decoration: underline;
+            font-size: 13px;
+        }
+    </style>
+    <div id="woocommerce_products-234" class="visible-all-devices item-list">
+        <h2>Полезная информация</h2>
+        <ul style="margin: 0px;">
+            <li class="views-row views-row-odd views-row-odd" ng-repeat=" opt in articleOpts">
+                <div class="views-field views-field-title">
+                    <span class="field-content">
+                        <a href="index.html#/articles/{{opt._id}}">{{opt.title}}</a>
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="span9">
+    <div id="post-203" class="post-203 page type-page status-publish hentry page">
+        <div class="row">
+            <div class="span9">
+
+
+                <div class="key % 2 == 0 ? banner-wrap : banner-wrap2" ng-repeat="(key, category) in categories" >
+                    <a href="product/product-5/" title="Get 20% off on selected items">
+                        <figure class="featured-thumbnail">
+                            <img style="width:417px; height:193px" ng-src="data:{{category.url[0].type}};base64, {{category.url[0].image}}" title="{{category.title}}" alt="">
+                        </figure>
+                        <div class="banner-content">
+                            <h5>{{category.title}}</h5>
+                        </div>
+                    </a>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="clear"></div>
+
+    </div>
+</div>

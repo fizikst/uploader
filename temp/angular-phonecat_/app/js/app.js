@@ -20,7 +20,14 @@ phonecatApp
     .config(['$routeProvider',
       function($routeProvider) {
         $routeProvider.
-          when('/phones', {
+          when('/', {
+            templateUrl: 'partials/main.html',
+            controller: 'MainCtrl'/*,
+            redirectTo: function (routeParams, path, search) {
+                return "/phones/5356b32ccfc39eec709bee05";
+            }*/
+          }).
+          when('/phones/:catalog?', {
             templateUrl: 'partials/phone-list.html',
             controller: 'PhoneListCtrl'
           }).
@@ -37,7 +44,7 @@ phonecatApp
               controller: 'ArticleDetailCtrl'
           }).
           otherwise({
-            redirectTo: '/phones'
+            redirectTo: '/'
           });
       }
 ]).config(['RestangularProvider',function (RestangularProvider) {

@@ -3,6 +3,7 @@
         <td>Название</td>
         <td>Изображение</td>
         <td>Тип статьи</td>
+        <td>Каталог</td>
         <td>Описание</td>
         <td><input type="button" value="save" ng-click="createArticle('create_article')"></td>
     </tr>
@@ -16,6 +17,15 @@
                 </option>
             </select>
         </td>
+
+        <td>
+            <select name="catalog" class="w100" >
+                <option ng-repeat=" catalog in catalog_list" value="{{catalog.key}}">
+                    {{catalog.value}}
+                </option>
+            </select>
+        </td>
+
         <td><input type="text" name="description" class="w100" value=""></td>
         <!--<td><input type="text" name="meta" class="w100" value=""></td>-->
         <td>
