@@ -21,6 +21,20 @@
                 </div>
             </td>
 
+            <td data-title="'Категория на главной'">
+                <span ng-if="!article.$edit && category.key == article.category" ng-repeat="category in category_list">
+                    {{category.value}}
+                </span>
+
+                <div ng-if="article.$edit">
+                    <select ng-model="categoryList" x-ng-change="article.category = categoryList" name="category">
+                        <option ng-selected="{{category.key == article.category}}" ng-repeat="category in category_list" value="{{category.key}}">
+                            {{category.value}}
+                        </option>
+                    </select>
+                </div>
+            </td>
+
             <td data-title="'Описание'">
                 <span ng-if="!article.$edit">{{article.description}}</span>
                 <div ng-if="article.$edit"><input class="form-control" name="description" type="text" ng-model="article.description" /></div>

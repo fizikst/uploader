@@ -450,7 +450,7 @@ module.exports = function(app) {
         skip = (req.query.page-1) * req.query.count;
 
         Product.find(request).paginate(req.query.page, req.query.count).lean().exec(function(err, results) {
-            console.log('results', results);
+            console.log('results&&&&&&&&&&&&&&&&', results);
             var data = {};
             var options = [];
             var headers = [];
@@ -546,7 +546,6 @@ module.exports = function(app) {
         res.json(data);
     });
 
-
 //------------------------- Articles ----------------------------------
 
     app.get('/api/v1/articles', function(req, res) {
@@ -580,7 +579,7 @@ module.exports = function(app) {
 //        dataRow[selectOpts[loop.column]] = [{image: image, type: type}];
         var image = [];
 
-        if (!_.isNull(req.files)) {
+        if (!_.isEmpty(req.files)) {
 
             var type = 'image/jpeg';
             if (!_.isUndefined(req.files.file.type)) {

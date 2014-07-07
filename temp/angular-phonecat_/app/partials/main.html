@@ -6,6 +6,7 @@
 </style>
 
 <div class="span3 home-page-widget">
+
     <div id="woocommerce_product_categories-2" class="visible-all-devices "><h2>Фильтр</h2>
         <ul ng-repeat="head in filter" class="product-categories">
             <li class="cat-item">
@@ -16,6 +17,7 @@
             </li>
         </ul>
     </div>
+
     <a href ng-click="empty()" style="margin-bottom: 32px; display: block;">сбросить</a>.<br>
 
     <style>
@@ -100,56 +102,20 @@
     <div id="post-203" class="post-203 page type-page status-publish hentry page">
         <div class="row">
             <div class="span9">
+                {{category.category}}
 
-
-                <!--<div class="key % 2 == 0 ? banner-wrap : banner-wrap2" ng-repeat="(key, category) in categories" >-->
-                    <!--<a href="product/product-5/" title="Get 20% off on selected items">-->
-                        <!--<figure class="featured-thumbnail">-->
-                            <!--<img style="width:417px; height:193px" ng-src="data:{{category.url[0].type}};base64, {{category.url[0].image}}" title="{{category.title}}" alt="">-->
-                        <!--</figure>-->
-                        <!--<div class="banner-content">-->
-                            <!--<h5>{{category.title}}</h5>-->
-                        <!--</div>-->
-                    <!--</a>-->
-                <!--</div>-->
-
-
-                <div class="woocommerce columns-3">
-                    <ul class="products">
-
-                        <li ng-repeat="p in products" class="product type-product status-publish featured shipping-taxable purchasable product-type-simple product-cat-books-pads product-cat-digital-storage product-cat-facilities product-cat-technology product-tag-etiam-dictum product-tag-mauris-posuere product-tag-vel-mauris instock">
-                            <a href="#/phones/{{p._id}}">
-                                <img style="height: 270px !important; width: auto !important;" ng-if="p.url" ng-src="data:{{p.url[0].type}};base64, {{p.url[0].image}}" class="attachment-shop_catalog wp-post-image tumb" alt="{{p.name}}">
-                                <h3>{{p.name}}</h3>
-                            </a>
-                            <span class="price"><span class=rouble>Р</span><span class="amount">{{p.price}}</span></span>
-                            <a href="" ng-click="cart.addItem(p._id, p.name, p.price, 1)" >
-                                Добавить в корзину
-                            </a>
-                            <!--<a href="http://woocommerce_48611/?add-to-cart=1958" rel="nofollow" data-product_id="1958" data-product_sku="" class="button add_to_cart_button product_type_simple">Add to cart</a>-->
-                        </li>
-
-                        <!--<li class="post-1950 product type-product status-publish last featured shipping-taxable purchasable product-type-simple product-cat-books-pads product-cat-facilities product-tag-etiam-dictum product-tag-mauris-posuere product-tag-sed-blandit-massa product-tag-vel-mauris instock">-->
-                            <!--<a href="http://livedemo00.template-help.com/woocommerce_48611/product/product-13/">-->
-                                <!--<img width="270" height="270" src="http://livedemo00.template-help.com/woocommerce_48611/wp-content/uploads/2013/09/MultiColored-Pressure-File-A4-2-270x270.png" class="attachment-shop_catalog wp-post-image" alt="MultiColored Pressure File A4 2">-->
-                                <!--<h3>MultiColored Pressure A4</h3>-->
-                            <!--</a>-->
-                            <!--<span class="price"><span class="amount">$11.00</span></span>-->
-                            <!--<a href="/woocommerce_48611/?add-to-cart=1950" rel="nofollow" data-product_id="1950" data-product_sku="" class="button add_to_cart_button product_type_simple">Add to cart</a>-->
-                        <!--</li>-->
-
-                        <!--<li ng-repeat="p in products">{{p.name}}-->
-                            <!--<a href="#/phones/{{p.id}}" class="thumb"><img ng-if="p.url" ng-src="data:{{p.type}};base64, {{p.url}}"/></a>-->
-                        <!--</li>-->
-
-                    </ul>
-
-                    <button ng-click="pagination.prevPage()">Previous</button>
-                    <span ng-repeat="n in [] | range: pagination.numPages" ng-class="{current: n == pagination.page}">
-                        <button ng-click="pagination.toPageId(n)">{{n + 1}}</button>
-                    </span>
-                    <button ng-click="pagination.nextPage()">Next</button>
+                <div class="key % 2 == 0 ? banner-wrap : banner-wrap2" ng-repeat="(key, category) in categories" >
+                    <a href="index.html#/phones?category={{category.category}}" title="category.title">
+                        <figure class="featured-thumbnail">
+                            <img style="width:417px; height:193px" ng-src="data:{{category.url[0].type}};base64, {{category.url[0].image}}" title="{{category.title}}" alt="category.description">
+                        </figure>
+                        <div class="banner-content">
+                            <h5>{{category.title}}</h5>
+                        </div>
+                    </a>
                 </div>
+
+
             </div>
         </div>
         <div class="clear"></div>
