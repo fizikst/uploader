@@ -27,7 +27,7 @@ phonecatApp
                 return "/phones/5356b32ccfc39eec709bee05";
             }*/
           }).
-          when('/phones/:catalog?', {
+          when('/phones/:category?', {
             templateUrl: 'partials/phone-list.html',
             controller: 'PhoneListCtrl'
           }).

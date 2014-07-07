@@ -102,12 +102,12 @@
     <div id="post-203" class="post-203 page type-page status-publish hentry page">
         <div class="row">
             <div class="span9">
-
+                {{category.category}}
 
                 <div class="key % 2 == 0 ? banner-wrap : banner-wrap2" ng-repeat="(key, category) in categories" >
-                    <a href="product/product-5/" title="Get 20% off on selected items">
+                    <a href="index.html#/phones?category={{category.category}}" title="category.title">
                         <figure class="featured-thumbnail">
-                            <img style="width:417px; height:193px" ng-src="data:{{category.url[0].type}};base64, {{category.url[0].image}}" title="{{category.title}}" alt="">
+                            <img style="width:417px; height:193px" ng-src="data:{{category.url[0].type}};base64, {{category.url[0].image}}" title="{{category.title}}" alt="category.description">
                         </figure>
                         <div class="banner-content">
                             <h5>{{category.title}}</h5>

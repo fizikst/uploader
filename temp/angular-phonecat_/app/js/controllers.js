@@ -309,8 +309,8 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routePa
 //      console.log(':::::::::::::::::::::rout PAram', $routeParams);
       $scope.fetchResult = function () {
 
-          if ($routeParams.hasOwnProperty('catalog') && !$scope.requestParams) {
-              $scope.filterCriteria.catalog = $routeParams.catalog;
+          if ($routeParams.hasOwnProperty('category') && !$scope.requestParams) {
+              $scope.filterCriteria.category = $routeParams.category;
               $scope.requestParams = true;
           }
 

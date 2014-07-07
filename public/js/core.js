@@ -353,14 +353,14 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
         ];
 
 
-        $scope.catalog_list = [];
+        $scope.category_list = [];
 
         var Api = $resource('/api/v1/products', {}, { query: {method:'GET'}});
         Api.query(function (res1) {
             for (var key in res1.filter) {
-                if (res1.filter[key].title === 'catalog') {
+                if (res1.filter[key].title === 'category') {
                     for (var i = 0; i < res1.filter[key].data.length; i++ ) {
-                        $scope.catalog_list.push({ key: res1.filter[key].data[i], value: res1.filter[key].data[i]});
+                        $scope.category_list.push({ key: res1.filter[key].data[i], value: res1.filter[key].data[i]});
                     }
 //                    $scope.catalog_list = res1.filter[key].data;
                 }
