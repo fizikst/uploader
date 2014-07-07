@@ -40,6 +40,11 @@
                 <div ng-if="article.$edit"><input class="form-control" name="description" type="text" ng-model="article.description" /></div>
             </td>
 
+            <td data-title="'Ключевые слова'">
+                <span ng-if="!article.$edit">{{article.keywords}}</span>
+                <div ng-if="article.$edit"><input class="form-control" name="keywords" type="text" ng-model="article.keywords" /></div>
+            </td>
+
             <td data-title="'Изображение'">
                 <span ng-if="!article.$edit"><img width="400px" ng-if="article.url" ng-src="data:{{article.url[0].type}};base64, {{article.url[0].image}}"></span>
                 <div ng-if="article.$edit"><input class="form-control" name="img_file" type="file" id="img_file" /></div>
