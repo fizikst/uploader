@@ -19,15 +19,15 @@
         </td>
 
         <td>
-            <select name="catalog" class="w100" >
-                <option ng-repeat=" catalog in catalog_list" value="{{catalog.key}}">
-                    {{catalog.value}}
+            <select name="category" class="w100" >
+                <option ng-repeat=" category in category_list" value="{{category.key}}">
+                    {{category.value}}
                 </option>
             </select>
         </td>
 
         <td><input type="text" name="description" class="w100" value=""></td>
-        <!--<td><input type="text" name="meta" class="w100" value=""></td>-->
+        <td><input type="text" name="keywords" class="w100" value=""></td>
         <td>
             <textarea name="desc" class="ck-editor" ng-model="article_create"></textarea>
             <div bind-html-unsafe="article_create" id="articleId"></div>

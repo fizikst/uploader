@@ -22,14 +22,14 @@
             </td>
 
             <td data-title="'Категория на главной'">
-                <span ng-if="!article.$edit && catalog.key == article.catalog" ng-repeat="catalog in catalog_list">
-                    {{catalog.value}}
+                <span ng-if="!article.$edit && category.key == article.category" ng-repeat="category in category_list">
+                    {{category.value}}
                 </span>
 
                 <div ng-if="article.$edit">
-                    <select ng-model="catalogList" x-ng-change="article.catalog = catalogList" name="catalog">
-                        <option ng-selected="{{catalog.key == article.catalog}}" ng-repeat="catalog in catalog_list" value="{{catalog.key}}">
-                            {{catalog.value}}
+                    <select ng-model="categoryList" x-ng-change="article.category = categoryList" name="category">
+                        <option ng-selected="{{category.key == article.category}}" ng-repeat="category in category_list" value="{{category.key}}">
+                            {{category.value}}
                         </option>
                     </select>
                 </div>
@@ -38,6 +38,11 @@
             <td data-title="'Описание'">
                 <span ng-if="!article.$edit">{{article.description}}</span>
                 <div ng-if="article.$edit"><input class="form-control" name="description" type="text" ng-model="article.description" /></div>
+            </td>
+
+            <td data-title="'Ключевые слова'">
+                <span ng-if="!article.$edit">{{article.keywords}}</span>
+                <div ng-if="article.$edit"><input class="form-control" name="keywords" type="text" ng-model="article.keywords" /></div>
             </td>
 
             <td data-title="'Изображение'">
