@@ -130,7 +130,25 @@ phonecatControllers.controller('MainCtrl', ['$scope', '$routeParams', 'Phone', '
             return Api.products.search($scope.filterCriteria).then(function (data) {
                 console.log('REST_PRODUCTS', data);
                 $scope.products = data;
-                $scope.filter = data.filter;
+                var filterList = [];
+                if (!_.isNull(data.filter)) {
+                    _.each(data.filter, function (item, err) {
+                        if (item.field === 'title') {
+                           item.name = 'Наименование';
+                           filterList.push(item);
+                        }
+                        if (item.field === 'catalog') {
+                            item.name = 'Категория';
+                            filterList.push(item);
+                        }
+                        if (item.field === 'price') {
+                            item.name = 'Стоимость';
+                            filterList.push(item);
+                        }
+
+                    });
+                }
+                $scope.filter = filterList;
                 console.log($scope.filter);
                 $scope.totalPages = $scope.filterCriteria.pageNumber;
                 $scope.customersCount = data.length;
@@ -317,7 +335,26 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routePa
           return Api.products.search($scope.filterCriteria).then(function (data) {
               console.log('REST_PRODUCTS', data);
               $scope.products = data;
-              $scope.filter = data.filter;
+              var filterList = [];
+              if (!_.isNull(data.filter)) {
+                  _.each(data.filter, function (item, err) {
+                      if (item.field === 'title') {
+                          item.name = 'Наименование';
+                          filterList.push(item);
+                      }
+                      if (item.field === 'catalog') {
+                          item.name = 'Категория';
+                          filterList.push(item);
+                      }
+                      if (item.field === 'price') {
+                          item.name = 'Стоимость';
+                          filterList.push(item);
+                      }
+
+                  });
+              }
+              $scope.filter = filterList;
+//              $scope.filter = data.filter;
               console.log($scope.filter);
               $scope.totalPages = $scope.filterCriteria.pageNumber;
               $scope.customersCount = data.length;
