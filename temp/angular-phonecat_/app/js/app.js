@@ -27,13 +27,13 @@ phonecatApp
                 return "/phones/5356b32ccfc39eec709bee05";
             }*/
           }).
+          when('/phones/:id', {
+              templateUrl: 'partials/phone-detail.html',
+              controller: 'PhoneDetailCtrl'
+          }).
           when('/phones/:category?', {
             templateUrl: 'partials/phone-list.html',
             controller: 'PhoneListCtrl'
-          }).
-          when('/phones/:id', {
-            templateUrl: 'partials/phone-detail.html',
-            controller: 'PhoneDetailCtrl'
           }).
           when('/cart', {
             templateUrl: 'partials/shopping-cart.html',
