@@ -559,7 +559,9 @@ module.exports = function(app) {
             request = req.query;
         }
 
-        Article.find(request).paginate(req.query.page, req.query.count).lean().exec(function(err, results) {
+        var skip = (req.query.page - 1) * req.query.count;
+
+        Article.find(request, {}, { skip: skip, limit: req.query.count }, function(err, results) {
             if (err) {
                 res.json({err:err});
             }
@@ -799,9 +801,9 @@ module.exports = function(app) {
 
 //        console.log('SORTING', sorting);
 
-//        skip = (req.query.page-1) * req.query.count;
+        skip = (req.query.page-1) * req.query.count;
 
-        Product.find(request).paginate(req.query.pageNumber, req.query.count).lean().exec(function(err, results) {
+        Product.find(request, {}, { skip: skip, limit: req.query.count })/*.paginate(req.query.pageNumber, req.query.count)*/.lean().exec(function(err, results) {
             console.log('RESULTS', results);
             var data = {};
             var options = [];
@@ -824,6 +826,7 @@ module.exports = function(app) {
 
                 var names = Object.keys(results[i]);
                 options = _.union(options, names)
+
             }
 
 //            console.log('OPTIONS', options);
@@ -855,7 +858,7 @@ module.exports = function(app) {
                 },
                 function(err){
                     if (err) console.log(err);
-                    console.log('HEADERS', headers);
+//                    console.log('HEADERS', headers);
                     Product.count({}, function( err, count){
                         data.data = results;
                         data.filter = headers;

@@ -342,7 +342,7 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routePa
                           item.name = 'Наименование';
                           filterList.push(item);
                       }
-                      if (item.field === 'catalog') {
+                      if (item.field === 'category') {
                           item.name = 'Категория';
                           filterList.push(item);
                       }
