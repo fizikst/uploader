@@ -848,15 +848,17 @@ module.exports = function(app) {
             console.log('OPTIONS',options);
             async.eachSeries(options,
                 function(loop, cb){
+                    var filterList = ['title','price','category'];
                     Product.find(request).distinct(loop, function(error, names) {
-                        headers.push({title: loop, field: loop, visible: true, type: type[loop], data: names});
+                        if (filterList.indexOf(loop) > 0) {
+                            headers.push({title: loop, field: loop, visible: true, type: type[loop], data: names});
+                        }
                         cb();
                     });
                 },
                 function(err){
                     if (err) console.log(err);
-                    console.log('HEADERS', headers);
-                    Product.count({}, function( err, count){
+                    Product.count(request, function( err, count){
                         data.data = results;
                         data.filter = headers;
                         data.meta = {meta : {"total" : count}};

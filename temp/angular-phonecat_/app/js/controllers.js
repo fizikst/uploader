@@ -4,8 +4,9 @@
 
 var phonecatControllers = angular.module('phonecatControllers', []);
 
-phonecatControllers.controller('MainCtrl', ['$scope', '$routeParams', 'Phone', 'Api', '_', 'DataService',
-    function($scope, $routeParams, Phone, Api, _, DataService) {
+phonecatControllers.controller('MainCtrl', ['$scope', '$routeParams', 'Phone', 'Api', '_', 'DataService', '$http', '$location',
+    function($scope, $routeParams, Phone, Api, _, DataService, $http, $location) {
+
 
         $scope.totalPages = 0;
         $scope.customersCount = 0;
@@ -130,7 +131,25 @@ phonecatControllers.controller('MainCtrl', ['$scope', '$routeParams', 'Phone', '
             return Api.products.search($scope.filterCriteria).then(function (data) {
                 console.log('REST_PRODUCTS', data);
                 $scope.products = data;
-                $scope.filter = data.filter;
+                var filterList = [];
+                if (!_.isNull(data.filter)) {
+                    _.each(data.filter, function (item, err) {
+                        if (item.field === 'title') {
+                           item.name = 'Наименование';
+                           filterList.push(item);
+                        }
+                        if (item.field === 'catalog') {
+                            item.name = 'Категория';
+                            filterList.push(item);
+                        }
+                        if (item.field === 'price') {
+                            item.name = 'Стоимость';
+                            filterList.push(item);
+                        }
+
+                    });
+                }
+                $scope.filter = filterList;
                 console.log($scope.filter);
                 $scope.totalPages = $scope.filterCriteria.pageNumber;
                 $scope.customersCount = data.length;
@@ -141,21 +160,26 @@ phonecatControllers.controller('MainCtrl', ['$scope', '$routeParams', 'Phone', '
                 $scope.totalPages = 0;
                 $scope.customersCount = 0;
             });
-        }
+        };
 
 
         console.log($scope.fetchResult());
 
-        $scope.filterResult = function () {
+/*
+        $scope.filterResultMain = function () {
+            var filterList = ['title','price','category'];
             $scope.checked = $scope.filterCriteria;
-          console.log('------------->', $scope.filterCriteria);
-            $scope.filterCriteria.pageNumber = 1;
-            $scope.fetchResult();
-            /*    $scope.fetchResult().then(function () {
-             //The request fires correctly but sometimes the ui doesn't update, that's a fix
-             $scope.filterCriteria.pageNumber = 1;
-             });*/
+
+            for (var criteria in $scope.filterCriteria) {
+                console.log('OOOOOOOOO',filterList.indexOf(criteria));
+                if (filterList.indexOf(criteria) > 0) {
+                    var requestParams = '?' + criteria + '=' + $scope.filterCriteria[criteria]
+                    var request = '/app/index.html/phones' + requestParams;
+                }
+//                $location.path('/app/index.html#/phones');
+            }
         };
+*/
 
         $scope.empty = function () {
             $scope.filterCriteria = {
@@ -170,9 +194,8 @@ phonecatControllers.controller('MainCtrl', ['$scope', '$routeParams', 'Phone', '
 
     }]);
 
-
-phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routeParams',
-  function($scope, Api, _, $routeParams) {
+phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routeParams', '$http',
+  function($scope, Api, _, $routeParams,$http) {
 
 /*
       http://plnkr.co/edit/wZuIbDl6sGQ9VgYpLIP3?p=preview
@@ -204,6 +227,7 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routePa
           page: 1
       };
 
+
       $scope.filterCriteria = {
           pageNumber: $scope.pagination.page,
           sortDir: 'asc',
@@ -211,20 +235,13 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routePa
           count:$scope.pagination.perPage
       };
 
-//      $scope.pagination = Pagination.getNew(10);
-
-
       $scope.pagination.nextPage = function() {
 
           if ($scope.pagination.page < $scope.pagination.numPages) {
               $scope.pagination.page += 1;
 
-              $scope.filterCriteria = {
-                  pageNumber: $scope.pagination.page,
-                  sortDir: 'asc',
-                  sortedBy: 'id',
-                  count:$scope.pagination.perPage
-              };
+              $scope.filterCriteria.pageNumber = $scope.pagination.page;
+              $scope.filterCriteria.count = $scope.pagination.perPage;
               $scope.fetchResult();
           }
       };
@@ -233,12 +250,8 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routePa
           if ($scope.pagination.page > 0) {
               $scope.pagination.page -= 1;
 
-              $scope.filterCriteria = {
-                  pageNumber: $scope.pagination.page,
-                  sortDir: 'asc',
-                  sortedBy: 'id',
-                  count:$scope.pagination.perPage
-              };
+              $scope.filterCriteria.pageNumber = $scope.pagination.page;
+              $scope.filterCriteria.count = $scope.pagination.perPage;
               $scope.fetchResult();
           }
       };
@@ -249,12 +262,9 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routePa
               id++;
               $scope.pagination.page = id;
 
-              $scope.filterCriteria = {
-                  pageNumber: $scope.pagination.page,
-                  sortDir: 'asc',
-                  sortedBy: 'id',
-                  count:$scope.pagination.perPage
-              };
+              $scope.filterCriteria.pageNumber = $scope.pagination.page;
+              $scope.filterCriteria.count = $scope.pagination.perPage;
+
               $scope.fetchResult();
           }
       };
@@ -293,8 +303,6 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routePa
               $scope.categories = data;
           }, function () {
           });
-
-
       };
 
       $scope.helpful();
@@ -313,15 +321,34 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routePa
               $scope.filterCriteria.category = $routeParams.category;
               $scope.requestParams = true;
           }
-
-          return Api.products.search($scope.filterCriteria).then(function (data) {
+          $scope.promise = Api.products.search($scope.filterCriteria).then(function (data) {
               console.log('REST_PRODUCTS', data);
               $scope.products = data;
-              $scope.filter = data.filter;
+              var filterList = [];
+              if (!_.isNull(data.filter)) {
+                  _.each(data.filter, function (item, err) {
+                      if (item.field === 'title') {
+                          item.name = 'Наименование';
+                          filterList.push(item);
+                      }
+                      if (item.field === 'category') {
+                          item.name = 'Категория';
+                          filterList.push(item);
+                      }
+                      if (item.field === 'price') {
+                          item.name = 'Стоимость';
+                          filterList.push(item);
+                      }
+
+                  });
+              }
+              $scope.filter = filterList;
+//              $scope.filter = data.filter;
               console.log($scope.filter);
               $scope.totalPages = $scope.filterCriteria.pageNumber;
               $scope.customersCount = data.length;
               $scope.pagination.numPages = Math.ceil(data.meta.meta.total/$scope.pagination.perPage);
+
           }, function () {
               console.log('REST_PRODUCTS EMPTY');
               $scope.customers = [];

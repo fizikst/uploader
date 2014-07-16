@@ -7,18 +7,18 @@
 
 <div class="span3 home-page-widget">
 
-    <div id="woocommerce_product_categories-2" class="visible-all-devices "><h2>Фильтр</h2>
-        <ul ng-repeat="head in filter" class="product-categories">
-            <li class="cat-item">
-                {{head.field}}
-                <select on-blur-change="filterResult()" ng-model="filterCriteria[head.field]" >
-                    <option ng-selected="val == checked[head.field]" ng-repeat="val in head.data" value="{{val}}">{{val}}</option>
-                </select>
-            </li>
-        </ul>
-    </div>
+    <!--<div id="woocommerce_product_categories-2" class="visible-all-devices "><h2>Фильтр</h2>-->
+        <!--<ul ng-repeat="head in filter" class="product-categories">-->
+            <!--<li class="cat-item">-->
+                <!--{{head.field}}-->
+                <!--<select on-blur-change="filterResultMain()" ng-model="filterCriteria[head.field]" >-->
+                    <!--<option ng-selected="val == checked[head.field]" ng-repeat="val in head.data" value="{{val}}">{{val}}</option>-->
+                <!--</select>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
 
-    <a href ng-click="empty()" style="margin-bottom: 32px; display: block;">сбросить</a>.<br>
+    <!--<a href ng-click="empty()" style="margin-bottom: 32px; display: block;">сбросить</a>.<br>-->
 
     <style>
         #woocommerce_products-123 ul li a img {
