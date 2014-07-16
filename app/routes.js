@@ -764,6 +764,7 @@ module.exports = function(app) {
     });
 
     app.get('/api/v1/products', function(req, res) {
+        var a = Date.now();
         res.header('Access-Control-Allow-Origin', "*");
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
         res.header('Access-Control-Allow-Headers', 'Content-Type');
@@ -848,18 +849,25 @@ module.exports = function(app) {
             console.log('OPTIONS',options);
             async.eachSeries(options,
                 function(loop, cb){
+                    var filterList = ['title','price','category'];
                     Product.find(request).distinct(loop, function(error, names) {
-                        headers.push({title: loop, field: loop, visible: true, type: type[loop], data: names});
+                        if (filterList.indexOf(loop) > 0) {
+                            headers.push({title: loop, field: loop, visible: true, type: type[loop], data: names});
+                        }
                         cb();
                     });
                 },
                 function(err){
                     if (err) console.log(err);
-                    console.log('HEADERS', headers);
-                    Product.count({}, function( err, count){
+                    Product.count(request, function( err, count){
                         data.data = results;
                         data.filter = headers;
                         data.meta = {meta : {"total" : count}};
+                        var b = Date.now();
+                        var res11 = b - a;
+                        console.log("Скрипт выполнялся <"+ res11 +"> ms.");
+                        console.log("Размер <"+ JSON.stringify(data.filter).length +"> b");
+
                         res.json(data);
                     });
                 }

@@ -11,7 +11,7 @@
         <ul ng-repeat="head in filter" class="product-categories">
             <li class="cat-item">
                 {{head.field}}
-                <select on-blur-change="filterResult()" ng-model="filterCriteria[head.field]" >
+                <select on-blur-change="filterResultMain()" ng-model="filterCriteria[head.field]" >
                     <option ng-selected="val == checked[head.field]" ng-repeat="val in head.data" value="{{val}}">{{val}}</option>
                 </select>
             </li>
