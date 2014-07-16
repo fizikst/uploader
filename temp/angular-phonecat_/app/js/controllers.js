@@ -165,6 +165,7 @@ phonecatControllers.controller('MainCtrl', ['$scope', '$routeParams', 'Phone', '
 
         console.log($scope.fetchResult());
 
+/*
         $scope.filterResultMain = function () {
             var filterList = ['title','price','category'];
             $scope.checked = $scope.filterCriteria;
@@ -174,16 +175,11 @@ phonecatControllers.controller('MainCtrl', ['$scope', '$routeParams', 'Phone', '
                 if (filterList.indexOf(criteria) > 0) {
                     var requestParams = '?' + criteria + '=' + $scope.filterCriteria[criteria]
                     var request = '/app/index.html/phones' + requestParams;
-                    console.log('&&&&&&&&&&&&&&&&&&' , request);
-                    var u = $location.url('/app/index.html').absUrl();
-                    console.log(u);
                 }
 //                $location.path('/app/index.html#/phones');
             }
-            //            $location.path('/app/index.html#/phones?');
-            //$scope.filterCriteria.pageNumber = 1;
-            //$scope.fetchResult();
         };
+*/
 
         $scope.empty = function () {
             $scope.filterCriteria = {
