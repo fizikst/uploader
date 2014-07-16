@@ -29,7 +29,6 @@ phonecatControllers.controller('MainCtrl', ['$scope', '$routeParams', 'Phone', '
 
 
         $scope.pagination.nextPage = function() {
-
             if ($scope.pagination.page < $scope.pagination.numPages) {
                 $scope.pagination.page += 1;
 
@@ -236,7 +235,6 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routePa
       };
 
       $scope.pagination.nextPage = function() {
-
           if ($scope.pagination.page < $scope.pagination.numPages) {
               $scope.pagination.page += 1;
 
@@ -258,7 +256,7 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routePa
 
       $scope.pagination.toPageId = function(id) {
           console.log('Id', id);
-          if (id >= 0 && id <= $scope.pagination.page) {
+          if (id >= 0 && id <= $scope.pagination.numPages) {
               id++;
               $scope.pagination.page = id;
 
