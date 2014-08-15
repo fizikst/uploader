@@ -117,12 +117,13 @@
 
 
                 <div class="woocommerce columns-3">
-                    <button ng-click="pagination.prevPage()">Previous</button>
+
+                    <button ng-click="pagination.prevPage()">Предыдущая</button>
                     <span ng-repeat="n in [] | range: pagination.numPages" ng-class="{current: n == pagination.page}">
                         <button ng-click="pagination.toPageId(n)">{{n + 1}}</button>
                     </span>
-                    <button ng-click="pagination.nextPage()">Next</button>
-                    
+                    <button ng-click="pagination.nextPage()">Следующая</button>
+
                     <ul class="products">
 
                         <li ng-repeat="p in products" class="product type-product status-publish featured shipping-taxable purchasable product-type-simple product-cat-books-pads product-cat-digital-storage product-cat-facilities product-cat-technology product-tag-etiam-dictum product-tag-mauris-posuere product-tag-vel-mauris instock">
@@ -151,12 +152,12 @@
                         <!--</li>-->
 
                     </ul>
-
-                    <!--<button ng-click="pagination.prevPage()">Previous</button>-->
-                    <!--<span ng-repeat="n in [] | range: pagination.numPages" ng-class="{current: n == pagination.page}">-->
-                        <!--<button ng-click="pagination.toPageId(n)">{{n + 1}}</button>-->
-                    <!--</span>-->
-                    <!--<button ng-click="pagination.nextPage()">Next</button>-->
+<!--
+                    <button ng-click="pagination.prevPage()">Previous</button>
+                    <span ng-repeat="n in [] | range: pagination.numPages" ng-class="{current: n == pagination.page}">
+                        <button ng-click="pagination.toPageId(n)">{{n + 1}}</button>
+                    </span>
+                    <button ng-click="pagination.nextPage()">Next</button>!-->
                 </div>
             </div>
         </div>
