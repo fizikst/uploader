@@ -234,39 +234,6 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routePa
           count:$scope.pagination.perPage
       };
 
-      $scope.pagination.nextPage = function() {
-          if ($scope.pagination.page < $scope.pagination.numPages) {
-              $scope.pagination.page += 1;
-
-              $scope.filterCriteria.pageNumber = $scope.pagination.page;
-              $scope.filterCriteria.count = $scope.pagination.perPage;
-              $scope.fetchResult();
-          }
-      };
-
-      $scope.pagination.prevPage = function() {
-          if ($scope.pagination.page > 0) {
-              $scope.pagination.page -= 1;
-
-              $scope.filterCriteria.pageNumber = $scope.pagination.page;
-              $scope.filterCriteria.count = $scope.pagination.perPage;
-              $scope.fetchResult();
-          }
-      };
-
-      $scope.pagination.toPageId = function(id) {
-          console.log('Id', id);
-          if (id >= 0 && id <= $scope.pagination.numPages) {
-              id++;
-              $scope.pagination.page = id;
-
-              $scope.filterCriteria.pageNumber = $scope.pagination.page;
-              $scope.filterCriteria.count = $scope.pagination.perPage;
-
-              $scope.fetchResult();
-          }
-      };
-
       $scope.helpful = function() {
           Api.articles.search({type:'article'}).then(function (data) {
               console.log('REST_ARTICLE', data);
@@ -319,7 +286,9 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routePa
               $scope.filterCriteria.category = $routeParams.category;
               $scope.requestParams = true;
           }
+
           $scope.promise = Api.products.search($scope.filterCriteria).then(function (data) {
+
               console.log('REST_PRODUCTS', data);
               $scope.products = data;
               var filterList = [];
@@ -367,6 +336,45 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routePa
            //The request fires correctly but sometimes the ui doesn't update, that's a fix
            $scope.filterCriteria.pageNumber = 1;
            });*/
+      };
+
+      $scope.pagination.nextPage = function() {
+//          $scope.filterCriteria.category = 'bbb';
+//          $scope.checked = $scope.filterCriteria;
+//          console.log('------------->', $scope.filterCriteria);
+//          $scope.filterCriteria.pageNumber = 1;
+//          console.log('NEXT OPAFGE', $scope.filterCriteria);
+
+          if ($scope.pagination.page < $scope.pagination.numPages) {
+              $scope.pagination.page += 1;
+
+              $scope.filterCriteria.pageNumber = $scope.pagination.page;
+              $scope.filterCriteria.count = $scope.pagination.perPage;
+              $scope.fetchResult();
+          }
+      };
+
+      $scope.pagination.prevPage = function() {
+          if ($scope.pagination.page > 0) {
+              $scope.pagination.page -= 1;
+
+              $scope.filterCriteria.pageNumber = $scope.pagination.page;
+              $scope.filterCriteria.count = $scope.pagination.perPage;
+              $scope.fetchResult();
+          }
+      };
+
+      $scope.pagination.toPageId = function(id) {
+          console.log('Id', id);
+          if (id >= 0 && id <= $scope.pagination.numPages) {
+              id++;
+              $scope.pagination.page = id;
+
+              $scope.filterCriteria.pageNumber = $scope.pagination.page;
+              $scope.filterCriteria.count = $scope.pagination.perPage;
+
+              $scope.fetchResult();
+          }
       };
 
       $scope.empty = function () {
