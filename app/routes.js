@@ -31,6 +31,11 @@ var articleSchema = Schema({
 }, { strict: false });
 var Article = mongoose.model('Article', articleSchema);
 
+var colorSchema = Schema({
+    title: String
+}, { strict: false });
+var Color = mongoose.model('Color', colorSchema);
+
 console.log('config', config);
 require('mongoose-pagination');
 
@@ -720,6 +725,185 @@ module.exports = function(app) {
         }
     });
 //------------------------- End Articles ----------------------------------
+
+
+//------------------------- Colors ----------------------------------
+
+    app.get('/api/v1/colors', function(req, res) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+        var data = {}, request = {};
+        if (req.query.page || req.query.count) {
+        } else {
+            request = req.query;
+        }
+
+        Color.find(request).paginate(req.query.page, req.query.count).lean().exec(function(err, results) {
+            if (err) {
+                res.json({err:err});
+            }
+            Color.count({}, function(err, count){
+                data.data = results;
+                data.meta = {meta:{total:count}};
+                res.json(data);
+            });
+        });
+    });
+
+    app.post('/api/v1/colors', function(req, res) {
+
+        console.log('----- COLORS REQUEST -----', req.files);
+
+        var image = [];
+
+        if (!_.isEmpty(req.files)) {
+
+            var type = 'image/jpeg';
+            if (!_.isUndefined(req.files.file.type)) {
+                type = req.files.file.type;
+            }
+
+
+            fs.readFile(req.files.file.path, function(err, data) {
+                var base64data = new Buffer(data);
+                image.push({'image': base64data, 'type' : type});
+
+                var data = {};
+                var jsonColor = JSON.parse(req.body.color);
+                for (var key in jsonColor) {
+                    data[key] = jsonColor[key];
+                }
+                if (image.length > 0) {
+                    data['url'] = image;
+                }
+
+                console.log('***** DATA COLOR BEFORE CREATE NEW if EXIST FILE *****', data);
+                var color = new Color(data);
+
+
+                color.save(function (err) {
+                    if (err) {
+                        console.log(' ***** COLOR ERROR CREATE *****', err);
+                        res.json({err:err});
+                    }
+                    res.json({code:200});
+                });
+
+                return;
+            });
+        }  else {
+            var data = {};
+            var jsonColor = JSON.parse(req.body.color);
+            for (var key in jsonColor) {
+                data[key] = jsonColor[key];
+            }
+            if (image.length > 0) {
+                data['url'] = image;
+            }
+
+            console.log('***** DATA COLOR BEFORE CREATE NEW if NOT EXIST FILE *****', data);
+            var color = new Color(data);
+
+
+            color.save(function (err) {
+                if (err) {
+                    console.log(' ***** COLOR ERROR CREATE *****', err);
+                    res.json({err:err});
+                }
+                res.json({code:200});
+            });
+        }
+
+    });
+
+    app.put('/api/v1/colors/:id', function(req, res) {
+
+        var image = [];
+
+        if (!_.isEmpty(req.files)) {
+
+            console.log('##### COLOR FILE #####', _.isEmpty(req.files));
+
+            var type = 'image/jpeg';
+            if (!_.isUndefined(req.files.file.type)) {
+                type = req.files.file.type;
+            }
+
+
+            fs.readFile(req.files.file.path, function(err, data) {
+                var base64data = new Buffer(data);
+                image.push({'image': base64data, 'type' : type});
+
+                var data = {};
+                var jsonColor = JSON.parse(req.body.color);
+                for (var key in jsonColor) {
+                    data[key] = jsonColor[key];
+                }
+                if (image.length > 0) {
+                    data['url'] = image;
+                }
+
+                delete data.id;
+
+                console.log('***** COLOR DATA *****', data);
+
+                Color.update({ _id: req.params.id }, data, { multi: false }, function(err) {
+                    if(err) {
+                        console.log(err);
+                    }
+                    res.json({code:200});
+                });
+            });
+
+            return;
+
+        } else {
+
+            console.log('##### COLOR BODY REQUEST #####', req.body);
+            Color.update({ _id: req.params.id }, JSON.parse(req.body.color), { multi: false }, function(err) {
+                if(err) {
+                    console.log(err);
+                }
+                res.json({code:200});
+            });
+
+        }
+
+    });
+
+    app.delete('/api/v1/colors/:id', function(req, res) {
+        console.log(req.params.id);
+        Color.remove({ _id: req.params.id }, function(err,result) {
+            if (err) {
+                console.log(err);
+            }
+            res.json();
+        });
+    });
+
+    app.get('/api/v1/colors/:id', function(req, res) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+        console.log('##### GET COLOR REQUEST #####', req.params['id']);
+        var data = {};
+
+        if (req.params['id']) {
+            Color.findById(req.params['id'], function (err, color) {
+                if (err) {
+                    console.log(err);
+                }
+                data = color;
+                res.json(data);
+            });
+        } else {
+            res.json(data);
+        }
+    });
+//------------------------- End Colors ----------------------------------
 
 
     // get single

@@ -1,0 +1,34 @@
+<div ng-controller="ColorCtrl" style="width:800px;">
+
+    <table ng-table="tableParams" class="table">
+        <tbody>
+        <tr ng-repeat="color in $data" id="row_{{color._id}}">
+            <td data-title="'Название'">
+                <span ng-if="!color.$edit">{{color.title}}</span>
+                <div ng-if="color.$edit"><input class="form-control" name="title" type="text" ng-model="color.title" /></div>
+            </td>
+
+            <td data-title="'Изображение'">
+                <span ng-if="!color.$edit"><img width="400px" ng-if="color.url" ng-src="data:{{color.url[0].type}};base64, {{color.url[0].image}}"></span>
+                <div ng-if="color.$edit"><input class="form-control" name="img_file" type="file" id="img_file" /></div>
+            </td>
+
+            <td data-title="'Операции'" width="200">
+                <a ng-if="!color.$edit" href="" class="btn btn-default btn-xs" ng-click="color.$edit = true">Изменить</a>
+                <a ng-if="color.$edit" href="" class="btn btn-primary btn-xs" ng-click="color.$edit = false; editColor(color._id);">Сохранить</a>
+                <a ng-if="color.$edit" href="" class="btn btn-warning btn-xs" ng-click="color.$edit = false;">Отменить</a>
+                <a href="" class="btn btn-danger btn-xs" ng-click="deleteColor(color._id)">Удалить</a>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4"><input type=button id="new" value="new" ng-click="expand(1)"></td>
+            </tr>
+            <tr ng-show="vote===1" ng-if="vote===1">
+                <td colspan="4" ng-include src="'partials/createColor.html'"></td>
+            </tr>
+        </tfoot>
+    </table>
+
+</div>
