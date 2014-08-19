@@ -122,8 +122,8 @@ shoppingCart.prototype.loadItems = function () {
             var items = JSON.parse(items);
             for (var i = 0; i <         items.length; i++) {
                 var item = items[i];
-                if (item.sku != null && item.name != null && item.price != null && item.quantity != null) {
-                    item = new cartItem(item.sku, item.name, item.price, item.quantity);
+                if (item.sku != null && item.title != null && item.price != null && item.quantity != null) {
+                    item = new cartItem(item.sku, item.title, item.price, item.quantity);
                     this.items.push(item);
                 }
             }
@@ -149,7 +149,7 @@ shoppingCart.prototype.saveItems = function () {
 }
 
 // adds an item to the cart
-shoppingCart.prototype.addItem = function (sku, name, price, quantity) {
+shoppingCart.prototype.addItem = function (sku, title, price, quantity) {
 
     quantity = this.toNumber(quantity);
     if (quantity != 0) {
@@ -169,7 +169,7 @@ shoppingCart.prototype.addItem = function (sku, name, price, quantity) {
 
         // new item, add now
         if (!found) {
-            var item = new cartItem(sku, name, price, quantity);
+            var item = new cartItem(sku, title, price, quantity);
             this.items.push(item);
         }
 
@@ -194,9 +194,9 @@ shoppingCart.prototype.toNumber = function (value) {
     return isNaN(value) ? 0 : value;
 }
 
-function cartItem(sku, name, price, quantity) {
+function cartItem(sku, title, price, quantity) {
     this.sku = sku;
-    this.name = name;
+    this.title = title;
     this.price = price * 1;
     this.quantity = quantity * 1;
 }

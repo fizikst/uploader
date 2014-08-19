@@ -1380,6 +1380,14 @@ body #motopress-main.main-holder .content-holder ul.products li.product .price, 
     float:left;
     text-align:center;
 }
+body #motopress-main.main-holder .content-holder ul.products li.product .prop {
+    padding-top:8px;
+    color:#484848;
+    font-size:16px;
+    line-height:30px;
+    float:left;
+    text-align:center;
+}
 body #motopress-main.main-holder .content-holder ul.products li.product .price del, body #motopress-main.main-holder .content-holder ul.products li.product .price span.from, body #motopress-main.main-holder .content-holder div.product .summary .price del, body #motopress-main.main-holder .content-holder div.product .summary .price span.from {
     font-size:13px;
     display:inline-block;

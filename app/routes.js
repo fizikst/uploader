@@ -188,13 +188,13 @@ module.exports = function(app) {
                             sheet.rows.shift();
                             sheet.rows.forEach(function (row) {
                                 var dataRow = {}, dataCheckbox = {};
-//                                console.log('ROWWWWWWWWWWWWWWWWWWW', row);
                                 async.concatSeries(row,
                                     function(loop, cb){
                                         if (selectOpts.hasOwnProperty(loop.column)) {
                                             if (_.isString(loop.value)) {
-                                                if (loop.value.indexOf('|') > 0) {
-                                                    var values = loop.value.split('|');
+                                                if (loop.value.indexOf(';') > 0 && selectOpts[loop.column] !== "description") {
+                                                    var values = loop.value.split(';');
+                                                    console.log('##### ARRAY VALUES #####', values);
                                                     if (values.length > 1) {
                                                         async.concatSeries(values,
                                                             function(loop1, cb1){
@@ -230,13 +230,13 @@ module.exports = function(app) {
                                                                     });
                                                                 } else if (loop1 !== undefined || loop1 !== ''){
                                                                     val = loop1;
-                                                                    cb(null, val);
+                                                                    cb1(null, val);
                                                                 } else {
-                                                                    cb(null);
+                                                                    cb1(null);
                                                                 }
                                                             },
                                                             function(err1, result1){
-                                                                console.log('COOOONNNNNSSSSSSs', result1);
+                                                                console.log('##### RESULT GET VALUES ARRAY DATA OF XLS FILE #####', result1);
                                                                 if (err1) console.log(err1);
                                                                 dataRow[selectOpts[loop.column]] = result1;
                                                                 cb(null);
@@ -581,7 +581,6 @@ module.exports = function(app) {
 
         console.log('---------------->', req.files);
 
-//        dataRow[selectOpts[loop.column]] = [{image: image, type: type}];
         var image = [];
 
         if (!_.isEmpty(req.files)) {
@@ -605,7 +604,6 @@ module.exports = function(app) {
                     data['url'] = image;
                 }
 
-                console.log('************', data);
                 var article = new Article(data);
 
 
@@ -619,28 +617,30 @@ module.exports = function(app) {
 
                 return;
             });
-        }
 
-        var data = {};
-        var jsonArticle = JSON.parse(req.body.article);
-        for (var key in jsonArticle) {
-            data[key] = jsonArticle[key];
-        }
-        if (image.length > 0) {
-            data['url'] = image;
-        }
+        } else {
 
-        console.log('************', data);
-        var article = new Article(data);
-
-
-        article.save(function (err) {
-            if (err) {
-                console.log('ARTICLE_ADD', err);
-                res.json({err:err});
+            var data = {};
+            var jsonArticle = JSON.parse(req.body.article);
+            for (var key in jsonArticle) {
+                data[key] = jsonArticle[key];
             }
-            res.json({code:200});
-        });
+            if (image.length > 0) {
+                data['url'] = image;
+            }
+
+            console.log('************', data);
+            var article = new Article(data);
+
+
+            article.save(function (err) {
+                if (err) {
+                    console.log('ARTICLE_ADD', err);
+                    res.json({err:err});
+                }
+                res.json({code:200});
+            });
+        }
 
     });
 
@@ -683,15 +683,18 @@ module.exports = function(app) {
             });
 
             return;
+        }  else {
+
+            console.log('---------', req.body);
+            Article.update({ _id: req.params.id }, JSON.parse(req.body.article), { multi: false }, function(err) {
+                if(err) {
+                    console.log(err);
+                }
+                res.json({code:200});
+            });
+
         }
 
-        console.log('---------', req.body);
-        Article.update({ _id: req.params.id }, JSON.parse(req.body.article), { multi: false }, function(err) {
-            if(err) {
-                console.log(err);
-            }
-            res.json({code:200});
-        });
     });
 
     app.delete('/api/v1/articles/:id', function(req, res) {
@@ -920,6 +923,7 @@ module.exports = function(app) {
                 if (err) {
                     console.log(err);
                 }
+                console.log("##### GET PRODUCT #####", product);
                 data = product;
                 res.json(data);
             });
@@ -1032,16 +1036,22 @@ module.exports = function(app) {
             console.log('OPTIONS',options);
             async.eachSeries(options,
                 function(loop, cb){
-                    var filterList = ['title','price','category'];
-                    Product.find(request).distinct(loop, function(error, names) {
-                        if (filterList.indexOf(loop) > 0) {
-                            headers.push({title: loop, field: loop, visible: true, type: type[loop], data: names});
-                        }
+                    var filterList = ['title','price','category', 'color', 'size'];
+                    if (filterList.indexOf(loop) >= 0) {
+
+                        Product.find(request).distinct(loop, function(error, names) {
+                            var values = names.filter(Boolean);
+                            headers.push({title: loop, field: loop, visible: true, type: type[loop], data: values});
+                            cb();
+                        });
+                    } else {
                         cb();
-                    });
+                    }
+
                 },
                 function(err){
                     if (err) console.log(err);
+                    console.log('##### HEADER FOR PRODUCT LIST #####', headers);
                     Product.count(request, function( err, count){
                         data.data = results;
                         data.filter = headers;

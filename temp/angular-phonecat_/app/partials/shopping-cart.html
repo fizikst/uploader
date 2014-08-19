@@ -29,8 +29,9 @@
 
                 <!-- cart items -->
 
-                <tr ng-repeat="item in cart.items | orderBy:'name'">
-                    <td>{{item.name}}</td>
+
+                <tr ng-repeat="item in cart.items | orderBy:'title'">
+                    <td>{{item.title}}</td>
                     <td class="tdCenter">
                         <div class="input-append">
                             {{formCart}}
@@ -42,16 +43,16 @@
                             <button
                                     class="" type="button"
                                     ng-disabled="item.quantity >= 1000"
-                                    ng-click="cart.addItem(item.sku, item.name, item.price, +1)">+</button>
+                                    ng-click="cart.addItem(item.sku, item.title, item.price, +1)">+</button>
                             <button
                                     class="" type="button"
                                     ng-disabled="item.quantity <= 1"
-                                    ng-click="cart.addItem(item.sku, item.name, item.price, -1)">-</button>
+                                    ng-click="cart.addItem(item.sku, item.title, item.price, -1)">-</button>
                         </div>
                     </td>
-                    <td class="tdRight">{{item.price * item.quantity | currency}}</td>
+                    <td class="tdRight"><span class="rouble">Р</span>{{item.price * item.quantity  | currency: "" }}</td>
                     <td class="tdCenter" title="remove from cart">
-                        <a href="" ng-click="cart.addItem(item.sku, item.name, item.price, -10000000)" >
+                        <a href="" ng-click="cart.addItem(item.sku, item.title, item.price, -10000000)" >
                             <i class="icon-remove" />
                         </a>
                     </td>
@@ -62,7 +63,7 @@
                 <tr class="well">
                     <td><b>Итого</b></td>
                     <td class="tdCenter"><b>{{cart.getTotalCount()}}</b></td>
-                    <td class="tdRight"><b>{{cart.getTotalPrice() | currency}}</b></td>
+                    <td class="tdRight"><span class="rouble">Р</span><b>{{cart.getTotalPrice()  | currency: ""}}</b></td>
                     <td />
                 </tr>
             </table>
