@@ -49,8 +49,8 @@ phonecatApp
           });
       }
 ]).config(['RestangularProvider',function (RestangularProvider) {
-        var baseUrl = 'http://87.250.14.218:8011/api/v1/';
-//        var baseUrl = 'http://localhost:8011/api/v1/';
+//        var baseUrl = 'http://87.250.14.218:8011/api/v1/';
+        var baseUrl = 'http://localhost:8011/api/v1/';
         RestangularProvider.setBaseUrl(baseUrl);
         RestangularProvider.setRestangularFields({
           id: "_id"

@@ -423,7 +423,6 @@ module.exports = function(app) {
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
         res.header('Access-Control-Allow-Headers', 'Content-Type');
 
-        console.log("GET PRODUCTS", req.query);
         var sorting = {}, order, skip;
         if (req.query.filter) {
             var filter = {};
@@ -956,38 +955,46 @@ module.exports = function(app) {
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
         res.header('Access-Control-Allow-Headers', 'Content-Type');
 
-        console.log("GET PRODUCTS", req.query);
+        console.log(" ##### GET REQUEST PRODUCTS ##### ", req.query);
         var sorting = {}, order, skip;
         if (req.query) {
             var filter = {};
-            var metaArr = ['pageNumber', 'sortDir', 'sortedBy', 'count']
+            var metaArr = ['pageNumber', 'sortDir', 'sortedBy', 'count'];
+            var conditionPrice = {};
+
             for(var k in req.query) {
                 var key = decodeURIComponent(k);
                 if (_.indexOf(metaArr, decodeURIComponent(k)) >= 0) {
                     console.log('--------', _.indexOf(metaArr, decodeURIComponent(k)));
                 }  else {
-//                        filter[key] = {'$regex': req.query[k], '$options': 'i'};
-                    if (key === 'price') {
-                        filter[key] = parseFloat(req.query[k]);
+                    if (key === 'price_to' || key === 'price_from') {
+
+                        if (! _.isNaN(parseFloat(req.query[key]))) {
+                            if (key === 'price_to') {
+                                conditionPrice['$gte'] = parseFloat(req.query[k]);
+                            } else {
+                                conditionPrice['$lte'] =  parseFloat(req.query[k]);
+                            }
+                        }
+
                     } else {
                         filter[key] = req.query[k];
                     }
-                    console.log('FILTERS LIST', filter);
-                }
+                    if (!_.isEmpty(conditionPrice)) {
+                        filter['price'] = conditionPrice;
+                    }
+                }                                                              1
             }
         }
 
+        var request;
         if (filter) {
-            var request = filter;
+            request = filter;
         } else {
-            var request = {};
+            request = {};
         }
 
-        console.log('REQUEST', request);
-
-//        console.log('SORTING', sorting);
-
-//        skip = (req.query.page-1) * req.query.count;
+        console.log('##### REQUEST MONGODB #####', request);
 
         Product.find(request).paginate(req.query.pageNumber, req.query.count).lean().exec(function(err, results) {
             console.log('RESULTS', results);
