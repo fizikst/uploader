@@ -32,11 +32,19 @@
                         <tbody>
                         <tr>
                             <td class="label"><label for="pa_color">Цвет : </label></td>
-                            <td class="value">{{product.color}}</td>
+                            <td class="value">
+                                <ul ng-repeat="color in product.color" class="property_product">
+                                    <li>{{color}}</li>
+                                </ul>
+                            </td>
                         </tr>
                         <tr>
                             <td class="label"><label for="pa_size">Размер : </label></td>
-                            <td class="value">{{product.size}}</td>
+                            <td class="value">
+                                <ul ng-repeat="size in product.size" class="property_product">
+                                    <li>{{size}}</li>
+                                </ul>
+                            </td>
                         </tr>
                         <tr>
                             <td class="label"><label for="pa_category">Категория : </label></td>
