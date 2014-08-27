@@ -996,7 +996,7 @@ module.exports = function(app) {
 
         console.log('##### REQUEST MONGODB #####', request);
 
-        Product.find(request).paginate(req.query.pageNumber, req.query.count).lean().exec(function(err, results) {
+        Product.find(request).paginate(req.query.pageNumber, req.query.count).sort({order: 1}).lean().exec(function(err, results) {
             console.log('RESULTS', results);
             var data = {};
             var options = [];
