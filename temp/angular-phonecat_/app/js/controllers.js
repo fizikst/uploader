@@ -345,6 +345,18 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routePa
                           item.name = 'Цвет';
                           filterList.push(item);
                       }
+                      if (item.field === 'vendor') {
+                          item.name = 'Производитель';
+                          filterList.push(item);
+                      }
+                      if (item.field === 'coating') {
+                          item.name = 'Тип покрытия';
+                          filterList.push(item);
+                      }
+                      if (item.field === 'available') {
+                          item.name = 'Наличие';
+                          filterList.push(item);
+                      }
 
                   });
               }

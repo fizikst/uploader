@@ -1043,7 +1043,7 @@ module.exports = function(app) {
             console.log('OPTIONS',options);
             async.eachSeries(options,
                 function(loop, cb){
-                    var filterList = ['title','price','category', 'color', 'size'];
+                    var filterList = ['title','price','category', 'color', 'size', 'vendor', 'coating', 'available'];
                     if (filterList.indexOf(loop) >= 0) {
 
                         Product.find(request).distinct(loop, function(error, names) {
