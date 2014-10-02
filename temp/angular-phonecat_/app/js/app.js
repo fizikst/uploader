@@ -22,26 +22,26 @@ phonecatApp
       function($routeProvider) {
         $routeProvider.
           when('/', {
-            templateUrl: 'partials/main.html',
+            templateUrl: 'app/partials/main.html',
             controller: 'MainCtrl'/*,
             redirectTo: function (routeParams, path, search) {
                 return "/phones/5356b32ccfc39eec709bee05";
             }*/
           }).
           when('/phones/:id', {
-              templateUrl: 'partials/phone-detail.html',
+              templateUrl: 'app/partials/phone-detail.html',
               controller: 'PhoneDetailCtrl'
           }).
           when('/phones/:category?', {
-            templateUrl: 'partials/phone-list.html',
+            templateUrl: 'app/partials/phone-list.html',
             controller: 'PhoneListCtrl'
           }).
           when('/cart', {
-            templateUrl: 'partials/shopping-cart.html',
+            templateUrl: 'app/partials/shopping-cart.html',
             controller: 'ShoppingCartCtrl'
           }).
           when('/articles/:id', {
-              templateUrl: 'partials/article-detail.html',
+              templateUrl: 'app/partials/article-detail.html',
               controller: 'ArticleDetailCtrl'
           }).
           otherwise({

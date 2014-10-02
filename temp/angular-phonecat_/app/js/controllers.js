@@ -306,6 +306,26 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routePa
                           item.name = 'Стоимость';
                           filterList.push(item);
                       }
+                      if (item.field === 'size') {
+                          item.name = 'Размер';
+                          filterList.push(item);
+                      }
+                      if (item.field === 'color') {
+                          item.name = 'Цвет';
+                          filterList.push(item);
+                      }
+                      if (item.field === 'vendor') {
+                          item.name = 'Производитель';
+                          filterList.push(item);
+                      }
+                      if (item.field === 'coating') {
+                          item.name = 'Тип покрытия';
+                          filterList.push(item);
+                      }
+                      if (item.field === 'available') {
+                          item.name = 'Наличие';
+                          filterList.push(item);
+                      }
 
                   });
               }
@@ -436,7 +456,6 @@ phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Ph
 
           if (data.url.length > 0) {
               $scope.mainImageUrl = data.url[0].image;
-              console.log('change image', $scope.mainImageUrl);
           }
 
 
@@ -463,7 +482,7 @@ phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Ph
 
     $scope.setImage = function(imageUrl) {
         $scope.mainImageUrl = imageUrl;
-        console.log('change image', $scope.mainImageUrl);
+//        console.log('change image', $scope.mainImageUrl);
     }
 
   }]);

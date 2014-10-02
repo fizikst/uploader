@@ -12,266 +12,117 @@
 </div>
 
 <div class="row">
-    <div class="span11 right" id="content">
+    <div class="span10 right" id="content">
         <div itemscope="" itemtype="http://schema.org/Product" id="product-1946" class="post-1946 product type-product status-publish featured shipping-taxable purchasable product-type-simple product-cat-art-craft-leisure product-cat-furniture product-cat-paper-products product-cat-printers-cartridges product-tag-lorem-ipsum product-tag-sed-blandit-massa product-tag-vel-mauris instock">
             <div class="images" style="float: left">
                 <div class="phone-images">
                     <img style="border:1px solid #303132" ng-src="data:{{img.type}};base64, {{img.image}}" ng-repeat="img in product.url" ng-class="{active: mainImageUrl==img.image}" class="phone attachment-shop_single wp-post-image" alt="{{product.name}}" title="{{product.name}}">
                 </div>
-                <!--<div class="phone-images">-->
-                    <!--<img ng-src="data:{{img.type}};base64, {{img.image}}"-->
-                         <!--class="phone"-->
-                         <!--ng-repeat="img in product.url"-->
-                         <!--ng-class="{active: mainImageUrl==img.image}">-->
-                <!--</div>-->
                 <div class="thumbnails" style="text-align: left">
                     <a ng-repeat="img in product.url" >
                         <img ng-click="setImage(img.image);" width="140" height="140" ng-if="img.image" ng-src="data:{{img.type}};base64, {{img.image}}" class="attachment-shop_thumbnail" alt="{{product.name}}">
                     </a>
-                    <!--<li ng-repeat="img in arrImg">-->
-                        <!--<a><img ng-src="data:{{product.type}};base64, {{img}}" ng-click="setImage(img)"></a>-->
-                    <!--</li>-->
                 </div>
             </div>
 
-            <div class="summary entry-summary">
+            <div class="summary entry-summary" style="float:left;">
                 <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                    <p class="price"><span class="amount">{{product.price}} руб.</span></p>
-                    <p class="stock ">150 in stock</p>
+                    <h4>{{product.title}}</h4>
+                    <table class="variations" cellspacing="0">
+                        <tbody>
+                        <tr>
+                            <td class="label"><label for="pa_color">Цвет : </label></td>
+                            <td class="value">
+                                <ul ng-repeat="color in product.color" class="property_product">
+                                    <li>{{color}}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label"><label for="pa_size">Размер : </label></td>
+                            <td class="value">
+                                <ul ng-repeat="size in product.size" class="property_product">
+                                    <li>{{size}}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label"><label for="pa_category">Категория : </label></td>
+                            <td class="value">{{product.category}}</td>
+                        </tr>
+                        <tr>
+                            <td class="label"><label for="pa_price">Стоимость : </label></td>
+                            <td class="value">{{product.price}} руб.</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <!--<p class="stock ">150 in stock</p>-->
                     <meta itemprop="price" content="12">
                     <meta itemprop="priceCurrency" content="USD">
                     <link itemprop="availability" href="http://schema.org/InStock">
-                </div><div itemprop="description">
-                <p>Stationery store is our mission and we are proud to follow it year by year</p>
-            </div>
-
-
-                <!--<a href="default.htm#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">-->
-                    <!--<i class="icon-shopping-cart" />-->
-                    <!--<b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>-->
-                    <!--<span ng-show="cart.getTotalCount(product._id) > 0"><br />this item is in the cart</span>-->
-                <!--</a>-->
-
-                <div class="span4" style="margin-left: 0px;">
-                    <button
-                            class="btn btn-block btn-success"
-                            ng-click="cart.addItem(product._id, product.name, product.price, 1)">
-                        <i class="icon-shopping-cart icon-white" /> add to cart
-                    </button>
-                    <button
-                            class="btn btn-block btn-danger"
-                            ng-click="cart.addItem(product._id, product.name, product.price, -10000)"
-                            ng-disabled="cart.getTotalCount(product._id) < 1">
-                        <i class="icon-trash icon-white" /> remove from cart
-                    </button>
-                    <button
-                            class="btn btn-block"
-                            onclick="window.location.href=''">
-                        <i class="icon-chevron-left" /> back to store
-                    </button>
                 </div>
-<!--
-                <form class="cart" method="post" enctype="multipart/form-data">
-                    <div class="quantity buttons_added"><input type="number" step="1" min="1" max="150" name="quantity" value="1" title="Qty" class="input-text qty text" size="4"></div>
-                    <input type="hidden" name="add-to-cart" value="1946">
-                    <button type="submit" class="single_add_to_cart_button button alt">Add to cart</button>
-                </form>
--->
+                    <!--<p>Stationery store is our mission and we are proud to follow it year by year</p>-->
             </div>
 
-            <div class="woocommerce-tabs" style="float: left">
+
+
+            <div class="span4" style="margin-left: 0px;">
+                <button
+                        class="btn btn-block btn-success"
+                        ng-click="cart.addItem(product._id, product.title, product.price, 1)">
+                    <i class="icon-shopping-cart icon-white" /> Добавить в корзину
+                </button>
+                <button
+                        class="btn btn-block btn-danger"
+                        ng-click="cart.addItem(product._id, product.name, product.price, -10000)"
+                        ng-disabled="cart.getTotalCount(product._id) < 1">
+                    <i class="icon-trash icon-white" /> Удалить из корзины
+                </button>
+                <button
+                        class="btn btn-block"
+                        onclick="window.location.href=''">
+                    <i class="icon-chevron-left" /> Вернуться к витрине
+                </button>
+            </div>
+
+
+            <div class="woocommerce-tabs span10" style="float: left">
                 <div class="panel entry-content" id="tab-description" style="display: block;">
-                    <h2>Product Description</h2>
-                    <p>Stationery store is our mission and we are proud to follow it year by year. We are glad to deliver you the premium products and first class services. You should know that as a customer you will get huge benefits while cooperating with our company. Our customer care policy helped us stay at the top of our business for over fifteen years because we know our business and do our job reliably every time.</p>
-                    <p>Our nationwide stationery stores network attracts many clients with additional services that are available for our clients at any of our stores. Delivery system was always one of our main trumps – you don’t have to worry about the safety of your order. Home delivery is a very widespread service nowadays and it is obvious that our company also offers such kind of delivery.</p>
-                    <p>Our range of goods counts more than 5000 world famous brands and even own branded office products. It means that you can easily choose the best office supplies and other related goods at our store without any problems. High quality and low prices are the cornerstones of our business.</p>
-                    <p>We really hope that you’ll enjoy your experience of working with our store and we would be glad to receive any feedback about our services and products. So, please don’t hesitate to leave your comments and of course visit our store – we are sure that you’ll find many useful things here. And remember – our prices are fair enough to make your visit really pleasant.</p>
+                    <h4>Описание:</h4>
+                    <div bind-html-unsafe="product.description"></div>
                 </div>
             </div>
 
-            <!--            <div class="summary entry-summary">
-                            <div class="woocommerce-product-rating" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
-                                <div class="star-rating" title="Rated 4.00 out of 5">
-                                <span style="width:80%">
-                                <strong itemprop="ratingValue" class="rating">4.00</strong> out of 5 </span>
-                                    <b class="rate_content">Rated 4.00 out of 5</b></div>
-                                <a href="#reviews" class="woocommerce-review-link" rel="nofollow">(<span itemprop="ratingCount" class="count">2</span> customer reviews)</a>
-                            </div>
-                            <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                                <p class="price"><span class="amount">$12.00</span></p>
-                                <meta itemprop="price" content="12">
-                                <meta itemprop="priceCurrency" content="USD">
-                                <link itemprop="availability" href="http://schema.org/InStock">
-                            </div><div itemprop="description">
-                            <p>Stationery store is our mission and we are proud to follow it year by year</p>
-                        </div>
-                            <p class="stock ">150 in stock</p>
-                            <form class="cart" method="post" enctype="multipart/form-data">
-                                <div class="quantity buttons_added"><input type="button" value="-" class="minus"><input type="number" step="1" min="1" max="150" name="quantity" value="1" title="Qty" class="input-text qty text" size="4"><input type="button" value="+" class="plus"></div>
-                                <input type="hidden" name="add-to-cart" value="1946">
-                                <button type="submit" class="single_add_to_cart_button button alt">Add to cart</button>
-                            </form>
-                            <div class="product_meta">
-                                <span class="posted_in">Categories: <a href="http://livedemo00.template-help.com/woocommerce_48611/product-category/art-craft-leisure/" rel="tag">ART, CRAFT &amp; LEISURE</a>, <a href="http://livedemo00.template-help.com/woocommerce_48611/product-category/furniture/" rel="tag">FURNITURE</a>, <a href="http://livedemo00.template-help.com/woocommerce_48611/product-category/paper-products/" rel="tag">PAPER PRODUCTS</a>, <a href="http://livedemo00.template-help.com/woocommerce_48611/product-category/printers-cartridges/" rel="tag">PRINTERS, CARTRIDGES</a>.</span>
-                                <span class="tagged_as">Tags: <a href="http://livedemo00.template-help.com/woocommerce_48611/product-tag/lorem-ipsum/" rel="tag">Lorem ipsum</a>, <a href="http://livedemo00.template-help.com/woocommerce_48611/product-tag/sed-blandit-massa/" rel="tag">Sed blandit massa</a>, <a href="http://livedemo00.template-help.com/woocommerce_48611/product-tag/vel-mauris/" rel="tag">vel mauris</a>.</span>
-                            </div>
+        </div>
+    </div>
 
+    <div class="sidebar span2" id="sidebar" data-motopress-type="static-sidebar" >
 
-                            <script>(function(d, s, id) {
-                                var js, fjs = d.getElementsByTagName(s)[0];
-                                if (d.getElementById(id)) {return;}
-                                js = d.createElement(s); js.id = id;
-                                js.src = "http://connect.facebook.net/en_US/all.js#xfbml=1";
-                                fjs.parentNode.insertBefore(js, fjs);
-                            }(document, 'script', 'facebook-jssdk'));
-                            </script>
-
-                            <script type="text/javascript">
-                                (function() {
-                                    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                                    po.src = 'https://apis.google.com/js/plusone.js';
-                                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-                                })();
-                            </script>
-                            <ul class="share-buttons unstyled clearfix">
-                                <li class="twitter">
-                                    <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/tweet_button.1395870373.html#_=1396418188436&amp;count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Flivedemo00.template-help.com%2Fwoocommerce_48611%2Fproduct%2Fproduct-12%2F%23comment-20&amp;size=m&amp;text=D-Ring%20Vinyl%20View%20Binder%20-%20http%3A%2F%2Flivedemo00.template-help.com%2Fwoocommerce_48611%2Fproduct%2Fproduct-12%2F&amp;url=http%3A%2F%2Flivedemo00.template-help.com%2Fwoocommerce_48611%2Fproduct%2Fproduct-12%2F" class="twitter-share-button twitter-tweet-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 107px; height: 20px;"></iframe>
-                                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-                                </li>
-                                <li class="facebook">
-                                    <div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tab-index="-1" src="http://static.ak.facebook.com/connect/xd_arbiter/wTH8U0osOYl.js?version=40#channel=f2d0cdbecc&amp;origin=http%3A%2F%2Flivedemo00.template-help.com" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tab-index="-1" src="https://s-static.ak.facebook.com/connect/xd_arbiter/wTH8U0osOYl.js?version=40#channel=f2d0cdbecc&amp;origin=http%3A%2F%2Flivedemo00.template-help.com" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div><div class="fb-like fb_iframe_widget" data-href="http://livedemo00.template-help.com/woocommerce_48611/product/product-12/" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="arial" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=&amp;font=arial&amp;href=http%3A%2F%2Flivedemo00.template-help.com%2Fwoocommerce_48611%2Fproduct%2Fproduct-12%2F&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=false&amp;show_faces=false&amp;width=100"><span style="vertical-align: bottom; width: 76px; height: 20px;"><iframe name="f110e48fdc" width="100px" height="1000px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:like Facebook Social Plugin" src="http://www.facebook.com/plugins/like.php?app_id=&amp;channel=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter%2FwTH8U0osOYl.js%3Fversion%3D40%23cb%3Df339d31a54%26domain%3Dlivedemo00.template-help.com%26origin%3Dhttp%253A%252F%252Flivedemo00.template-help.com%252Ff2d0cdbecc%26relation%3Dparent.parent&amp;font=arial&amp;href=http%3A%2F%2Flivedemo00.template-help.com%2Fwoocommerce_48611%2Fproduct%2Fproduct-12%2F&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=false&amp;show_faces=false&amp;width=100" style="border: none; visibility: visible; width: 76px; height: 20px;" class=""></iframe></span></div>
-                                </li>
-                                <li class="google">
-                                    <div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background-position: initial initial; background-repeat: initial initial;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1396418187835" name="I0_1396418187835" src="https://apis.google.com/u/0/_/+1/fastbutton?usegapi=1&amp;size=medium&amp;origin=http%3A%2F%2Flivedemo00.template-help.com&amp;url=http%3A%2F%2Flivedemo00.template-help.com%2Fwoocommerce_48611%2Fproduct%2Fproduct-12%2F&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.ru.9WswicL8sdI.O%2Fm%3D__features__%2Fam%3DAQ%2Frt%3Dj%2Fd%3D1%2Fz%3Dzcms%2Frs%3DAItRSTOlaLUuGHlsxQZ3-i-abuFU8Dkf_A#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1396418187835&amp;parent=http%3A%2F%2Flivedemo00.template-help.com&amp;pfname=&amp;rpctoken=35328322" data-gapiattached="true" title="+1"></iframe></div>
-                                </li>
-                                <li class="pinterest">
-                                    <a href="javascript:void((function(){var e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)})());"><img src="http://assets.pinterest.com/images/PinExt.png" alt=""></a>
-                                </li>
-                            </ul>
-                        </div>-->
+        <div id="my_postwidget-7" class="visible-all-devices widget">
+            <h4>Вопрос - ответ</h4>
+            <ul class="post-list unstyled">
+                <li class="post-list_li clearfix">
+                    <figure class="featured-thumbnail thumbnail">
+                        <a href="#" title="Mauris posuere"><img src="http://www.kupitdveri59.ru/assets/images/faq/faq3.jpg" alt="Mauris posuere"></a>
+                    </figure>
+                    <h4 class="post-list_h">
+                        <a href="#" rel="bookmark" title="Permanent Link to Mauris posuere">Вызвать замерщика</a>
+                    </h4>
+                    <div class="excerpt">Компания "Двери В Дом" предост... </div>
+                    <a href="#" class="btn btn-primary">подробнее</a>
+                </li>
+                <li class="post-list_li clearfix">
+                    <figure class="featured-thumbnail thumbnail">
+                        <a href="#" title="Donec tempor libero"><img src="http://www.kupitdveri59.ru/assets/images/faq/faq2.jpg" alt="Donec tempor libero"></a>
+                    </figure>
+                    <h4 class="post-list_h">
+                        <a href="#" rel="bookmark" title="Permanent Link to Donec tempor libero">Заказать установку</a>
+                    </h4>
+                    <div class="excerpt">Воспользуйтесь возможностью ... </div>
+                    <a href="#" class="btn btn-primary">подробнее</a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
-
-
-
-<!--
-<div class="phone-images">
-  <img ng-src="{{img}}"
-       class="phone"
-       ng-repeat="img in phone.images"
-       ng-class="{active: mainImageUrl==img}">
-</div>
-
-<h1>{{phone.name}}</h1>
-
-<p>{{phone.description}}</p>
-
-<ul class="phone-thumbs">
-  <li ng-repeat="img in phone.images">
-    <img ng-src="{{img}}" ng-click="setImage(img)">
-  </li>
-</ul>
-
-<ul class="specs">
-  <li>
-    <span>Availability and Networks</span>
-    <dl>
-      <dt>Availability</dt>
-      <dd ng-repeat="availability in phone.availability">{{availability}}</dd>
-    </dl>
-  </li>
-  <li>
-    <span>Battery</span>
-    <dl>
-      <dt>Type</dt>
-      <dd>{{phone.battery.type}}</dd>
-      <dt>Talk Time</dt>
-      <dd>{{phone.battery.talkTime}}</dd>
-      <dt>Standby time (max)</dt>
-      <dd>{{phone.battery.standbyTime}}</dd>
-    </dl>
-  </li>
-  <li>
-    <span>Storage and Memory</span>
-    <dl>
-      <dt>RAM</dt>
-      <dd>{{phone.storage.ram}}</dd>
-      <dt>Internal Storage</dt>
-      <dd>{{phone.storage.flash}}</dd>
-    </dl>
-  </li>
-  <li>
-    <span>Connectivity</span>
-    <dl>
-      <dt>Network Support</dt>
-      <dd>{{phone.connectivity.cell}}</dd>
-      <dt>WiFi</dt>
-      <dd>{{phone.connectivity.wifi}}</dd>
-      <dt>Bluetooth</dt>
-      <dd>{{phone.connectivity.bluetooth}}</dd>
-      <dt>Infrared</dt>
-      <dd>{{phone.connectivity.infrared | checkmark}}</dd>
-      <dt>GPS</dt>
-      <dd>{{phone.connectivity.gps | checkmark}}</dd>
-    </dl>
-  </li>
-  <li>
-    <span>Android</span>
-    <dl>
-      <dt>OS Version</dt>
-      <dd>{{phone.android.os}}</dd>
-      <dt>UI</dt>
-      <dd>{{phone.android.ui}}</dd>
-    </dl>
-  </li>
-  <li>
-    <span>Size and Weight</span>
-    <dl>
-      <dt>Dimensions</dt>
-      <dd ng-repeat="dim in phone.sizeAndWeight.dimensions">{{dim}}</dd>
-      <dt>Weight</dt>
-      <dd>{{phone.sizeAndWeight.weight}}</dd>
-    </dl>
-  </li>
-  <li>
-    <span>Display</span>
-    <dl>
-      <dt>Screen size</dt>
-      <dd>{{phone.display.screenSize}}</dd>
-      <dt>Screen resolution</dt>
-      <dd>{{phone.display.screenResolution}}</dd>
-      <dt>Touch screen</dt>
-      <dd>{{phone.display.touchScreen | checkmark}}</dd>
-    </dl>
-  </li>
-  <li>
-    <span>Hardware</span>
-    <dl>
-      <dt>CPU</dt>
-      <dd>{{phone.hardware.cpu}}</dd>
-      <dt>USB</dt>
-      <dd>{{phone.hardware.usb}}</dd>
-      <dt>Audio / headphone jack</dt>
-      <dd>{{phone.hardware.audioJack}}</dd>
-      <dt>FM Radio</dt>
-      <dd>{{phone.hardware.fmRadio | checkmark}}</dd>
-      <dt>Accelerometer</dt>
-      <dd>{{phone.hardware.accelerometer | checkmark}}</dd>
-    </dl>
-  </li>
-  <li>
-    <span>Camera</span>
-    <dl>
-      <dt>Primary</dt>
-      <dd>{{phone.camera.primary}}</dd>
-      <dt>Features</dt>
-      <dd>{{phone.camera.features.join(', ')}}</dd>
-    </dl>
-  </li>
-  <li>
-    <span>Additional Features</span>
-    <dd>{{phone.additionalFeatures}}</dd>
-  </li>
-</ul>
--->

@@ -1,4 +1,4 @@
-@import url("../CherryFramework/style.css");
+@import url("CherryFramework/style.css");
 @import url(http://fonts.googleapis.com/css?family=Ubuntu:400,300,500,700);
 .unstyled, .pagination ul, .breadcrumb, .page-numbers, .pager, .nav-pills, .payment_methods, .woocommerce-error, .slides, .flexslider, .jp-controls, .jp-toggles, .related-posts_list, .nav-tabs { padding:0; }
 .unstyled li, .pagination ul li, .breadcrumb li, .page-numbers li, .pager li, .nav-pills li, .payment_methods li, .woocommerce-error li, .slides li, .flexslider li, .jp-controls li, .jp-toggles li, .related-posts_list li, .nav-tabs li {
@@ -45,7 +45,7 @@ p { margin:0 0 20px; }
     border-top:5px solid #ff9039;
     margin:30px 0 0;
     padding:0;
-    background:url(images/main_bg.png) 0 0 repeat;
+    background:url(../img/main_bg.png) 0 0 repeat;
 }
 .title-header {
     margin:0;
@@ -75,7 +75,7 @@ header.header .search-block >div { margin-bottom:8px; }
 header.header #search-header {
     position:relative;
     padding:5px 0 0 0;
-    background:url(images/main_bg.png) 0 0 repeat;
+    background:url(../img/main_bg.png) 0 0 repeat;
 }
 header.header #search-header input.search-form_it {
     -webkit-border-radius:0;
@@ -176,10 +176,10 @@ header.header #search-header #search-form_is:hover { color:#ff9039; }
 .menu-line {
     position:relative;
     height:5px;
-    background:url(images/main_bg.png) 0 0 repeat;
+    background:url(../img/main_bg.png) 0 0 repeat;
 }
 .menu-line:after, .menu-line:before {
-    background:url(images/main_bg.png) 0 0 repeat;
+    background:url(../img/main_bg.png) 0 0 repeat;
     content:"";
     position:absolute;
     top:0;
@@ -207,7 +207,7 @@ header.header #search-header #search-form_is:hover { color:#ff9039; }
     top:65%;
     right:50%;
     margin-right:-5px;
-    background:url(images/arrows-ffffff.png) 0 -100px no-repeat;
+    background:url(../img/arrows-ffffff.png) 0 -100px no-repeat;
 }
 #topnav li a:after {
     -webkit-transition:all 0.3s ease;
@@ -250,13 +250,13 @@ header.header #search-header #search-form_is:hover { color:#ff9039; }
 #topnav li .sub-menu li a .sf-sub-indicator {
     top:25%;
     right:-8px;
-    background:url(images/arrows-ffffff.png) 0 0 no-repeat;
+    background:url(../img/arrows-ffffff.png) 0 0 no-repeat;
 }
 #topnav li .sub-menu li > a:hover, #topnav li .sub-menu li.sfHover > a, #topnav li .sub-menu li.current-menu-item > a {
     color:#303132;
     background:none;
 }
-#topnav li .sub-menu li > a:hover .sf-sub-indicator, #topnav li .sub-menu li.sfHover > a .sf-sub-indicator, #topnav li .sub-menu li.current-menu-item > a .sf-sub-indicator { background:url(images/arrows-ffffff.png) -10px 0 no-repeat; }
+#topnav li .sub-menu li > a:hover .sf-sub-indicator, #topnav li .sub-menu li.sfHover > a .sf-sub-indicator, #topnav li .sub-menu li.current-menu-item > a .sf-sub-indicator { background:url(../img/arrows-ffffff.png) -10px 0 no-repeat; }
 #topnav li .sub-menu .sub-menu {
     left:100%;
     margin:-19px 0 0 42px;
@@ -264,7 +264,7 @@ header.header #search-header #search-form_is:hover { color:#ff9039; }
 #topnav li:first-child a { border-left:1px solid #eeeeee; }
 #topnav li.current-menu-item > a, #topnav li.sfHover > a, #topnav li a:hover { background:none; }
 #topnav li.current-menu-item > a:after, #topnav li.sfHover > a:after, #topnav li a:hover:after { height:5px; }
-#topnav li.current-menu-item > a .sf-sub-indicator, #topnav li.sfHover > a .sf-sub-indicator, #topnav li a:hover .sf-sub-indicator { background:url(images/arrows-ffffff.png) -10px -100px no-repeat; }
+#topnav li.current-menu-item > a .sf-sub-indicator, #topnav li.sfHover > a .sf-sub-indicator, #topnav li a:hover .sf-sub-indicator { background:url(../img/arrows-ffffff.png) -10px -100px no-repeat; }
 .slider_off { margin-bottom:60px; }
 .slider {
     margin-top:38px;
@@ -683,14 +683,14 @@ body #motopress-main.main-holder .product-categories li:first-child { border:non
     line-height:24px;
     min-width:56px;
     height:auto;
-    background:url(images/main_bg.png) 0 0 repeat;
+    background:url(../img/main_bg.png) 0 0 repeat;
 }
 .testimonials .testi-item { margin-bottom:20px; }
 .testimonials .testi-item .testi-item_blockquote {
     padding:0 0 0 70px;
     font-size:12px;
     line-height:18px;
-    background:url(images/testi_quote.png) 0 5px no-repeat;
+    background:url(../img/testi_quote.png) 0 5px no-repeat;
 }
 .testimonials .testi-item .testi-item_blockquote a { color:#a2a2a2; }
 .testimonials .testi-item .testi-item_blockquote a:hover { color:#303132; }
@@ -886,7 +886,7 @@ body #motopress-main.main-holder .product-categories li:first-child { border:non
 footer.footer {
     padding:50px 0 20px;
     border:none;
-    background:url(images/main_bg.png) 0 0 repeat;
+    background:url(../img/main_bg.png) 0 0 repeat;
 }
 footer.footer h1, footer.footer h2, footer.footer h3, footer.footer h4, footer.footer h5, footer.footer h6 { color:#fff; }
 footer.footer h2 { margin-bottom:50px; }
@@ -926,7 +926,7 @@ footer.footer ul li a:hover { color:#ff9039; }
 @media (max-width: 767px) {
     footer.footer { position:relative; }
     footer.footer:after, footer.footer:before {
-        background:url(images/main_bg.png) 0 0 repeat;
+        background:url(../img/main_bg.png) 0 0 repeat;
         content:"";
         position:absolute;
         top:0;
@@ -1077,7 +1077,7 @@ body #motopress-main.main-holder .cart-holder h3 {
     font-weight:500;
     text-transform:none;
     color:#fff;
-    background:url(images/main_bg.png) 0 0 repeat;
+    background:url(../img/main_bg.png) 0 0 repeat;
 }
 body #motopress-main.main-holder .cart-holder h3:before {
     position:relative;
@@ -1087,7 +1087,7 @@ body #motopress-main.main-holder .cart-holder h3:before {
     height:24px;
     width:18px;
     margin-right:12px;
-    background:url(images/cart_icon.png) 0 0 no-repeat;
+    background:url(../img/cart_icon.png) 0 0 no-repeat;
 }
 body #motopress-main.main-holder .cart-holder h3:after {
     position:relative;
@@ -1376,6 +1376,14 @@ body #motopress-main.main-holder .content-holder ul.products li.product .price, 
     padding-top:8px;
     color:#484848;
     font-size:29px;
+    line-height:30px;
+    float:left;
+    text-align:center;
+}
+body #motopress-main.main-holder .content-holder ul.products li.product .prop {
+    padding-top:8px;
+    color:#484848;
+    font-size:16px;
     line-height:30px;
     float:left;
     text-align:center;
@@ -2745,7 +2753,7 @@ div.pp_woocommerce div.ppt { display:none !important; }
     text-align:center;
     font:9px/16px FontAwesome;
     color:#fff;
-    background:url(images/main_bg.png) 0 0 repeat;
+    background:url(../img/main_bg.png) 0 0 repeat;
 }
 .btn-large:hover, .slider .btn:hover {
     border-color:#ff9039;

@@ -9,12 +9,18 @@
 <div class="span3 home-page-widget">
     <div id="woocommerce_product_categories-2" class="visible-all-devices "><h2>Фильтр</h2>
         <ul ng-repeat="head in filter" class="product-categories">
-            <li class="cat-item">
-                {{head.name}}
+            <li class="cat-item" ng-if="head.field !== 'price'">
+                <label>{{head.name}}</label>
                 <select on-blur-change="filterResult()" ng-model="filterCriteria[head.field]" >
                     <option ng-selected="val == checked[head.field]" ng-repeat="val in head.data" value="{{val}}">{{val}}</option>
                 </select>
             </li>
+            <li class="cat-item" ng-if="head.field === 'price'">
+                <label>{{head.name}}</label>
+                <input type="text" on-blur-change="filterResult()" ng-model="filterCriteria[head.field + '_to']" value="{{val}}"> -
+                <input type="text" on-blur-change="filterResult()" ng-model="filterCriteria[head.field + '_from']" value="{{val}}">
+            </li>
+
         </ul>
     </div>
 
@@ -42,7 +48,7 @@
         <ul style="margin: 0px;">
             <li class="bprice">
                 <a title="Самые выгодные цены на межкомнатные двери" href="index.html#/articles/{{specPrice[0]._id}}">
-                    <img src="./img/rup.png">
+                    <img src="./app/img/rup.png">
                     Суперцена
                 </a>
                 от 890 руб.
@@ -50,13 +56,13 @@
             <li class="size">
                 Бесплатный
                 <a title="Бесплатные выезд замерщика при заказе межкомнатных и входных дверей" href="index.html#/articles/{{metering[0]._id}}">
-                    <img src="./img/sample.png">
+                    <img src="./app/img/sample.png">
                     замер
                 </a>
             </li>
             <li class="shipping">
                 <a title="Доставка межкомнатных и металлических дверей" href="index.html#/articles/{{delivery[0]._id}}">
-                    <img src="./img/delivery.png">
+                    <img src="./app/img/delivery.png">
                     Доставка
                 </a>
                 на
@@ -66,7 +72,7 @@
             <li class="inst">
                 Профессиональная
                 <a title="Профессиональная установка дверей" href="index.html#/articles/{{install[0]._id}}">
-                    <img src="./img/working.png">
+                    <img src="./app/img/working.png">
                     установка
                 </a>
             </li>
@@ -128,11 +134,11 @@
 
                         <li ng-repeat="p in products" class="product type-product status-publish featured shipping-taxable purchasable product-type-simple product-cat-books-pads product-cat-digital-storage product-cat-facilities product-cat-technology product-tag-etiam-dictum product-tag-mauris-posuere product-tag-vel-mauris instock">
                             <a href="#/phones/{{p._id}}">
-                                <img style="height: 270px !important; width: auto !important;" ng-if="p.url" ng-src="data:{{p.url[0].type}};base64, {{p.url[0].image}}" class="attachment-shop_catalog wp-post-image tumb" alt="{{p.name}}">
-                                <h3>{{p.name}}</h3>
+                                <img style="height: 270px !important; width: auto !important;" ng-if="p.url" ng-src="data:{{p.url[0].type}};base64, {{p.url[0].image}}" class="attachment-shop_catalog wp-post-image tumb" alt="{{p.title}}">
+                                <h3>{{p.title}}</h3>
                             </a>
                             <span class="price"><span class=rouble>Р</span><span class="amount">{{p.price}}</span></span>
-                            <a href="" ng-click="cart.addItem(p._id, p.name, p.price, 1)" >
+                            <a href="" ng-click="cart.addItem(p._id, p.title, p.price, 1)" >
                                 Добавить в корзину
                             </a>
                             <!--<a href="http://woocommerce_48611/?add-to-cart=1958" rel="nofollow" data-product_id="1958" data-product_sku="" class="button add_to_cart_button product_type_simple">Add to cart</a>-->

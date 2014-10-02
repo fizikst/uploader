@@ -4,6 +4,7 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
             when('/import', {templateUrl: 'partials/import.html',   controller: 'MainCtrl'}).
             when('/products', {templateUrl: 'partials/products.html', controller: 'ListCtrl'}).
             when('/articles', {templateUrl: 'partials/articles.html', controller: 'ArticleCtrl'}).
+            when('/colors', {templateUrl: 'partials/colors.html', controller: 'ColorCtrl'}).
             otherwise({redirectTo: '/products'});
     }])
 //    .factory("Product", function ($resource) {
@@ -338,6 +339,12 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
                 'update': { method:'PUT' }
             });
     }])
+    .factory('Color', ['$resource', function($resource) {
+        return $resource('/api/v1/colors/:id', null,
+            {
+                'update': { method:'PUT' }
+            });
+    }])
     .controller('ArticleCtrl', ['$scope', '$filter', '$resource', '$q', 'ngTableParams', 'Article', '$http',  function($scope, $filter, $resource, $q, ngTableParams, Article, $http) {
 
         $scope.article_create = '';
@@ -471,6 +478,101 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
             console.log(pid);
             var article = new Article();
             Article.delete({id:pid}, article);
+            $scope.tableParams.reload();
+        };
+
+    }])
+    .controller('ColorCtrl', ['$scope', '$filter', '$resource', '$q', 'ngTableParams', 'Color', '$http',  function($scope, $filter, $resource, $q, ngTableParams, Color, $http) {
+
+        $scope.color_create = '';
+
+        $scope.tableParams = new ngTableParams({
+            page: 1,            // show first page
+            count: 10,          // count per page
+            sorting: {
+            }
+        }, {
+            total: 0,
+            getData: function($defer, params) {
+                var Api = $resource('/api/v1/colors', params.url(), { query: {method:'GET'}});
+                Api.query(function (res1) {
+                    console.log('COLOR ', res1);
+                    params.total(res1.meta.meta.total);
+                    $defer.resolve($scope.data = res1.data);
+                });
+            }
+
+        });
+
+        $scope.editColor = function(pid) {
+            var color = new Color();
+            color.id = pid;
+
+            var rowId = '#row_' + pid;
+
+            $(rowId).find(':text').each(function (idx, input) {
+                color[$(input).attr('name')] = $(input).val();
+            });
+
+            var file;
+            $(rowId).find(':file').each(function (idx, input) {
+                console.log('##### COLOR FILE ######', this.files[0]);
+                file = this.files[0];
+            });
+
+            console.log('##### COLOR FILE ######', file);
+
+            $http.put('api/v1/colors/' + pid, {color: color, file: file}, {headers: {'Content-Type': undefined }, transformRequest:function(data) {
+                var formData = new FormData();
+                formData.append("color", angular.toJson(data.color));
+                formData.append("file", data.file);
+                return formData;
+            }}).success(function(data, status, headers, config){
+                    console.log('##### COLOR RESULT EDIT ######', data);
+                }).
+                error(function(data, status, headers, config){
+                    console.log('###### COLOR EDIT ERROR ######', status);
+                });
+
+        };
+
+        $scope.vote = 0;
+        $scope.expand = function(vote) {
+            $scope.vote = vote;
+        };
+
+        $scope.createColor = function (formId) {
+            var color = new Color();
+            $('#' + formId).find(':text').each(function (idx, input) {
+                color[$(input).attr('name')] = $(input).val();
+            });
+
+            var file;
+            $('#' + formId).find(':file').each(function (idx, input) {
+                file = this.files[0];
+            });
+            console.log('###### COLOR FILE CREATE ######', file);
+
+            $http.post('api/v1/colors', {color: color, file: file}, {headers: {'Content-Type': undefined }, transformRequest:function(data) {
+                var formData = new FormData();
+                formData.append("color", angular.toJson(data.color));
+                formData.append("file", data.file);
+                return formData;
+            }}).success(function(data, status, headers, config){
+                    console.log('##### COLOR CREATE SUCCESS #####', data);
+                }).
+                error(function(data, status, headers, config){
+                    console.log('##### COLOR CREATE ERROR #####', status);
+                });
+
+            $scope.vote = 0;
+            $scope.tableParams.reload();
+        };
+
+        $scope.deleteColor= function (pid) {
+            console.log(pid);
+            var color = new Color();
+            Color.delete({id:pid}, color);
             $scope.tableParams.reload();
         };
 
