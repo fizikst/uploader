@@ -6,7 +6,7 @@ var util = require('util'),
     url = require('url'),
     events = require('events');
 
-var DEFAULT_PORT = 8081;
+var DEFAULT_PORT = 80;
 
 function main(argv) {
   new HttpServer({
@@ -41,7 +41,7 @@ function HttpServer(handlers) {
 HttpServer.prototype.start = function(port) {
   this.port = port;
   this.server.listen(port);
-  util.puts('Http Server running at http://localhost:' + port + '/');
+  util.puts('Http Server running at http://localhost:' + port + '/index.html');
 };
 
 HttpServer.prototype.parseUrl_ = function(urlString) {
@@ -90,6 +90,7 @@ StaticServlet.prototype.handleRequest = function(req, res) {
   var path = ('./' + req.url.pathname).replace('//','/').replace(/%(..)/g, function(match, hex){
     return String.fromCharCode(parseInt(hex, 16));
   });
+
   var parts = path.split('/');
   if (parts[parts.length-1].charAt(0) === '.')
     return self.sendForbidden_(req, res, path);
@@ -214,7 +215,7 @@ StaticServlet.prototype.sendDirectory_ = function(req, res, path) {
 };
 
 StaticServlet.prototype.writeDirectoryIndex_ = function(req, res, path, files) {
-  path = path.substring(1);
+/*  path = path.substring(1);
   res.writeHead(200, {
     'Content-Type': 'text/html'
   });
@@ -236,12 +237,22 @@ StaticServlet.prototype.writeDirectoryIndex_ = function(req, res, path, files) {
         escapeHtml(fileName) + '</a></li>');
     }
   });
-  res.write('</ol>');
+  res.write('</ol>');*/
+  var self = this;
+
+  var path = ('./' + req.url.pathname).replace('//','/').replace(/%(..)/g, function(match, hex){
+    return String.fromCharCode(parseInt(hex, 16));
+  });
+
+  var parts = path.split('/');
+  if (parts[0].charAt(0) === '.') {
+    req.url.pathname += 'index.html';
+    var redirectUrl = url.format(url.parse(url.format(req.url)));
+    return self.sendRedirect_(req, res, redirectUrl);
+  }
+
   res.end();
 };
 
 // Must be last,
 main(process.argv);
-
-
-//dadasdsad
