@@ -59,6 +59,7 @@
                 </span>
                 <div ng-if="article.$edit">
                     <textarea name="desc" class="ck-editor" ng-model="article.desc"></textarea>
+                    <div bind-html-unsafe="article.desc" class="html_{{article._id}}"></div>
                 </div>
             </td>
 

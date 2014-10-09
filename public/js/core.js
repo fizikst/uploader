@@ -408,6 +408,9 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
                 file = this.files[0];
             });
 
+            article['desc'] = $(".html_" + pid).html();
+            console.log('RRRRRRRRRRR', $(".html_" + pid).html());
+
             console.log('ARTICLE', file);
 
             $http.put('api/v1/articles/' + pid, {article: article, file: file}, {headers: {'Content-Type': undefined }, transformRequest:function(data) {
