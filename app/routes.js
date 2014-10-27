@@ -193,7 +193,11 @@ module.exports = function(app) {
                                         if (selectOpts.hasOwnProperty(loop.column)) {
                                             if (_.isString(loop.value)) {
                                                 if (loop.value.indexOf(';') > 0 && selectOpts[loop.column] !== "description") {
-                                                    var values = loop.value.split(';');
+                                                    var loops = loop.value.split(';');
+                                                    var values = [];
+                                                    loops.forEach(function (currentValue) {
+                                                        values.push(currentValue.trim());
+                                                    });
                                                     console.log('##### ARRAY VALUES #####', values);
                                                     if (values.length > 1) {
                                                         async.concatSeries(values,
