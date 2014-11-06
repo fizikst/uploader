@@ -457,19 +457,18 @@ phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Ph
           if (data.url.length > 0) {
               $scope.mainImageUrl = data.url[0].image;
           }
-
-
-
-
-//          $scope.filter = data.filter;
-//          console.log($scope.filter);
-//          $scope.totalPages = $scope.filterCriteria.pageNumber;
-//          $scope.customersCount = data.length;
       }, function () {
           console.log('GET_PRODUCT EMPTY');
-//          $scope.customers = [];
-//          $scope.totalPages = 0;
-//          $scope.customersCount = 0;
+      });
+
+      Api.articles.search({type:'install'}).then(function (data) {
+          $scope.install = data;
+      }, function () {
+      });
+
+      Api.articles.search({type:'metering'}).then(function (data) {
+          $scope.metering = data;
+      }, function () {
       });
 
 //    $scope.phone = Phone.get({phoneId: $routeParams.phoneId}, function(phone) {
