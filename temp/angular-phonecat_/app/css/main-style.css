@@ -1296,7 +1296,7 @@ body #motopress-main.main-holder .content-holder ul.products li.product >:hover 
 }
 body #motopress-main.main-holder .content-holder ul.products li.product >:hover h3, body #motopress-main.main-holder .content-holder ul.products li.product >:hover strong, body #motopress-main.main-holder .content-holder div.product div.images >:hover h3, body #motopress-main.main-holder .content-holder div.product div.images >:hover strong, body #motopress-main.main-holder .content-holder div.product div.images .thumbnails >:hover h3, body #motopress-main.main-holder .content-holder div.product div.images .thumbnails >:hover strong { color:#303132; }
 body #motopress-main.main-holder .content-holder div.product div.images {
-    width:300px;
+    width:400px;
     margin-bottom:2em;
     margin-right:20px;
 }
