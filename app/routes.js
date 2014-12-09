@@ -1008,22 +1008,56 @@ module.exports = function(app) {
             var type = {};
             var model;
 
-            for (var i = 0; i < results.length; i++) {
+            if (!_.isNull(results)) {
+                for (var i = 0; i < results.length; i++) {
 
-                Object.keys(results[i]).forEach(function(key) {
-                    var value = results[i][key];
-                    if (_.isNumber(value))  {
-                        type[key] = 'number';
-                    } else if (_.isBoolean(value)) {
-                        type[key] = 'boolean';
-                    } else {
-                        type[key] = 'text';
+                    Object.keys(results[i]).forEach(function(key) {
+                        var value = results[i][key];
+                        if (_.isNumber(value))  {
+                            type[key] = 'number';
+                        } else if (_.isBoolean(value)) {
+                            type[key] = 'boolean';
+                        } else {
+                            type[key] = 'text';
+                        }
+                    });
+
+                    var names = Object.keys(results[i]);
+                    options = _.union(options, names)
+                }
+
+                options.sort();
+                console.log('OPTIONS',options);
+                async.eachSeries(options,
+                    function(loop, cb){
+                        var filterList = ['title','price','category', 'color', 'size', 'vendor', 'coating', 'available'];
+                        if (filterList.indexOf(loop) >= 0) {
+
+                            Product.find(request).distinct(loop, function(error, names) {
+                                var values = names.filter(Boolean);
+                                headers.push({title: loop, field: loop, visible: true, type: type[loop], data: values});
+                                cb();
+                            });
+                        } else {
+                            cb();
+                        }
+
+                    },
+                    function(err){
+                        if (err) console.log(err);
+                        console.log('##### HEADER FOR PRODUCT LIST #####', headers);
+                        Product.count(request, function( err, count){
+                            data.data = results;
+                            data.filter = headers;
+                            data.meta = {meta : {"total" : count}};
+                            res.json(data);
+                        });
                     }
-                });
-
-                var names = Object.keys(results[i]);
-                options = _.union(options, names)
+                );
+            } else {
+                res.json({});
             }
+
 
 //            console.log('OPTIONS', options);
 //            options.sort();
@@ -1043,34 +1077,7 @@ module.exports = function(app) {
 //                });
 //            }
 
-            options.sort();
-            console.log('OPTIONS',options);
-            async.eachSeries(options,
-                function(loop, cb){
-                    var filterList = ['title','price','category', 'color', 'size', 'vendor', 'coating', 'available'];
-                    if (filterList.indexOf(loop) >= 0) {
 
-                        Product.find(request).distinct(loop, function(error, names) {
-                            var values = names.filter(Boolean);
-                            headers.push({title: loop, field: loop, visible: true, type: type[loop], data: values});
-                            cb();
-                        });
-                    } else {
-                        cb();
-                    }
-
-                },
-                function(err){
-                    if (err) console.log(err);
-                    console.log('##### HEADER FOR PRODUCT LIST #####', headers);
-                    Product.count(request, function( err, count){
-                        data.data = results;
-                        data.filter = headers;
-                        data.meta = {meta : {"total" : count}};
-                        res.json(data);
-                    });
-                }
-            );
 
 //            console.log('OPTIONS', options);
 //            options.sort();
