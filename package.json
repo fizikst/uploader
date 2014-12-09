@@ -13,6 +13,7 @@
     "util": "~0.10.2",
     "validator": "~3.5.0",
     "async": "~0.7.0",
-    "mongoose-pagination": "~1.0.0"
+    "mongoose-pagination": "~1.0.0",
+    "MD5": "~1.2.1"
   }
 }

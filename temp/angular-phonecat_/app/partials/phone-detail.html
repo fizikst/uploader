@@ -11,16 +11,18 @@
     </div>
 </div>
 
+<!--<img style="border:1px solid #303132" ng-src="data:{{img.type}};base64, {{img.image}}" ng-repeat="img in product.url" ng-class="{active: mainImageUrl==img.image}" class="phone attachment-shop_single wp-post-image" alt="{{product.name}}" title="{{product.name}}">-->
+
 <div class="row">
     <div class="span10 right" id="content">
         <div itemscope="" itemtype="http://schema.org/Product" id="product-1946" class="post-1946 product type-product status-publish featured shipping-taxable purchasable product-type-simple product-cat-art-craft-leisure product-cat-furniture product-cat-paper-products product-cat-printers-cartridges product-tag-lorem-ipsum product-tag-sed-blandit-massa product-tag-vel-mauris instock">
             <div class="images" style="float: left">
                 <div class="phone-images">
-                    <img style="border:1px solid #303132" ng-src="data:{{img.type}};base64, {{img.image}}" ng-repeat="img in product.url" ng-class="{active: mainImageUrl==img.image}" class="phone attachment-shop_single wp-post-image" alt="{{product.name}}" title="{{product.name}}">
+                    <img style="border:1px solid #303132" ng-src="{{img.image}}" ng-repeat="img in product.url" ng-class="{active: mainImageUrl==img.image}" class="phone attachment-shop_single wp-post-image" alt="{{product.name}}" title="{{product.name}}">
                 </div>
                 <div class="thumbnails" style="text-align: left">
                     <a ng-repeat="img in product.url" >
-                        <img ng-click="setImage(img.image);" width="140" height="140" ng-if="img.image" ng-src="data:{{img.type}};base64, {{img.image}}" class="attachment-shop_thumbnail" alt="{{product.name}}">
+                        <img ng-click="setImage(img.image);" width="140" height="140" ng-if="img.image" ng-src="{{img.image}}" class="attachment-shop_thumbnail" alt="{{product.name}}">
                     </a>
                 </div>
             </div>

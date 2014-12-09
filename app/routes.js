@@ -8,7 +8,10 @@ var http = require('http');
 async = require("async");
 var validator = require('validator');
 var fs = require('fs');
-
+var ROOTDIR = process.cwd();
+var PATHFILES = ROOTDIR +"/files/";
+var PATHURL = "http://localhost:8082" + "/files/";
+var md5 = require('MD5');
 
 
 var mongoose = require('mongoose');
@@ -153,6 +156,7 @@ module.exports = function(app) {
 //    console.log('DOWNLOAD', download('http://kupitdveri59.ru/assets/images/dveri/model_7.jpg'));
     // api ---------------------------------------------------------------------
     // post fileconsole.log(req.files);
+
     app.post('/api/files', function(req, res) {
         var titleList = []
             , opts = {}
@@ -198,7 +202,7 @@ module.exports = function(app) {
                                                     loops.forEach(function (currentValue) {
                                                         values.push(currentValue.trim());
                                                     });
-                                                    console.log('##### ARRAY VALUES #####', values);
+                                                    console.log('##### ARRAY IMAGES #####', values);
                                                     if (values.length > 1) {
                                                         async.concatSeries(values,
                                                             function(loop1, cb1){
@@ -227,9 +231,20 @@ module.exports = function(app) {
                                                                             if (res.headers['content-type'] !== undefined)
                                                                                 type = res.headers['content-type'];
 
-                                                                            val.image = image;
-                                                                            _.extend(val, { type: type })
-                                                                            cb1(null, val);
+                                                                            var arrUrl = loop1.split('/');
+                                                                            var nameImage = arrUrl[arrUrl.length-1].split('.');
+                                                                            var urlImage = PATHURL + md5(arrUrl[arrUrl.length-1]) + "." + nameImage[nameImage.length -1];
+                                                                            var pathImage = PATHFILES + md5(arrUrl[arrUrl.length-1]) + "." + nameImage[nameImage.length -1];
+
+                                                                            fs.writeFile(pathImage, image, {'encoding':'binary', 'flag':'w'}, function(err){
+                                                                                if (err) {
+                                                                                    console.log(err);
+                                                                                }
+                                                                                val.image = urlImage;
+                                                                                _.extend(val, { type: type })
+                                                                                cb1(null, val);
+                                                                            });
+
                                                                         });
                                                                     });
                                                                 } else if (loop1 !== undefined || loop1 !== ''){
@@ -249,6 +264,7 @@ module.exports = function(app) {
                                                     }
                                                 } else {
                                                     if (validator.isURL(loop.value)) {
+
                                                         http.get(loop.value, function(res) {
                                                             var buffers = [];
                                                             var length = 0;
@@ -272,8 +288,19 @@ module.exports = function(app) {
                                                                 if (res.headers['content-type'] !== undefined)
                                                                     type = res.headers['content-type'];
 
-                                                                dataRow[selectOpts[loop.column]] = [{image:image, type: type}];
-                                                                cb(null);
+                                                                var arrUrl = loop.value.split('/');
+                                                                var nameImage = arrUrl[arrUrl.length-1].split('.');
+                                                                var urlImage = PATHURL + md5(arrUrl[arrUrl.length-1]) + "." + nameImage[nameImage.length -1];
+                                                                var pathImage = PATHFILES + md5(arrUrl[arrUrl.length-1]) + "." + nameImage[nameImage.length -1];
+
+                                                                fs.writeFile(pathImage, image, {'encoding':'binary', 'flag':'w'}, function(err){
+                                                                    if (err) {
+                                                                        console.log(err);
+                                                                    }
+                                                                    dataRow[selectOpts[loop.column]] = [{image:urlImage, type: type}];
+                                                                    cb(null);
+                                                                });
+
                                                             });
                                                         });
                                                     } else {
