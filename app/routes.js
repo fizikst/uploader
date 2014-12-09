@@ -1008,7 +1008,7 @@ module.exports = function(app) {
             var type = {};
             var model;
 
-            if (!_.isNull(results)) {
+            if (!_.isUndefined(results)) {
                 for (var i = 0; i < results.length; i++) {
 
                     Object.keys(results[i]).forEach(function(key) {
@@ -1055,7 +1055,7 @@ module.exports = function(app) {
                     }
                 );
             } else {
-                res.json({});
+                res.send(404);
             }
 
 
