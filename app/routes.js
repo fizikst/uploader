@@ -26,6 +26,14 @@ var orderSchema = Schema({
 },{ strict: false });
 var Order = mongoose.model('Order', orderSchema);
 
+var feedbackSchema = Schema({
+},{ strict: false });
+var Feedback = mongoose.model('Feedback', feedbackSchema);
+
+var meteringSchema = Schema({
+},{ strict: false });
+var Metering = mongoose.model('Metering', meteringSchema);
+
 var articleSchema = Schema({
     title: String,
     desc: String,
@@ -574,6 +582,106 @@ module.exports = function(app) {
     });
 
     app.options('/api/v1/orders', function(req, res) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+        var data = {};
+        res.json(data);
+    });
+
+// -------------------------- Feedback --------------------------------
+
+    app.post('/api/v1/feedbacks', function(req, res) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+        console.log('POST FEEDBACK___________________________________________', req.body);
+
+        var feed = new Feedback(req.body["feedback"]);
+
+        feed.save(function (err) {
+            if (err) {
+                console.log('FEED_ADD', err);
+                res.json({err:err});
+            }
+            res.json({code:200});
+        });
+    });
+
+    app.get('/api/v1/feedbacks', function(req, res) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+        var data = {}, request = {};
+        if (req.query.page || req.query.count) {
+        } else {
+            request = req.query;
+        }
+
+        Feedback.find(request).paginate(req.query.page, req.query.count).lean().exec(function(err, results) {
+            if (err) {
+                res.json({err:err});
+            }
+            Color.count({}, function(err, count){
+                data.data = results;
+                data.meta = {meta:{total:count}};
+                res.json(data);
+            });
+        });
+    });
+
+    app.options('/api/v1/feedbacks', function(req, res) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+        var data = {};
+        res.json(data);
+    });
+
+// -------------------------- Metering --------------------------------
+
+    app.post('/api/v1/meterings', function(req, res) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+        var metering = new Metering(req.body['metering']);
+
+        metering.save(function (err) {
+            if (err) {
+                console.log('METERING_ADD', err);
+                res.json({err:err});
+            }
+            res.json({code:200});
+        });
+    });
+
+    app.get('/api/v1/meterings', function(req, res) {
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+        var data = {}, request = {};
+        if (req.query.page || req.query.count) {
+        } else {
+            request = req.query;
+        }
+
+        Metering.find(request).paginate(req.query.page, req.query.count).lean().exec(function(err, results) {
+            if (err) {
+                res.json({err:err});
+            }
+            Color.count({}, function(err, count){
+                data.data = results;
+                data.meta = {meta:{total:count}};
+                res.json(data);
+            });
+        });
+    });
+
+    app.options('/api/v1/meterings', function(req, res) {
         res.header('Access-Control-Allow-Origin', "*");
         res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
         res.header('Access-Control-Allow-Headers', 'Content-Type');

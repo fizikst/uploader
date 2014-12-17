@@ -36,6 +36,10 @@ phonecatApp
             templateUrl: 'app/partials/phone-list.html',
             controller: 'PhoneListCtrl'
           }).
+          when('/feedback', {
+            templateUrl: 'app/partials/feedback.html',
+            controller: 'FeedbackCtrl'
+          }).
           when('/cart', {
             templateUrl: 'app/partials/shopping-cart.html',
             controller: 'ShoppingCartCtrl'

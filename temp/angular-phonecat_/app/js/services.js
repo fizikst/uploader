@@ -49,6 +49,18 @@ api.factory('Api', function (Restangular) {
 
                 return Restangular.one('orders').post('',data);
             }
+        },
+        feedback: {
+            post: function (data) {
+
+                return Restangular.one('feedbacks').post('',data);
+            }
+        },
+        metering: {
+            post: function (data) {
+
+                return Restangular.one('meterings').post('',data);
+            }
         }
     };
 

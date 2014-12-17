@@ -445,6 +445,94 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Api', '_', '$routePa
 //    $scope.orderProp = 'age';
   }]);
 
+
+phonecatControllers.controller('FeedbackCtrl', ['$scope', '$routeParams', 'Phone', 'Api', '_', 'DataService',
+    function($scope, $routeParams, Phone, Api, _, DataService) {
+
+
+        $scope.feedbackproc = false;
+        $scope.submitted=false;
+        $scope.valid=false;
+
+        $scope.feedback = {
+            name: '',
+            email: '',
+            phone: '',
+            street: '',
+            message: ''
+        };
+
+        $scope.IsValid = function () {
+            var count = 0;
+            for(var index in $scope.feedback) {
+                if (index == "name" || index=="phone" || index == "email" || index=="message") {
+                    if ($scope.feedback[index]) {
+                        count++;
+                    }
+                }
+            }
+            if (count == 4) {
+                $scope.valid = true;
+            } else {
+                $scope.valid = false;
+            }
+        }
+
+        $scope.send = function () {
+            $scope.submitted=true;
+
+            $scope.IsValid();
+            if ($scope.valid) {
+                Api.feedback.post({feedback:$scope.feedback}).then(function (data) {
+                    console.log(data);
+
+                    if (data.code == 200) {
+                        $scope.feedbackproc = true;
+
+                        $scope.feedback = {
+                            name: '',
+                            email: '',
+                            phone: '',
+                            street: '',
+                            message: ''
+                        };
+                        $scope.submitted=false;
+                    }
+
+                }, function () {
+                    console.log('POST FEEDBACK EMPTY', $routeParams);
+                });
+            }
+        };
+
+
+/*
+        $scope.cart = DataService.cart;
+
+        Api.products.get($routeParams).then(function (data) {
+            console.log('GET_PRODUCT', data);
+            $scope.product = data;
+
+            if (data.url.length > 0) {
+                $scope.mainImageUrl = data.url[0].image;
+            }
+        }, function () {
+            console.log('GET_PRODUCT EMPTY');
+        });
+
+        Api.articles.search({type:'install'}).then(function (data) {
+            $scope.install = data;
+        }, function () {
+        });
+
+        Api.articles.search({type:'metering'}).then(function (data) {
+            $scope.metering = data;
+        }, function () {
+        });
+*/
+
+    }]);
+
 phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone', 'Api', '_', 'DataService',
   function($scope, $routeParams, Phone, Api, _, DataService) {
 
@@ -470,6 +558,59 @@ phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Ph
           $scope.metering = data;
       }, function () {
       });
+
+
+      $scope.proc = false;
+      $scope.submitted=false;
+      $scope.valid=false;
+
+      $scope.meteringData = {
+          name: '',
+          phone: ''
+      };
+
+      $scope.IsValid = function () {
+          var count = 0;
+          for(var index in $scope.meteringData) {
+              if (index == "name" || index=="phone") {
+                  if ($scope.meteringData[index]) {
+                      count++;
+                  }
+              }
+          }
+          if (count == 2) {
+              $scope.valid = true;
+          } else {
+              $scope.valid = false;
+          }
+          console.log(count);
+      }
+
+      $scope.send = function () {
+          $scope.submitted=true;
+          $scope.proc = false;
+
+          $scope.IsValid();
+          if ($scope.valid) {
+              Api.metering.post({metering:$scope.meteringData}).then(function (data) {
+                  console.log(data);
+
+                  if (data.code == 200) {
+                      $scope.proc = true;
+
+                      $scope.meteringData = {
+                          name: '',
+                          phone: ''
+                      };
+                      $scope.submitted=false;
+                  }
+
+              }, function () {
+                  console.log('POST METERING EMPTY', $routeParams);
+              });
+          }
+      };
+
 
 //    $scope.phone = Phone.get({phoneId: $routeParams.phoneId}, function(phone) {
 //      $scope.mainImageUrl = phone.images[0];

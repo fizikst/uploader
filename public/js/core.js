@@ -5,6 +5,8 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
             when('/products', {templateUrl: 'partials/products.html', controller: 'ListCtrl'}).
             when('/articles', {templateUrl: 'partials/articles.html', controller: 'ArticleCtrl'}).
             when('/colors', {templateUrl: 'partials/colors.html', controller: 'ColorCtrl'}).
+            when('/feedbacks', {templateUrl: 'partials/feedbacks.html', controller: 'FeedbackCtrl'}).
+            when('/meterings', {templateUrl: 'partials/meterings.html', controller: 'MeteringCtrl'}).
             otherwise({redirectTo: '/products'});
     }])
 //    .factory("Product", function ($resource) {
@@ -345,6 +347,18 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
                 'update': { method:'PUT' }
             });
     }])
+    .factory('Feedback', ['$resource', function($resource) {
+        return $resource('/api/v1/feedbacks/:id', null,
+            {
+                'update': { method:'PUT' }
+            });
+    }])
+    .factory('Metering', ['$resource', function($resource) {
+        return $resource('/api/v1/meterings/:id', null,
+            {
+                'update': { method:'PUT' }
+            });
+    }])
     .controller('ArticleCtrl', ['$scope', '$filter', '$resource', '$q', 'ngTableParams', 'Article', '$http',  function($scope, $filter, $resource, $q, ngTableParams, Article, $http) {
 
         $scope.article_create = '';
@@ -579,6 +593,51 @@ angular.module('myApp', ['ngRoute', 'ngTable', 'ngResource'])
             $scope.tableParams.reload();
         };
 
+    }])
+    .controller('FeedbackCtrl', ['$scope', '$filter', '$resource', '$q', 'ngTableParams', 'Color', '$http',  function($scope, $filter, $resource, $q, ngTableParams, Feedback, $http) {
+
+        //$scope.color_create = '';
+
+        $scope.tableParams = new ngTableParams({
+            page: 1,            // show first page
+            count: 10,          // count per page
+            sorting: {
+            }
+        }, {
+            total: 0,
+            getData: function($defer, params) {
+                var Api = $resource('/api/v1/feedbacks', params.url(), { query: {method:'GET'}});
+                Api.query(function (res1) {
+                    console.log('Feedback ', res1);
+                    params.total(res1.meta.meta.total);
+                    $defer.resolve($scope.data = res1.data);
+                });
+            }
+
+        })
+
+    }])
+    .controller('MeteringCtrl', ['$scope', '$filter', '$resource', '$q', 'ngTableParams', 'Color', '$http',  function($scope, $filter, $resource, $q, ngTableParams, Metering, $http) {
+
+        //$scope.color_create = '';
+
+        $scope.tableParams = new ngTableParams({
+            page: 1,            // show first page
+            count: 10,          // count per page
+            sorting: {
+            }
+        }, {
+            total: 0,
+            getData: function($defer, params) {
+                var Api = $resource('/api/v1/meterings', params.url(), { query: {method:'GET'}});
+                Api.query(function (res1) {
+                    console.log('Metering ', res1);
+                    params.total(res1.meta.meta.total);
+                    $defer.resolve($scope.data = res1.data);
+                });
+            }
+
+        });
     }]);
 
 

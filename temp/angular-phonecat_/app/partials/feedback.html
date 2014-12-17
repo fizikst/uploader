@@ -1,0 +1,75 @@
+<p class="text-info">
+    <!--Thanks for shopping at the Angular Store.<br />-->
+    <!--This is your shopping cart. Here you can edit the items,-->
+    <!--go back to the store, clear the cart, or check out.-->
+</p>
+
+        <!--http://blog.yasla.net/2013/09/angularjs-twitter-bootstrap.html-->
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span8">
+
+            <!-- items -->
+
+            <form id="feedbackform" name="feedbackform" novalidate>
+               <div class="form-group" ng-class="{true: 'error'}[submitted && feedbackform.name.$invalid]">
+                    <label for="name" class="control-label col-lg-3">Ваше имя * :</label>
+                    <div class="col-lg-9">
+                        <input required type="text" class="form-control" id="name" name="name" ng-model="feedback.name" ng-focus="submitted = false">
+                    </div>
+                   <div class="controls">
+                       <span class="help-inline" style="color:red;" ng-show="submitted && feedbackform.name.$error.required">Поле "Ваше имя" обязательно к заполнению.</span>
+                   </div>
+                </div>
+
+                <div class="form-group" ng-class="{true: 'error'}[submitted && feedbackform.phone.$invalid]">
+                    <label for="phone" class="control-label col-lg-3">Тел. * :</label>
+                    <div class="col-lg-9">
+                        <input required type="text" class="form-control" id="phone" name="phone" ng-model="feedback.phone" ng-focus="submitted = false">
+                    </div>
+                    <div class="controls">
+                        <span class="help-inline" style="color:red;" ng-show="submitted && feedbackform.phone.$error.required">Поле "Тел." обязательно к заполнению.</span>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{'has-success': feedback.street}">
+                    <label for="feedback_street" class="control-label col-lg-3">Адрес :</label>
+                    <div class="col-lg-9">
+                        <input type="text" class="form-control" id="feedback_street" name="feedback_street" ng-model="feedback.street">
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{true: 'error'}[submitted && feedbackform.email.$invalid]">
+                    <label for="email" class="control-label col-lg-3">E-mail * :</label>
+                    <div class="col-lg-9">
+                        <input required type="text" class="form-control" id="email" name="email" ng-model="feedback.email" ng-focus="submitted = false">
+                    </div>
+                    <div class="controls">
+                        <span class="help-inline" style="color:red;" ng-show="submitted && feedbackform.email.$error.required">Поле "E-mail" обязательно к заполнению.</span>
+                        <span class="help-inline" style="color:red;" ng-show="submitted && feedbackform.email.$error.email">Указан не правильный E-mail.</span>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{true: 'error'}[submitted && feedbackform.message.$invalid]">
+                    <label for="message" class="control-label col-lg-3">Сообщение * :</label>
+                    <div class="col-lg-9">
+                        <input required type="text" class="form-control" id="message" name="message" ng-model="feedback.message" ng-focus="submitted = false">
+                    </div>
+                    <div class="controls">
+                        <span class="help-inline" style="color:red;" ng-show="submitted && feedbackform.message.$error.required">Поле "Сообщение" обязательно к заполнению.</span>
+                    </div>
+                </div>
+
+                <div class="span4">
+                    <p class="text-info">
+                        <input type="submit" value="Отправить" ng-click="send()">
+                    </p>
+                </div>
+            </form>
+
+        </div>
+        <div ng-show="feedbackproc" style="color:#008000">
+            Спасибо за сообщение. Мы Вам ответим в ближайщее время.
+        </div>
+    </div>
+</div>

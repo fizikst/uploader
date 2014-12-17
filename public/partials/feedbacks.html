@@ -1,0 +1,52 @@
+<div ng-controller="FeedbackCtrl" style="width:800px;">
+
+    <table ng-table="tableParams" class="table">
+        <tbody>
+        <tr ng-repeat="feed in $data" id="row_{{feed._id}}">
+            <td data-title="'Имя'">
+                <span ng-if="!feed.$edit">{{feed.name}}</span>
+                <div ng-if="feed.$edit"><input class="form-control" name="name" type="text" ng-model="feed.name" /></div>
+            </td>
+
+            <td data-title="'Тел'">
+                <span ng-if="!feed.$edit">{{feed.phone}}</span>
+                <div ng-if="feed.$edit"><input class="form-control" name="phone" type="text" ng-model="feed.phone" /></div>
+            </td>
+
+            <td data-title="'Улица'">
+                <span ng-if="!feed.$edit">{{feed.street}}</span>
+                <div ng-if="feed.$edit"><input class="form-control" name="street" type="text" ng-model="feed.street" /></div>
+            </td>
+
+            <td data-title="'Email'">
+                <span ng-if="!feed.$edit">{{feed.email}}</span>
+                <div ng-if="feed.$edit"><input class="form-control" name="email" type="text" ng-model="feed.email" /></div>
+            </td>
+
+            <td data-title="'Сообщение'">
+                <span ng-if="!feed.$edit">{{feed.message}}</span>
+                <div ng-if="feed.$edit"><input class="form-control" name="message" type="text" ng-model="feed.message" /></div>
+            </td>
+
+
+            <!--
+                        <td data-title="'Операции'" width="200">
+                            <a ng-if="!color.$edit" href="" class="btn btn-default btn-xs" ng-click="color.$edit = true">Изменить</a>
+                            <a ng-if="color.$edit" href="" class="btn btn-primary btn-xs" ng-click="color.$edit = false; editColor(color._id);">Сохранить</a>
+                            <a ng-if="color.$edit" href="" class="btn btn-warning btn-xs" ng-click="color.$edit = false;">Отменить</a>
+                            <a href="" class="btn btn-danger btn-xs" ng-click="deleteColor(color._id)">Удалить</a>
+                        </td>
+            -->
+        </tr>
+        </tbody>
+<!--        <tfoot>
+            <tr>
+                <td colspan="4"><input type=button id="new" value="new" ng-click="expand(1)"></td>
+            </tr>
+            <tr ng-show="vote===1" ng-if="vote===1">
+                <td colspan="4" ng-include src="'partials/createColor.html'"></td>
+            </tr>
+        </tfoot>-->
+    </table>
+
+</div>

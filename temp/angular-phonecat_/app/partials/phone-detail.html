@@ -29,7 +29,41 @@
 
             <div class="summary entry-summary" style="float:left;">
                 <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                    <h4>{{product.title}}</h4>
+                    <h3 style="text-align: center">{{product.title}}</h3>
+                    <h4 style="margin: auto; margin-left: 60px; margin-bottom: 20px; margin-top: 20px;">ЗАКАЖИТЕ БЕСПЛАТНЫЙ ЗАМЕР ДЛЯ ЭТОЙ ДВЕРИ</h4>
+                    <div class="metering-block" style="border: 1px red solid;">
+                        <form id="meteringFrom" name="meteringFrom" novalidate>
+                            <div class="form-group" ng-class="{true: 'error'}[submitted && meteringFrom.name.$invalid]">
+                                <label for="name" class="control-label col-lg-3">Ваше имя * :</label>
+                                <div class="col-lg-9">
+                                    <input required type="text" class="form-control" id="name" name="name" ng-model="meteringData.name" ng-focus="submitted = false">
+                                </div>
+                                <div class="controls">
+                                    <span class="help-inline" style="color:red;" ng-show="submitted && meteringFrom.name.$error.required">Поле "Ваше имя" обязательно к заполнению.</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{true: 'error'}[submitted && meteringFrom.phone.$invalid]">
+                                <label for="phone" class="control-label col-lg-3">Тел. :</label>
+                                <div class="col-lg-9">
+                                    <input required type="text" class="form-control" id="phone" name="phone" ng-model="meteringData.phone" ng-focus="submitted = false">
+                                </div>
+                                <div class="controls">
+                                    <span class="help-inline" style="color:red;" ng-show="submitted && meteringFrom.phone.$error.required">Поле "Тел." обязательно к заполнению.</span>
+                                </div>
+                            </div>
+                            <div class="span4">
+                                <p class="text-info">
+                                    <input style="margin-left: 30px;" type="submit" value="Отправить" ng-click="send()">
+                                </p>
+                            </div>
+                        </form>
+                        <div ng-show="proc" style="color:#008000">
+                            Спасибо за сообщение. Мы Вам ответим в ближайщее время.
+                        </div>
+
+                    </div>
+
                     <table class="variations" cellspacing="0">
                         <tbody>
                         <tr>
