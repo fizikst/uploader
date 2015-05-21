@@ -1,7 +1,7 @@
 var Todo = require('./models/todo');
 var SpreadsheetReader = require('pyspreadsheet').SpreadsheetReader;
 var _ = require('underscore');
-var config = require('../config');
+//var config = require('../config');
 var util = require('util');
 var sys = require('sys');
 var http = require('http');
@@ -10,7 +10,7 @@ var validator = require('validator');
 var fs = require('fs');
 var ROOTDIR = process.cwd();
 var PATHFILES = ROOTDIR +"/files/";
-var PATHURL = "http://localhost:8082" + "/files/";
+var PATHURL = "http://localhost:8088" + "/files/";
 var md5 = require('MD5');
 
 
@@ -47,13 +47,15 @@ var colorSchema = Schema({
 }, { strict: false });
 var Color = mongoose.model('Color', colorSchema);
 
-console.log('config', config);
+//console.log('config', config);
 require('mongoose-pagination');
 
 /*  postgres */
+/*
 var pg = require('pg');
 var conn =  config.postgres;
 var connString = util.format("pg://%s:%s@%s:%d/%s", conn.user, conn.password, conn.host,conn.port, conn.database);
+*/
 /*  !postgres */
 
 
@@ -93,6 +95,7 @@ module.exports = function(app) {
 //    productRepository.prototype.remove = function (id) {}
 
 
+/*
     function Insert(client, done, data, selectOpts) {
         var strMaskParams = GetStringCountParams(selectOpts);
         var strTitleParams = GetTitleSelectOpts(selectOpts);
@@ -106,6 +109,7 @@ module.exports = function(app) {
             }
         );
     }
+*/
 
     function GetStringCountParams(selectOpts) {
         console.log(selectOpts);
@@ -1305,7 +1309,7 @@ module.exports = function(app) {
 //        });
 	});
 
-    app.post('/api/products', function(req, res) {
+/*    app.post('/api/products', function(req, res) {
         var data = req.body;
         pg.connect(connString, function(err, client, done) {
             done();
@@ -1319,7 +1323,7 @@ module.exports = function(app) {
                 }
             );
         });
-    });
+    });*/
 
 	// application -------------------------------------------------------------
 	app.get('*', function(req, res) {
